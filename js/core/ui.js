@@ -181,17 +181,6 @@ export function gate({ force = false } = {}) {
 
 // ---------- Nav ----------
 export function initNav(lenis) {
-  const btn = document.querySelector('[data-sound-toggle]');
-  if (btn) {
-    const paint = () => {
-      btn.classList.toggle('is-on', sound.enabled);
-      btn.querySelector('.state').textContent = sound.enabled ? 'On' : 'Off';
-    };
-    btn.addEventListener('click', () => { sound.toggle(); setTimeout(paint, 30); });
-    sound.onChange(paint);
-    paint();
-  }
-
   // Menú móvil
   const menuBtn = document.querySelector('.nav__menu');
   const menu = document.querySelector('.menu');
