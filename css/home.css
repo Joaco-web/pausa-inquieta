@@ -205,14 +205,6 @@
   max-width: 13ch;
 }
 .promesa__text .ch { will-change: transform, opacity; }
-.promesa__hint {
-  position: absolute; bottom: calc(var(--gutter) + 10px); left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px; letter-spacing: .3em; text-transform: uppercase;
-  color: var(--lime);
-  white-space: nowrap;
-  z-index: 2;
-}
 @media (max-width: 760px) {
 }
 

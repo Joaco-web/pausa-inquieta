@@ -9,7 +9,6 @@ const ScrollTrigger = window.ScrollTrigger;
 export default function promesa(lenis) {
   const sec = document.querySelector('.promesa');
   const text = sec.querySelector('.promesa__text');
-  const hint = sec.querySelector('.promesa__hint');
   const halo = sec.querySelector('.promesa__halo');
   const { chars } = split(text);
   const mobile = innerWidth < 760;
@@ -39,9 +38,6 @@ export default function promesa(lenis) {
     scrollTrigger: { trigger: sec, start: 'top 60%' },
   });
 
-  // pitido suave de "no hagas nada"
-  gsap.to(hint, { opacity: 0.25, duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(2)' });
-
   gsap.ticker.add((t, dms) => {
     const dt = Math.min(0.1, dms / 1000);
     if (!reduced) {
@@ -66,6 +62,5 @@ export default function promesa(lenis) {
       else chars[i].style.fontWeight = 300;
     }
     halo.style.opacity = e.toFixed(3);
-    hint.style.visibility = a > 0.97 ? 'hidden' : 'visible';
   });
 }
