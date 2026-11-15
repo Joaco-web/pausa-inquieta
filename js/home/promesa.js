@@ -1,7 +1,6 @@
-// LA PROMESA — la frase solo se arma si dejás de hacer.
-// Scrollear o clickear la desarma; quedarte quieto la completa.
+// LA PROMESA — la frase se arma mientras scrolleás.
+// Bajar la va armando (queda completa antes de terminar la sección); subir la desarma.
 import { split, torn, WEIGHTS, pick, rand, reduced } from '../core/fx.js';
-import { activity } from '../core/heart.js';
 import { sound } from '../core/sound.js';
 
 const gsap = window.gsap;
@@ -22,12 +21,14 @@ export default function promesa(lenis) {
   }));
 
   let a = reduced ? 1 : 0;
-  let active = false;
+  let target = a;
   let done = false;
 
+  // El avance del scroll por la sección decide cuánto está armada la frase:
+  // arranca cuando la sección llega arriba y se completa al ~70% del tramo fijo.
   ScrollTrigger.create({
-    trigger: sec, start: 'top 20%', end: 'bottom 80%',
-    onToggle: (s) => { active = s.isActive; },
+    trigger: sec, start: 'top 60%', end: 'bottom bottom',
+    onUpdate: (st) => { target = Math.min(1, st.progress / 0.7); },
   });
 
   sec.querySelectorAll('.ph').forEach((p) => torn(p, { amp: 2.4 }));
@@ -41,23 +42,13 @@ export default function promesa(lenis) {
   // pitido suave de "no hagas nada"
   gsap.to(hint, { opacity: 0.25, duration: 0.6, repeat: -1, yoyo: true, ease: 'steps(2)' });
 
-  // Una vez armada, la frase queda armada si seguís bajando.
-  // Solo se vuelve a desarmar si subís (volvés atrás).
-  let locked = false;
   gsap.ticker.add((t, dms) => {
     const dt = Math.min(0.1, dms / 1000);
-    if (active && !reduced) {
-      const vel = lenis.velocity || 0;
-      const v = Math.abs(vel);
-      if (locked) {
-        if (vel < -0.6) { locked = false; a -= dt * 0.9; }
-      } else {
-        if (v > 0.6) a -= dt * 0.9;
-        else if (activity.idle > 0.5) a += dt * 0.7;
-        else a += dt * 0.18;
-      }
-      a = Math.max(0, Math.min(1, a));
-      if (a >= 0.999 && !done) { done = true; locked = true; sound.settle(0.09); }
+    if (!reduced) {
+      // sigue al scroll con un poco de suavidad
+      a += (target - a) * Math.min(1, dt * 8);
+      if (Math.abs(target - a) < 0.001) a = target;
+      if (a >= 0.999 && !done) { done = true; sound.settle(0.09); }
       if (a < 0.6) done = false;
     }
     const e = 1 - Math.pow(1 - a, 3);
