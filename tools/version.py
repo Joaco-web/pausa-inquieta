@@ -51,6 +51,10 @@ def main() -> None:
             return f'{attr}="{rel}?v={v}"' if v else m.group(0)
         html = re.sub(r'(href|src)="((?:css|js)/[^"?]+)(?:\?v=[0-9a-f]+)?"', repl, html)
         html = re.sub(r'<script type="importmap">.*?</script>', lambda _: importmap, html, flags=re.S)
+        # enlaces al paso a paso con su versión (la de recorrido.html), así se baja la página nueva
+        build = re.search(r'<meta name="build" content="([0-9a-f]+)">', (ROOT / "recorrido.html").read_text(encoding="utf-8"))
+        if build and page == "index.html":
+            html = re.sub(r'href="recorrido\.html(?:\?v=[0-9a-f]+)?"', f'href="recorrido.html?v={build.group(1)}"', html)
         path.write_text(html, encoding="utf-8", newline="")
         print(f"{page}: {len(imports) - len(EXTERNAL)} módulos versionados")
 

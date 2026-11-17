@@ -14,6 +14,15 @@ from pasos_data import PASOS
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = json.loads((ROOT / "assets/pasos/manifest.json").read_text(encoding="utf-8"))
+# Versión del paso a paso: cambia cuando cambia el contenido, los estilos o el JS.
+# Se agrega a los enlaces entre páginas (?v=) para que el navegador nunca muestre una copia vieja.
+BUILD = hashlib.md5(b"".join((ROOT / f).read_bytes() for f in [
+    "tools/pasos_data.py", "assets/pasos/manifest.json", "css/pasos.css", "js/pasos.js"])).hexdigest()[:8]
+
+
+def L(page):
+    """enlace a otra página del paso a paso, con la versión"""
+    return f"{page}?v={BUILD}"
 TOTAL = len(PASOS)
 LUGAR = {"aula": "Aula", "unreal": "Unreal"}
 
@@ -36,6 +45,7 @@ def head(title, desc):
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}">
   <meta name="theme-color" content="#0b0b0b">
+  <meta name="build" content="{BUILD}">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +69,7 @@ def progress(current):
         if i == current:
             cls.append("is-now")
         cur = ' aria-current="step"' if i == current else ""
-        ticks.append(f'<a class="{" ".join(cls)}" href="paso-{i:02d}.html"{cur} title="{i:02d} · {e(p["titulo"])}"><span class="sr-only">Paso {i}: {e(p["titulo"])}</span></a>')
+        ticks.append(f'<a class="{" ".join(cls)}" href="{L(f"paso-{i:02d}.html")}"{cur} title="{i:02d} · {e(p["titulo"])}"><span class="sr-only">Paso {i}: {e(p["titulo"])}</span></a>')
     p = PASOS[current - 1] if current else None
     where = (f'<span class="pbar__where"><b>{LUGAR[p["lugar"]]}</b><span class="pbar__num">{current:02d}<i>/</i>{TOTAL}</span></span>'
              if p else '<span class="pbar__where"><b>Paso a paso</b></span>')
@@ -115,11 +125,11 @@ def page(n):
     p = PASOS[n - 1]
     lugar = p["lugar"]
     surface = "pos" if lugar == "aula" else "neg"
-    prev_href = "recorrido.html" if n == 1 else f"paso-{n - 1:02d}.html"
+    prev_href = L("recorrido.html") if n == 1 else L(f"paso-{n - 1:02d}.html")
     prev_txt = "Índice" if n == 1 else f"{n - 1:02d} · {PASOS[n - 2]['titulo']}"
     if n < TOTAL:
         nxt = PASOS[n]
-        next_href = f"paso-{n + 1:02d}.html"
+        next_href = L(f"paso-{n + 1:02d}.html")
         next_meta = f"{n + 1:02d} · {LUGAR[nxt['lugar']]} · {nxt['titulo']}"
     else:
         next_href = "index.html#llevas"
@@ -194,7 +204,7 @@ def page(n):
 def index():
     rows = []
     for i, p in enumerate(PASOS, 1):
-        rows.append(f'<li class="idx__row idx__row--{p["lugar"]}" data-in><a href="paso-{i:02d}.html">'
+        rows.append(f'<li class="idx__row idx__row--{p["lugar"]}" data-in><a href="{L(f'paso-{i:02d}.html')}">'
                     f'<span class="idx__n">{i:02d}</span><span class="idx__l">{LUGAR[p["lugar"]]}</span>'
                     f'<span class="idx__t">{e(p["titulo"])}</span>{ARROW}</a></li>')
     return f"""{head("El paso a paso — Pausa Inquieta", "La experiencia de Pausa Inquieta contada paso a paso: lo que ves, lo que escuchás y lo que pasa, en el aula y en Unreal.")}
@@ -212,7 +222,7 @@ def index():
         <p><span class="chip chip--aula">Aula</span> Lo que pasa en el aula, alrededor tuyo.</p>
         <p><span class="chip chip--unreal">Unreal</span> Lo que pasa adentro de la computadora.</p>
       </div>
-      <a class="pill idx__start" href="paso-01.html" data-in><span>Empezar</span>{ARROW}</a>
+      <a class="pill idx__start" href="{L('paso-01.html')}" data-in><span>Empezar</span>{ARROW}</a>
     </section>
     <ol class="idx__list" aria-label="Los {TOTAL} pasos">
       {"".join(rows)}
