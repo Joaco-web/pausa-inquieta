@@ -294,7 +294,6 @@ body.pi-talking .pi__ring, body.pi-talking .pi__tip, body.pi-talking .pi:hover .
 }
 .nav > * { pointer-events: auto; }
 .nav__mark { display: flex; align-items: center; gap: 12px; font-family: var(--f-logo); font-size: 13px; letter-spacing: .02em; }
-.nav__logo { height: 26px; width: auto; }
 .nav__mark .mark {
   width: 14px; height: 28px; background: #fff;
   border-radius: 999px 0 0 999px;
