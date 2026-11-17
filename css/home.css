@@ -523,12 +523,12 @@
 .ig:hover::after { transform: scaleX(1); transform-origin: left; }
 .foot {
   position: relative; z-index: 2;
-  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;
+  display: flex; justify-content: flex-end; align-items: flex-end; gap: 24px; flex-wrap: wrap;
+  min-height: calc(42px + 22px); /* misma altura que cuando tenía el logo */
   border-top: 1.5px solid var(--ink);
   padding-top: 22px;
   background: var(--paper);
 }
-.foot__logo { height: 42px; width: auto; }
 .foot__links { display: flex; gap: 28px; font-size: 14px; }
 .foot__links a { border-bottom: 1px solid transparent; transition: border-color .3s; }
 .foot__links a:hover { border-color: currentColor; }
