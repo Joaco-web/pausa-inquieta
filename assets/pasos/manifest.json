@@ -130,6 +130,18 @@
    "w": 1800,
    "h": 787,
    "src": "assets/pasos/06/planta-baja.webp"
+  },
+  "planta-baja-2": {
+   "type": "img",
+   "w": 1534,
+   "h": 862,
+   "src": "assets/pasos/06/planta-baja-2.webp"
+  },
+  "planta-baja-3": {
+   "type": "img",
+   "w": 1800,
+   "h": 906,
+   "src": "assets/pasos/06/planta-baja-3.webp"
   }
  },
  "7": {
@@ -161,6 +173,12 @@
    "dur": 11.6,
    "src": "assets/pasos/08/tres-monitores.mp4",
    "poster": "assets/pasos/08/tres-monitores-poster.webp"
+  },
+  "aula": {
+   "type": "img",
+   "w": 1800,
+   "h": 859,
+   "src": "assets/pasos/08/aula.webp"
   }
  },
  "9": {
