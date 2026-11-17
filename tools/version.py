@@ -14,7 +14,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PAGES = ["index.html", "recorrido.html"]
+PAGES = sorted(p.name for p in ROOT.glob("*.html"))
 # Librerías externas del import map (se mantienen tal cual)
 EXTERNAL = {
     "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",

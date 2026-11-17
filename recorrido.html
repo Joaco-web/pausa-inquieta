@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="no-cursor">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Recorrido — Pausa Inquieta</title>
-  <meta name="description" content="El recorrido de Pausa Inquieta, contado por PI: aula y Unreal.">
+  <title>El paso a paso — Pausa Inquieta</title>
+  <meta name="description" content="La experiencia de Pausa Inquieta contada paso a paso: lo que ves, lo que escuchás y lo que pasa, en el aula y en Unreal.">
   <meta name="theme-color" content="#0b0b0b">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css?v=a1f0cf2d">
-  <link rel="stylesheet" href="css/recorrido.css?v=9551c394">
-  <link rel="stylesheet" href="css/paso.css?v=f7d3b207">
+  <link rel="stylesheet" href="css/pasos.css?v=ef1dad77">
+  <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">
 {
   "imports": {
@@ -20,7 +20,6 @@
     "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/",
     "./js/core/fx.js": "./js/core/fx.js?v=94542643",
     "./js/core/heart.js": "./js/core/heart.js?v=bfa1c7c0",
-    "./js/core/pi.js": "./js/core/pi.js?v=64f15edf",
     "./js/core/sound.js": "./js/core/sound.js?v=2bd17aba",
     "./js/core/ui.js": "./js/core/ui.js?v=66c0b3b7",
     "./js/home/caja.js": "./js/home/caja.js?v=d8e89ef8",
@@ -32,292 +31,38 @@
     "./js/home/redes.js": "./js/home/redes.js?v=621405e9",
     "./js/home/somos.js": "./js/home/somos.js?v=667af2a2",
     "./js/home/story.js": "./js/home/story.js?v=9b07cece",
-    "./js/recorrido/hostile.js": "./js/recorrido/hostile.js?v=a15751fc",
-    "./js/recorrido/main.js": "./js/recorrido/main.js?v=d4f5509f",
-    "./js/recorrido/scenes-new.js": "./js/recorrido/scenes-new.js?v=34741690",
-    "./js/recorrido/scenes.js": "./js/recorrido/scenes.js?v=7c5de4b6",
-    "./js/three/aula.js": "./js/three/aula.js?v=38d94500",
+    "./js/pasos.js": "./js/pasos.js?v=f250dd38",
     "./js/three/box.js": "./js/three/box.js?v=f0ca290b",
-    "./js/three/keychain.js": "./js/three/keychain.js?v=a1a06653",
-    "./js/three/salon.js": "./js/three/salon.js?v=684d473d",
-    "./js/three/worlds.js": "./js/three/worlds.js?v=6bc17309"
+    "./js/three/keychain.js": "./js/three/keychain.js?v=a1a06653"
   }
 }
   </script>
 </head>
-<body class="rec">
-
-  <!-- HUD -->
-  <header class="nav rhud">
-    <a href="index.html#llevas" data-page class="nav__mark" aria-label="Salir del recorrido"><span class="mark"></span><span>Salir</span></a>
-    <div class="rhud__step" aria-live="polite">
-      <span class="rhud__num">01</span><span class="rhud__sep">/</span><span class="rhud__total">08</span>
-      <span class="rhud__name">Antes de entrar</span>
-    </div>
-    <div class="nav__right"></div>
-  </header>
-  <nav class="rail" aria-label="Etapas del recorrido"></nav>
-
-  <!-- Inicio -->
-  <div class="rstart" role="dialog" aria-label="Iniciar recorrido">
-    <div class="rstart__inner">
-      <span class="label label--lime">El recorrido</span>
-      <p class="rstart__title">Aula <span>+</span> Unreal</p>
-      <button class="pill rstart__btn">Iniciar
-        <svg class="arr" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 6h20M15 1l5 5-5 5"/></svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- PI cuenta el recorrido: el texto va al lado de lo que pasa -->
-  <div class="narr" aria-live="polite">
-    <span class="narr__kicker"></span>
-    <p class="narr__text"></p>
-  </div>
-
-  <!-- Capas de lo que se va poniendo hostil -->
-  <div class="hostile" aria-hidden="true"></div>
-  <div class="floaters" aria-hidden="true"></div>
-  <div class="bw" aria-hidden="true"></div>
-  <div class="cut" aria-hidden="true"><span class="cut__kind"></span><span class="cut__name"></span><span class="cut__bar"><i></i></span></div>
-
-  <main class="scenes">
-
-    <!-- ===================== 01 — ANTES DE ENTRAR ===================== -->
-    <section class="etapa etapa--dark" data-etapa="01" data-title="Antes de entrar"><div class="etapa__stage"><span class="etapa__num">01</span><h2 class="etapa__title">Antes de entrar</h2><span class="etapa__down" aria-hidden="true"></span></div></section>
-
-    <section class="scene aula scene--3d" data-scene="aula3d" data-etapa="01" data-name="Aula · El comienzo" style="--len:8">
-      <div class="stage">
-        <canvas class="world" aria-label="El aula en 3D: la puerta, las líneas del piso y tu lugar"></canvas>
-        <div class="copy">
-          <p data-at="0" data-kicker="Aula · El comienzo">Antes de entrar, verás el semicírculo, nuestro logo y la promesa a través de un mapping, pero al rato te damos nuestros lentes UV para verlo de nuevo. ¿Algo cambió?</p>
-          <p data-at="0.14" data-kicker="Aula · El comienzo">El semicírculo simboliza el corazón de nuestra pausa, y nuestro “No hagas nada”.</p>
-          <p data-at="0.3" data-kicker="Aula · Tu lugar">Verás unas líneas en el piso que te indicarán sentarte en un área alejada de las otras y que estará intervenida por el sistema de Pausa Inquieta.</p>
-          <p data-at="0.5" data-kicker="Aula · Tu lugar">Una vez frente a la computadora, verás el teclado tapado por una tela y por encima la caja, que dirá “Te sobran 25 minutos”. Adentro, una tarjeta que dice “¿Y ahora qué vas a hacer?”</p>
-          <p data-at="0.68" data-kicker="Aula · Tu lugar">Al lado, una hoja y un lápiz.</p>
-          <p data-at="0.75" data-kicker="Aula · Tu lugar">Después de unos minutos, el monitor se prende.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 02 — EL CORAZÓN DE LA PAUSA ===================== -->
-    <section class="etapa etapa--violet" data-etapa="02" data-title="El corazón de la pausa"><div class="etapa__stage"><span class="etapa__num">02</span><h2 class="etapa__title">El corazón de la pausa</h2></div></section>
-
-    <section class="scene unreal scene--3d" data-scene="salon3d" data-etapa="02" data-name="Unreal · El inicio" style="--len:4.2">
-      <div class="stage">
-        <canvas class="world" aria-label="El salón antiguo con el semicírculo, en 3D"></canvas>
-        <p class="voice" data-at="0.42">“No hagas nada”</p>
-        <div class="copy">
-          <p data-at="0.02">Al inicio ves el mismo semicírculo del mapping, con bordes desgastados, verde flúor, con glow, que late como un corazón.</p>
-          <p data-at="0.26">Estás en un salón antiguo de estructura deteriorada, con columnas y barandas ornamentadas. Luz tenue de color violeta y azulada, con acentos flúor.</p>
-          <p data-at="0.62">Apenas avanzás, el piso se abre y te caés porque hiciste lo contrario de lo que te dijeron.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 03 — ALGO PARECE FALTAR ===================== -->
-    <section class="etapa etapa--fall" data-etapa="03" data-title="Algo parece faltar"><div class="etapa__stage"><div class="fall" aria-hidden="true"></div><span class="etapa__num">03</span><h2 class="etapa__title">Algo parece faltar</h2></div></section>
-
-    <section class="scene unreal scene--3d" data-scene="cubos" data-etapa="03" data-name="Unreal · Planta baja" style="--len:2.8">
-      <div class="stage">
-        <canvas class="world" aria-label="La planta baja: paredes blancas con cubos y un cubo en el centro, en 3D"></canvas>
-        <p class="voice voice--side" data-at="0.08">“Te dije que no hagas nada”</p>
-        <div class="copy">
-          <p>Caés en la planta baja del mismo salón. El techo y el piso emanan luces que cambian según lo que hagas.</p>
-          <p>Estás rodeado de paredes blancas llenas de cubos con distintos glows y un hueco en el medio de cada una. En el centro de la habitación hay un cubo.</p>
-          <p>Si ponés el cubo en cualquiera de los huecos, los demás desaparecen y se escucha el tic tac del reloj.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene aula" data-scene="proyector" data-etapa="03" data-name="Aula · El proyector" style="--len:2.4">
-      <div class="stage">
-        <!-- Esto pasa en el aula física: el proyector general, sobre la pared -->
-        <div class="classroom">
-          <span class="classroom__tag">En el aula · el proyector</span>
-          <div class="classroom__projector"><i></i></div>
-          <div class="classroom__beam"></div>
-          <div class="screen">
-            <div class="morph"><span class="morph__a"></span><span class="morph__b"><canvas width="40" height="80"></canvas></span></div>
-          </div>
-          <div class="classroom__desks"><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-        <div class="copy">
-          <p>De un momento a otro, el proyector muestra el semicírculo transformándose en su opuesto: inquieta. Te observa y suena un reloj, leve.</p>
-          <p>En momentos aleatorios va a aparecer una lluvia de tele con un sonido fuerte.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene unreal scene--3d" data-scene="corazon" data-etapa="03" data-name="Unreal · El corazón" style="--len:3.6">
-      <div class="stage cine-bars">
-        <canvas class="world" aria-label="Cinemática en 3D: el semicírculo pierde su color, aparece Inquieta y se llena de ruido"></canvas>
-        <div class="copy">
-          <p>Mientras más quieras hacer, el ambiente y el corazón se vuelven hostiles.</p>
-          <p>Pierde su color brillante y aparece inquieta, su otra mitad, en blanco y negro con ruido, formas bruscas, pitidos y movimiento de cámara.</p>
-          <p>Cada tanto, una cinemática: el semicírculo llenándose de ruido.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 04 — ¿FALTABA ALGO? ===================== -->
-    <section class="etapa etapa--light" data-etapa="04" data-title="¿Faltaba algo?"><div class="etapa__stage"><span class="etapa__num">04</span><h2 class="etapa__title">¿Faltaba algo?</h2></div></section>
-
-    <section class="scene aula" data-scene="pcs" data-etapa="04" data-name="Aula · Las computadoras" style="--len:3">
-      <div class="stage">
-        <div class="monitors">
-          <div class="mon mon--you"><div class="mon__scr"><svg viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0 40 L100 30"/></svg></div><span>Vos</span></div>
-          <div class="mon"><div class="mon__scr"><svg viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0 30 C 30 10, 60 50, 100 26"/></svg></div></div>
-          <div class="mon"><div class="mon__scr"><svg viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0 26 C 40 46, 60 6, 100 34"/></svg></div></div>
-          <div class="mon"><div class="mon__scr"><svg viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0 34 L60 34 L100 30"/></svg></div></div>
-          <div class="mon mon--far"><div class="mon__scr"><span class="mon__pi"><i></i><i></i></span><em class="mon__q"></em></div></div>
-        </div>
-        <div class="copy">
-          <p data-at="0.02">De repente, tres computadoras se encienden.</p>
-          <p data-at="0.34">Aparece una línea en las pantallas que marca un camino hasta otra computadora, en la que Pausa Inquieta te dice: “¿Faltaba algo?”</p>
-          <p data-at="0.8">Se corta el video y volvés a la computadora del inicio.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene unreal scene--3d" data-scene="luces" data-etapa="04" data-name="Unreal · Las luces" style="--len:2.8">
-      <div class="stage">
-        <canvas class="world" aria-label="Una hilera de luces flúor y botones en el piso, en 3D"></canvas>
-        <div class="copy">
-          <p>En otra parte del salón vas a ver una hilera de luces en vertical, de colores flúor, que parecen seguir un patrón u orden.</p>
-          <p>Alrededor hay botones en el piso. Al tocarlos, algunas luces se apagan, otras se prenden o cambian de color.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene aula scene--3d" data-scene="hoods1" data-etapa="04" data-name="Aula · Encapuchados" style="--len:2.6">
-      <div class="stage">
-        <canvas class="world" data-phrase="¿Qué está faltando?" aria-label="Alumnos encapuchados de espaldas frente al monitor; en cada espalda: ¿Qué está faltando?"></canvas>
-        <div class="copy">
-          <p>De repente aparecen los alumnos encapuchados, con los rostros tapados. Te dan la espalda frente al monitor y en sus espaldas leés una frase: “¿Qué está faltando?”</p>
-          <p>Van rotando sus posiciones. Después de unos minutos se van, y después vuelven.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 05 — LO QUE SE DESORDENA ===================== -->
-    <section class="etapa etapa--dark" data-etapa="05" data-title="Lo que se desordena"><div class="etapa__stage"><span class="etapa__num">05</span><h2 class="etapa__title">Lo que se desordena</h2></div></section>
-
-    <section class="scene unreal scene--3d" data-scene="letras" data-etapa="05" data-name="Unreal · La pared de letras" style="--len:2.8">
-      <div class="stage">
-        <canvas class="world" data-words="HACER|PRODUCIR|OCUPAR|RENDIR" aria-label="Una pared de letras que escribe sola; las palabras salen flotando, en 3D"></canvas>
-        <div class="copy">
-          <p>Te cruzás con una pared de letras para escribir.</p>
-          <p>Si escribís algo, las palabras se vuelven físicas y flotan por el espacio. Y te molestan.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene unreal scene--3d" data-scene="cuadros" data-etapa="05" data-name="Unreal · El pasillo" style="--len:2.8">
-      <div class="stage">
-        <canvas class="world" aria-label="Un pasillo en 3D con cuadros torcidos en la pared y marcos vacíos en el piso"></canvas>
-        <div class="copy">
-          <p>Después, un pasillo con cuadros colgados en la pared y, en el piso, solo el marco. Varios están torcidos.</p>
-          <p>Si los acomodás, otros se tuercen o se caen. Si no hacés nada, al rato se acomodan solos.</p>
-          <p>Mientras más hagas, más ruido va a tener el corazón.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene aula scene--3d" data-scene="hoods2" data-etapa="05" data-name="Aula · Encapuchados" style="--len:2.6">
-      <div class="stage">
-        <canvas class="world" data-phrase="¿Qué te dije que hagas antes?" aria-label="Alumnos encapuchados de espaldas; en cada espalda: ¿Qué te dije que hagas antes?"></canvas>
-        <div class="copy">
-          <p>Otra vez aparecen los alumnos, con los rostros tapados por capuchas y dándote la espalda. Ahora leés otra frase.</p>
-          <p>Después de unos minutos, se retiran.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 06 — UN CAMINO QUE NO TERMINA ===================== -->
-    <section class="etapa etapa--dark" data-etapa="06" data-title="Un camino que no termina"><div class="etapa__stage"><span class="etapa__num">06</span><h2 class="etapa__title">Un camino que no termina</h2></div></section>
-
-    <section class="scene unreal scene--3d" data-scene="escalera" data-etapa="06" data-name="Unreal · La escalera" style="--len:4">
-      <div class="stage">
-        <canvas class="world" aria-label="Una escalera de neón que no termina, en 3D"></canvas>
-        <canvas class="stairs__noise" width="160" height="100" aria-hidden="true"></canvas>
-        <div class="copy">
-          <p>Al final del pasillo, unas escaleras. Al subirlas no tienen fin: cuanto más intentes subir, más ruido.</p>
-          <p>Si lo hacés durante un tiempo, la escalera se mueve de lugar, porque seguís subiendo a ningún lado.</p>
-          <p>Cuando deja de moverse, se detiene frente a una puerta.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene unreal scene--3d" data-scene="dominos" data-etapa="06" data-name="Unreal · Los dominós" style="--len:4">
-      <div class="stage">
-        <canvas class="world" data-phrase="Te dije que no hagas nada" aria-label="Una cadena de dominós en 3D que cae y, vista desde arriba, forma la frase: Te dije que no hagas nada"></canvas>
-        <div class="copy">
-          <p>Adentro, una estructura hecha de dominós. La primera pieza está de cara al piso.</p>
-          <p>Si no la tocás, se posiciona sola y genera la reacción en cadena, que al terminar revela una frase.</p>
-          <p>Si hacés algo, pasa lo mismo, más la intervención del proyector y más ruido en el corazón.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 07 — EL CORAZÓN INQUIETO ===================== -->
-    <section class="etapa etapa--dark" data-etapa="07" data-title="El corazón inquieto"><div class="etapa__stage"><span class="etapa__num">07</span><h2 class="etapa__title">El corazón inquieto</h2></div></section>
-
-    <section class="scene unreal scene--3d" data-scene="final" data-etapa="07" data-name="Unreal · El final" style="--len:3.6">
-      <div class="stage">
-        <canvas class="world" aria-label="El salón deteriorado, el semicírculo que se abre, el túnel y el pedestal con la caja, en 3D"></canvas>
-        <div class="copy">
-          <p>A medida que avanzás, el lugar del inicio se deteriora y pierde esa luz que guiaba. Ahora es hostil, con el ruido que vos mismo generaste.</p>
-          <p>Cuando el semicírculo pasa de pausa a inquieta, se abre y te deja pasar por un túnel oscuro hasta una sala.</p>
-          <p>Un pedestal blanco con la caja del inicio arriba.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 08 — DESPUÉS ===================== -->
-    <section class="etapa etapa--noise" data-etapa="08" data-title="Después"><div class="etapa__stage"><span class="etapa__num">08</span><h2 class="etapa__title">Después</h2></div></section>
-
-    <section class="scene aula aula--noise" data-scene="ruido" data-etapa="08" data-name="Aula · Ruido" style="--len:1.6">
-      <div class="stage">
-        <canvas class="static" width="200" height="120" aria-hidden="true"></canvas>
-        <div class="after">
-          <!-- El proyector del aula: Pausa Inquieta habla -->
-          <div class="after__projector">
-            <span class="after__tag">En el aula · el proyector</span>
-            <div class="after__screen">
-              <span class="after__pi"><i></i><i><canvas width="20" height="40"></canvas></i></span>
-              <blockquote class="after__quote">“Esta experiencia nace de ver que muchas veces cuando no hacemos nada sentimos la necesidad de hacer algo. Fijate, vos no hacías nada y la experiencia avanzaba igual pero siempre sentiste la necesidad de hacer algo.”</blockquote>
-            </div>
-          </div>
-          <!-- Mientras habla, las escenas vuelven a mostrarse y se resuelven solas -->
-          <div class="after__reel" aria-hidden="true">
-            <div class="reel reel--cubes"><i class="rc"></i><i class="rh rh1"></i><i class="rh rh2"></i><i class="rh rh3"></i><i class="rh rh4"></i></div>
-            <div class="reel reel--lights"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="reel reel--frames"><i></i><i></i><i></i></div>
-            <div class="reel reel--dominos"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="after__side">
-            <div class="after__cta">
-              <a href="index.html#llevas" data-page class="pill" data-exit>Qué te llevás
-                <svg class="arr" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 6h20M15 1l5 5-5 5"/></svg>
-              </a>
-              <a href="recorrido.html" data-page class="pill pill--paper">Volver a empezar</a>
-            </div>
-          </div>
-        </div>
-        <div class="copy">
-          <p>Inmediatamente tu pantalla se convierte en ruido puro. Todas las computadoras del aula muestran ruido. El proyector muestra un video de Pausa Inquieta:</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
+<body class="neg paso-page paso-page--index" data-lugar="index">
+  <script>(function(){var l=document.body.dataset.lugar,p;try{p=sessionStorage.getItem('pi-lugar');sessionStorage.setItem('pi-lugar',l)}catch(e){}if((l==='aula'||l==='unreal')&&p!==l){document.documentElement.classList.add('cambiando');document.documentElement.dataset.to=l}})()</script>
   <div class="grain" aria-hidden="true"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script type="module" src="js/recorrido/main.js?v=d4f5509f"></script>
+  <div class="glow" aria-hidden="true"></div>
+  <header class="pbar">
+    <a class="pbar__exit" href="index.html#recorrido"><svg class="arr arr--back" viewBox="0 0 22 12" aria-hidden="true"><path d="M22 6H2M7 1L2 6l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Salir</span></a>
+    <nav class="pbar__steps" aria-label="Pasos de la experiencia"><a class="tick tick--aula" href="paso-01.html" title="01 · La puerta"><span class="sr-only">Paso 1: La puerta</span></a><a class="tick tick--aula" href="paso-02.html" title="02 · Tu lugar"><span class="sr-only">Paso 2: Tu lugar</span></a><a class="tick tick--unreal" href="paso-03.html" title="03 · El salón"><span class="sr-only">Paso 3: El salón</span></a><a class="tick tick--aula" href="paso-04.html" title="04 · El proyector"><span class="sr-only">Paso 4: El proyector</span></a><a class="tick tick--unreal" href="paso-05.html" title="05 · La caída"><span class="sr-only">Paso 5: La caída</span></a><a class="tick tick--unreal" href="paso-06.html" title="06 · Planta baja"><span class="sr-only">Paso 6: Planta baja</span></a><a class="tick tick--unreal" href="paso-07.html" title="07 · Pasillo de neón"><span class="sr-only">Paso 7: Pasillo de neón</span></a><a class="tick tick--aula" href="paso-08.html" title="08 · Las tres pantallas"><span class="sr-only">Paso 8: Las tres pantallas</span></a><a class="tick tick--unreal" href="paso-09.html" title="09 · Sala de cuadros"><span class="sr-only">Paso 9: Sala de cuadros</span></a><a class="tick tick--aula" href="paso-10.html" title="10 · ¿Qué está faltando?"><span class="sr-only">Paso 10: ¿Qué está faltando?</span></a><a class="tick tick--unreal" href="paso-11.html" title="11 · Salón de espejos"><span class="sr-only">Paso 11: Salón de espejos</span></a><a class="tick tick--unreal" href="paso-12.html" title="12 · Los ojos"><span class="sr-only">Paso 12: Los ojos</span></a><a class="tick tick--unreal" href="paso-13.html" title="13 · Las teles"><span class="sr-only">Paso 13: Las teles</span></a><a class="tick tick--unreal" href="paso-14.html" title="14 · La puerta empapelada"><span class="sr-only">Paso 14: La puerta empapelada</span></a><a class="tick tick--aula" href="paso-15.html" title="15 · ¿Qué te dije que hagas antes?"><span class="sr-only">Paso 15: ¿Qué te dije que hagas antes?</span></a><a class="tick tick--unreal" href="paso-16.html" title="16 · El péndulo"><span class="sr-only">Paso 16: El péndulo</span></a><a class="tick tick--unreal" href="paso-17.html" title="17 · La persecución"><span class="sr-only">Paso 17: La persecución</span></a><a class="tick tick--unreal" href="paso-18.html" title="18 · La escalera infinita"><span class="sr-only">Paso 18: La escalera infinita</span></a><a class="tick tick--unreal" href="paso-19.html" title="19 · El dominó"><span class="sr-only">Paso 19: El dominó</span></a><a class="tick tick--aula" href="paso-20.html" title="20 · Inquieta, para siempre"><span class="sr-only">Paso 20: Inquieta, para siempre</span></a><a class="tick tick--unreal" href="paso-21.html" title="21 · Todo vuelve"><span class="sr-only">Paso 21: Todo vuelve</span></a><a class="tick tick--unreal" href="paso-22.html" title="22 · El walkie-talkie"><span class="sr-only">Paso 22: El walkie-talkie</span></a><a class="tick tick--unreal" href="paso-23.html" title="23 · Pausa te guía"><span class="sr-only">Paso 23: Pausa te guía</span></a><a class="tick tick--unreal" href="paso-24.html" title="24 · El corazón de Inquieta"><span class="sr-only">Paso 24: El corazón de Inquieta</span></a><a class="tick tick--aula" href="paso-25.html" title="25 · No todo pide algo"><span class="sr-only">Paso 25: No todo pide algo</span></a></nav>
+    <span class="pbar__where"><b>Paso a paso</b></span>
+  </header>
+  <main class="idx">
+    <section class="idx__hero">
+      <span class="label label--lime" data-in>El recorrido</span>
+      <h1 class="idx__title" data-in>El paso<br>a paso</h1>
+      <p class="idx__lead" data-in>Te contamos la experiencia en 25 pasos: qué ves, qué escuchás y qué pasa. Va y viene entre dos lugares al mismo tiempo.</p>
+      <div class="idx__legend" data-in>
+        <p><span class="chip chip--aula">Aula</span> Lo que pasa en el aula, alrededor tuyo.</p>
+        <p><span class="chip chip--unreal">Unreal</span> Lo que pasa adentro de la computadora.</p>
+      </div>
+      <a class="pill idx__start" href="paso-01.html" data-in><span>Empezar</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    </section>
+    <ol class="idx__list" aria-label="Los 25 pasos">
+      <li class="idx__row idx__row--aula" data-in><a href="paso-01.html"><span class="idx__n">01</span><span class="idx__l">Aula</span><span class="idx__t">La puerta</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--aula" data-in><a href="paso-02.html"><span class="idx__n">02</span><span class="idx__l">Aula</span><span class="idx__t">Tu lugar</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-03.html"><span class="idx__n">03</span><span class="idx__l">Unreal</span><span class="idx__t">El salón</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--aula" data-in><a href="paso-04.html"><span class="idx__n">04</span><span class="idx__l">Aula</span><span class="idx__t">El proyector</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-05.html"><span class="idx__n">05</span><span class="idx__l">Unreal</span><span class="idx__t">La caída</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-06.html"><span class="idx__n">06</span><span class="idx__l">Unreal</span><span class="idx__t">Planta baja</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-07.html"><span class="idx__n">07</span><span class="idx__l">Unreal</span><span class="idx__t">Pasillo de neón</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--aula" data-in><a href="paso-08.html"><span class="idx__n">08</span><span class="idx__l">Aula</span><span class="idx__t">Las tres pantallas</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-09.html"><span class="idx__n">09</span><span class="idx__l">Unreal</span><span class="idx__t">Sala de cuadros</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--aula" data-in><a href="paso-10.html"><span class="idx__n">10</span><span class="idx__l">Aula</span><span class="idx__t">¿Qué está faltando?</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-11.html"><span class="idx__n">11</span><span class="idx__l">Unreal</span><span class="idx__t">Salón de espejos</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-12.html"><span class="idx__n">12</span><span class="idx__l">Unreal</span><span class="idx__t">Los ojos</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-13.html"><span class="idx__n">13</span><span class="idx__l">Unreal</span><span class="idx__t">Las teles</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-14.html"><span class="idx__n">14</span><span class="idx__l">Unreal</span><span class="idx__t">La puerta empapelada</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--aula" data-in><a href="paso-15.html"><span class="idx__n">15</span><span class="idx__l">Aula</span><span class="idx__t">¿Qué te dije que hagas antes?</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-16.html"><span class="idx__n">16</span><span class="idx__l">Unreal</span><span class="idx__t">El péndulo</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-17.html"><span class="idx__n">17</span><span class="idx__l">Unreal</span><span class="idx__t">La persecución</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-18.html"><span class="idx__n">18</span><span class="idx__l">Unreal</span><span class="idx__t">La escalera infinita</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-19.html"><span class="idx__n">19</span><span class="idx__l">Unreal</span><span class="idx__t">El dominó</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--aula" data-in><a href="paso-20.html"><span class="idx__n">20</span><span class="idx__l">Aula</span><span class="idx__t">Inquieta, para siempre</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-21.html"><span class="idx__n">21</span><span class="idx__l">Unreal</span><span class="idx__t">Todo vuelve</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-22.html"><span class="idx__n">22</span><span class="idx__l">Unreal</span><span class="idx__t">El walkie-talkie</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-23.html"><span class="idx__n">23</span><span class="idx__l">Unreal</span><span class="idx__t">Pausa te guía</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--unreal" data-in><a href="paso-24.html"><span class="idx__n">24</span><span class="idx__l">Unreal</span><span class="idx__t">El corazón de Inquieta</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li><li class="idx__row idx__row--aula" data-in><a href="paso-25.html"><span class="idx__n">25</span><span class="idx__l">Aula</span><span class="idx__t">No todo pide algo</span><svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
+    </ol>
+  </main>
+  <div class="cambio" aria-hidden="true"><canvas></canvas><span class="cambio__word"></span></div>
+  <script type="module" src="js/pasos.js?v=f250dd38"></script>
 </body>
 </html>
