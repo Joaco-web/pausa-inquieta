@@ -1,0 +1,118 @@
+{
+ "3/latido": {
+  "src": "assets/pasos/03/sonido-latido.mp3",
+  "dur": 11.0
+ },
+ "3/voz": {
+  "src": "assets/pasos/03/sonido-voz.mp3",
+  "dur": 5.7
+ },
+ "4/reloj": {
+  "src": "assets/pasos/04/sonido-reloj.mp3",
+  "dur": 8.2
+ },
+ "4/ruido": {
+  "src": "assets/pasos/04/sonido-ruido.mp3",
+  "dur": 4.5
+ },
+ "5/tictac": {
+  "src": "assets/pasos/05/sonido-tictac.mp3",
+  "dur": 25.2
+ },
+ "5/voz": {
+  "src": "assets/pasos/05/sonido-voz.mp3",
+  "dur": 4.7
+ },
+ "6/hostil": {
+  "src": "assets/pasos/06/sonido-hostil.mp3",
+  "dur": 45
+ },
+ "7/botones": {
+  "src": "assets/pasos/07/sonido-botones.mp3",
+  "dur": 15.1
+ },
+ "7/cortocircuito": {
+  "src": "assets/pasos/07/sonido-cortocircuito.mp3",
+  "dur": 5.1
+ },
+ "8/pantallas": {
+  "src": "assets/pasos/08/sonido-pantallas.mp3",
+  "dur": 4.3
+ },
+ "9/musica": {
+  "src": "assets/pasos/09/sonido-musica.mp3",
+  "dur": 45
+ },
+ "11/eco": {
+  "src": "assets/pasos/11/sonido-eco.mp3",
+  "dur": 22.4
+ },
+ "13/teles": {
+  "src": "assets/pasos/13/sonido-teles.mp3",
+  "dur": 18.6
+ },
+ "13/escribir": {
+  "src": "assets/pasos/13/sonido-escribir.mp3",
+  "dur": 4.7
+ },
+ "14/escaleras": {
+  "src": "assets/pasos/14/sonido-escaleras.mp3",
+  "dur": 13.2
+ },
+ "16/pendulo": {
+  "src": "assets/pasos/16/sonido-pendulo.mp3",
+  "dur": 24.9
+ },
+ "16/corte": {
+  "src": "assets/pasos/16/sonido-corte.mp3",
+  "dur": 4.8
+ },
+ "17/persecucion": {
+  "src": "assets/pasos/17/sonido-persecucion.mp3",
+  "dur": 23.1
+ },
+ "18/relojes": {
+  "src": "assets/pasos/18/sonido-relojes.mp3",
+  "dur": 33.4
+ },
+ "18/escalera": {
+  "src": "assets/pasos/18/sonido-escalera.mp3",
+  "dur": 33.7
+ },
+ "19/domino": {
+  "src": "assets/pasos/19/sonido-domino.mp3",
+  "dur": 13.0
+ },
+ "20/presion": {
+  "src": "assets/pasos/20/sonido-presion.mp3",
+  "dur": 5.4
+ },
+ "21/susurros": {
+  "src": "assets/pasos/21/sonido-susurros.mp3",
+  "dur": 22.0
+ },
+ "21/inquieta": {
+  "src": "assets/pasos/21/sonido-inquieta.mp3",
+  "dur": 45
+ },
+ "22/walkie": {
+  "src": "assets/pasos/22/sonido-walkie.mp3",
+  "dur": 17.3
+ },
+ "23/calma": {
+  "src": "assets/pasos/23/sonido-calma.mp3",
+  "dur": 31.7
+ },
+ "24/corazon": {
+  "src": "assets/pasos/24/sonido-corazon.mp3",
+  "dur": 45
+ },
+ "24/ruido": {
+  "src": "assets/pasos/24/sonido-ruido.mp3",
+  "dur": 4.5
+ },
+ "25/ruido": {
+  "src": "assets/pasos/25/sonido-ruido.mp3",
+  "dur": 4.5
+ }
+}

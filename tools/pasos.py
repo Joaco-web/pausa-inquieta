@@ -108,7 +108,7 @@ def sounds(items):
     for s in items:
         src = s.get("src")
         state = "" if src else " is-pending"
-        audio = f'<audio src="{src}" preload="none"></audio>' if src else ""
+        audio = f'<audio src="{ver(src)}" preload="none"></audio>' if src else ""
         hint = "" if src else '<span class="sound__soon">audio en camino</span>'
         out.append(f"""<div class="sound{state}">
             <button class="sound__btn" type="button" aria-label="Escuchar: {e(s['label'])}"{'' if src else ' disabled'}>{PLAY}{PAUSE}</button>
