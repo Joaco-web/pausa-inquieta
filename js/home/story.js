@@ -29,16 +29,6 @@ export default function story() {
 
   line(sec);
 
-  // "pero la experiencia avanza…": entra a la derecha y, mientras bajás, se desliza a la izquierda
-  const move = sec.querySelector('.st--move');
-  if (move && !reduced) {
-    gsap.to(move, {
-      x: () => -move.offsetLeft, // offsetLeft no cambia con el transform, así se recalcula bien al redimensionar
-      ease: 'power1.inOut',
-      scrollTrigger: { trigger: move, start: 'top 55%', end: 'top 15%', scrub: true, invalidateOnRefresh: true },
-    });
-  }
-
   // Botón Iniciar: aparece, late y es magnético
   const start = sec.querySelector('.start');
   gsap.from(start, { scale: 0, rotate: -90, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: start, start: 'top 90%' } });
@@ -62,7 +52,7 @@ export default function story() {
 // la curva pasa por todos (Catmull-Rom → Bézier). Los círculos aparecen cuando la línea llega.
 const PTS = [[1.04, 0.01], [0.86, 0.04], [0.77, 0.10], [0.78, 0.17], [0.66, 0.23], [0.44, 0.22], [0.26, 0.25], [0.12, 0.33], [0.14, 0.43], [0.30, 0.48], [0.47, 0.45], [0.55, 0.51], [0.46, 0.58], [0.28, 0.58], [0.14, 0.61], [0.05, 0.67], [-0.05, 0.75]];
 const PTS_M = [[1.05, 0.0], [0.78, 0.04], [0.62, 0.11], [0.80, 0.19], [0.70, 0.27], [0.36, 0.30], [0.16, 0.38], [0.30, 0.47], [0.74, 0.50], [0.86, 0.57], [0.60, 0.63], [-0.05, 0.69]];
-const DOTS = [{ cls: '.story__dot--lime', at: 0.22 }, { cls: '.story__dot--red', at: 0.6 }];
+const DOTS = [{ cls: '.story__dot--lime', at: 0.22 }, { cls: '.story__dot--red', at: 0.82 }];
 
 function curve(pts) {
   let d = `M${pts[0][0]},${pts[0][1]}`;

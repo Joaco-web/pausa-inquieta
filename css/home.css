@@ -373,8 +373,8 @@
 .st--in { margin-left: clamp(0px, 4vw, 80px); }
 .st--r { max-width: 44vw; margin-left: 50vw; }
 .st--l + .st--r { margin-top: 16vh; }
-.st--key { font-family: var(--f-logo); color: var(--lime); font-size: clamp(40px, 5.6vw, 104px); letter-spacing: -.04em; text-shadow: 0 0 40px rgba(215,255,58,.35); margin-top: 14vh; }
-.st--move { will-change: transform; }
+/* La clave: a la izquierda y grande, con protagonismo */
+.st--key { font-family: var(--f-logo); color: var(--lime); font-size: clamp(48px, 8vw, 150px); line-height: 1; letter-spacing: -.04em; text-shadow: 0 0 40px rgba(215,255,58,.35); margin-top: 14vh; margin-left: clamp(0px, 5vw, 100px); max-width: 62vw; }
 /* La línea de trama */
 .story__line { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; overflow: visible; }
 .story__path { fill: none; stroke: rgba(236,235,229,.42); stroke-width: 1.5; stroke-linecap: round; }
@@ -421,6 +421,7 @@
   .st--in { margin-left: 0; }
   .st--r { margin-left: 10vw; }
   .st--l + .st--r { margin-top: 10vh; }
+  .st--key { margin-left: 0; max-width: none; }
 }
 
 /* =========================================================
