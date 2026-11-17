@@ -230,7 +230,7 @@ PASOS = [
         "ves": "Las inquietudes con dificultades que te fuiste generando a lo largo de la experiencia están ahí. Las palabras que te seguían antes lo vuelven a hacer. Te cuesta ver ciertas partes del lugar por las luces que descompusiste. Los ojos flotantes te persiguen.",
         "escuchas": [],
         "pasa": "Y cuando ya no había nada que empeorara la situación, ves una figura que no termina de ser humana por completo: es Inquieta personificada.",
-        "media": ["espacio-2", "espacio-1", "masa", "inquieta"],
+        "media": ["espacio-2", "espacio-1", "inquieta"],
         "cta": "Seguí",
     },
     {  # 22
@@ -264,7 +264,7 @@ PASOS = [
         "pasa": "Al atravesarlo hay una sala con mucho ruido: es el corazón de Inquieta. En el centro hay un pedestal con una caja apoyada, la misma que la del aula. Al abrirla se revela un doble fondo, con una tarjeta oculta. Tu pantalla se congela y produce ruido.",
         "frase": "¿Y ahora?",
         "objeto": {"nombre": "La caja", "texto": "Es la misma que la del aula."},
-        "media": ["pausa-inquieta", "tunel", "pedestal", "y-ahora"],
+        "media": ["pausa-inquieta", "tunel", "masa", "pedestal", "y-ahora"],
         "cta": "Mientras tanto, en el aula…",
     },
     {  # 25
