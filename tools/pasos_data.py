@@ -120,7 +120,7 @@ PASOS = [
         "cta": "Mientras tanto, en el aula…",
     },
     {  # 10
-        "lugar": "aula", "titulo": "¿Qué está faltando?",
+        "lugar": "aula", "titulo": "Los encapuchados",
         "donde": "En el aula, en tu compu.",
         "ves": "De repente aparecen los alumnos encapuchados, con los rostros tapados, dándote la espalda enfrente del monitor y dejándote leer una frase.",
         "escuchas": [],
@@ -167,7 +167,7 @@ PASOS = [
         "cta": "Mientras tanto, en el aula…",
     },
     {  # 15
-        "lugar": "aula", "titulo": "¿Qué te dije que hagas antes?",
+        "lugar": "aula", "titulo": "Vuelven los encapuchados",
         "donde": "En el aula, en tu compu.",
         "ves": "De pronto, los alumnos encapuchados y con los rostros tapados vuelven a ponerse enfrente de tu monitor, dándote la espalda. Pero ahora la frase cambió.",
         "escuchas": [],
@@ -268,7 +268,7 @@ PASOS = [
         "cta": "Mientras tanto, en el aula…",
     },
     {  # 25
-        "lugar": "aula", "titulo": "No todo pide algo",
+        "lugar": "aula", "titulo": "El cierre",
         "donde": "En el aula.",
         "ves": "Todas las computadoras se prenden, cada una produciendo el mismo ruido. En el proyector general se reproduce un video de PI.",
         "escuchas": [
