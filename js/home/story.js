@@ -50,8 +50,8 @@ export default function story() {
 // ---------- Trama: línea con curvas que se dibuja con el scroll ----------
 // Los puntos están en proporción a la sección (x de 0 a 1 del ancho, y de 0 a 1 del alto);
 // la curva pasa por todos (Catmull-Rom → Bézier). Los círculos aparecen cuando la línea llega.
-const PTS = [[0.98, 0.0], [0.80, 0.07], [0.60, 0.17], [0.32, 0.22], [0.08, 0.32], [0.20, 0.44], [0.44, 0.50], [0.30, 0.59], [0.12, 0.66], [-0.03, 0.70]];
-const PTS_M = [[0.95, 0.0], [0.70, 0.06], [0.88, 0.18], [0.40, 0.26], [0.92, 0.38], [0.30, 0.50], [0.85, 0.60], [-0.03, 0.68]];
+const PTS = [[1.04, 0.01], [0.86, 0.04], [0.77, 0.10], [0.78, 0.17], [0.66, 0.23], [0.44, 0.22], [0.26, 0.25], [0.12, 0.33], [0.14, 0.43], [0.30, 0.48], [0.47, 0.45], [0.55, 0.51], [0.46, 0.58], [0.28, 0.58], [0.14, 0.61], [0.05, 0.67], [-0.05, 0.75]];
+const PTS_M = [[1.05, 0.0], [0.78, 0.04], [0.62, 0.11], [0.80, 0.19], [0.70, 0.27], [0.36, 0.30], [0.16, 0.38], [0.30, 0.47], [0.74, 0.50], [0.86, 0.57], [0.60, 0.63], [-0.05, 0.69]];
 const DOTS = [{ cls: '.story__dot--lime', at: 0.34 }, { cls: '.story__dot--red', at: 0.7 }];
 
 function curve(pts) {
@@ -61,8 +61,8 @@ function curve(pts) {
     const p1 = pts[i];
     const p2 = pts[i + 1];
     const p3 = pts[i + 2] || p2;
-    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
-    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 4.5, p1[1] + (p2[1] - p0[1]) / 4.5];
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 4.5, p2[1] - (p3[1] - p1[1]) / 4.5];
     d += ` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
   }
   return d;
