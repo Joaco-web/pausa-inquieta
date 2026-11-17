@@ -466,6 +466,8 @@
 .msg__b { margin: 1em 0 0 auto; text-align: right; }
 .msg .w.em { color: var(--ink); }
 .msg .w.strong { background: linear-gradient(var(--lime), var(--lime)) no-repeat 0 0 / 100% 100%; padding: 0 .12em; }
+/* varias palabras resaltadas seguidas: el flúor también cubre el espacio entre ellas */
+.msg .w.strong + .w.strong { margin-left: -.3em; padding-left: .3em; }
 @media (max-width: 760px) {
   .msg__a { margin-left: 0; margin-top: 16vh; }
 }

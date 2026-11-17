@@ -61,8 +61,9 @@ export default function llevas() {
       scrollTrigger: { trigger: msg.children[i + 1], start: 'top 85%', end: 'top 40%', scrub: true },
     });
   });
-  const quieto = b.words.find((w) => w.classList.contains('strong'));
-  gsap.from(quieto, { backgroundSize: '0% 100%', scrollTrigger: { trigger: quieto, start: 'top 70%' } });
+  // lo resaltado en flúor se pinta palabra por palabra, como un solo trazo
+  const marked = b.words.filter((w) => w.classList.contains('strong'));
+  gsap.from(marked, { backgroundSize: '0% 100%', duration: 0.35, ease: 'none', stagger: 0.35, scrollTrigger: { trigger: marked[0], start: 'top 70%' } });
 
   let msgIn = false;
   ScrollTrigger.create({ trigger: msg, start: 'top bottom', end: 'bottom top', onToggle: (s) => { msgIn = s.isActive; } });
