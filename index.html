@@ -122,32 +122,36 @@
       </header>
 
       <div class="ctrl__body">
-        <div class="kb" role="group" aria-label="Teclas">
-          <div class="kb__group kb__move">
-            <div class="kb__wasd">
-              <button class="key" data-key="w" data-c="blue" aria-label="W, adelante"><span class="key__glyph">W</span></button>
-              <button class="key" data-key="a" data-c="lime" aria-label="A, izquierda"><span class="key__glyph">A</span></button>
-              <button class="key" data-key="s" data-c="violet" aria-label="S, atrás"><span class="key__glyph">S</span></button>
-              <button class="key" data-key="d" data-c="red" aria-label="D, derecha"><span class="key__glyph">D</span></button>
+        <div class="kb" role="group" aria-label="Teclas de la experiencia">
+          <div class="kb__col">
+            <div class="kb__group kb__move">
+              <div class="kb__wasd" aria-hidden="true">
+                <span class="key" data-key="w" data-c="blue"><span class="key__glyph">W</span></span>
+                <span class="key" data-key="a" data-c="lime"><span class="key__glyph">A</span></span>
+                <span class="key" data-key="s" data-c="violet"><span class="key__glyph">S</span></span>
+                <span class="key" data-key="d" data-c="red"><span class="key__glyph">D</span></span>
+              </div>
+              <p class="kb__cap"><b>W A S D</b> Moverse</p>
             </div>
-            <p class="kb__cap"><b>W A S D</b> Moverse</p>
+            <div class="kb__group kb__e">
+              <span class="key key--e" data-c="paper" aria-hidden="true"><span class="key__glyph">E</span></span>
+              <p class="kb__cap"><b>E</b> Interactuar</p>
+            </div>
           </div>
-          <div class="kb__group kb__e">
-            <button class="key key--e" data-key="e" data-c="paper" aria-label="E, interactuar"><span class="key__glyph">E</span></button>
-            <p class="kb__cap"><b>E</b> Interactuar</p>
+          <div class="kb__col">
+            <div class="kb__group">
+              <span class="key key--word" data-c="violet" aria-hidden="true"><span class="key__glyph">SHIFT</span></span>
+              <p class="kb__cap"><b>Shift</b> Correr</p>
+            </div>
+            <div class="kb__group">
+              <span class="key key--word" data-c="red" aria-hidden="true"><span class="key__glyph">CONTROL</span></span>
+              <p class="kb__cap"><b>Control</b> Agacharse</p>
+            </div>
+            <div class="kb__group kb__space">
+              <span class="key key--word" data-c="lime" aria-hidden="true"><span class="key__glyph">ESPACIO</span></span>
+              <p class="kb__cap"><b>Espacio</b> Saltar</p>
+            </div>
           </div>
-          <div class="kb__group kb__space">
-            <button class="key key--space" data-key=" " data-c="lime" aria-label="Espacio, saltar"><span class="key__glyph">ESPACIO</span></button>
-            <p class="kb__cap"><b>Espacio</b> Saltar</p>
-          </div>
-        </div>
-
-        <div class="arena" aria-hidden="true">
-          <div class="city arena__city"><img src="assets/cut/city.png" alt="" width="640" height="330"></div>
-          <div class="arena__floor"></div>
-          <div class="arena__shadow"></div>
-          <div class="arena__player"><i></i></div>
-          <span class="tape arena__tape"></span>
         </div>
       </div>
     </section>

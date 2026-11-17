@@ -275,40 +275,36 @@
   font-weight: 200;
 }
 .ctrl__title .ch { transition: font-weight .35s var(--ease); }
-.ctrl__body {
-  position: relative; z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(32px, 5vw, 80px);
-  align-items: stretch;
-}
+.ctrl__body { position: relative; z-index: 2; }
 
 /* Panel negro rasgado: un pedazo de afiche pegado sobre el papel */
 .kb {
   position: relative;
-  display: grid; gap: clamp(22px, 4vh, 40px); align-content: center;
-  padding: clamp(28px, 4vw, 56px);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 72px); align-items: center;
+  padding: clamp(32px, 5vw, 80px);
   background: var(--ink) url("../assets/img/dust-light.svg") 0 0 / 520px;
   color: var(--paper);
   transform: rotate(-1deg);
 }
-.kb__group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.kb__col { display: grid; gap: clamp(22px, 4vh, 44px); align-content: center; }
+.kb__group { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 28px); }
 .kb__wasd {
   display: grid;
   grid-template-columns: repeat(3, var(--k));
   grid-template-rows: repeat(2, var(--k));
   gap: 4px;
-  --k: clamp(62px, 6.6vw, 104px);
+  --k: clamp(62px, 8vw, 132px);
 }
 .kb__wasd .key[data-key="w"] { grid-column: 2; }
 .kb__wasd .key[data-key="a"] { grid-column: 1; grid-row: 2; }
 .kb__wasd .key[data-key="s"] { grid-column: 2; grid-row: 2; }
 .kb__wasd .key[data-key="d"] { grid-column: 3; grid-row: 2; }
-.kb__cap { font-size: clamp(15px, 1.2vw, 18px); }
+.kb__cap { font-size: clamp(15px, 1.5vw, 22px); white-space: nowrap; }
 .kb__cap b { font-family: var(--f-logo); font-weight: 700; margin-right: 8px; }
 
 .key {
-  --k: clamp(62px, 6.6vw, 104px);
+  --k: clamp(62px, 8vw, 132px);
   --c: var(--lime);
   --r: 0deg;
   position: relative;
@@ -335,60 +331,15 @@
   user-select: none;
 }
 .key.is-drawing .key__glyph { color: transparent; -webkit-text-stroke: 1.5px var(--c); }
-.key:hover .key__glyph, .key:focus-visible .key__glyph { transform: rotate(0deg) scale(1.08); }
-.key.is-down { transform: translateY(5px) scale(.94) !important; }
-.key.is-down .key__glyph { color: var(--paper); transform: rotate(calc(var(--r) * -1)) scale(.96); }
-.key[data-c="paper"].is-down .key__glyph { color: var(--lime); }
-.key--space { width: auto; height: calc(var(--k) * .9); }
-.key--space .key__glyph { font-size: calc(var(--k) * .66); letter-spacing: -.02em; }
-
-/* Mini escenario: foto del brandboard, rasgada, con el semicírculo */
-.arena {
-  position: relative;
-  min-height: clamp(280px, 34vw, 520px);
-  overflow: hidden;
-  background: #1a1a1a;
-  transform: rotate(1.2deg);
-}
-.arena::after { /* tinta encima para que el personaje se lea */
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(11,11,11,.15), rgba(11,11,11,.55));
-  pointer-events: none; z-index: 1;
-}
-.arena__floor { position: absolute; left: 0; right: 0; bottom: 0; height: 30%; z-index: 1; background: linear-gradient(transparent, rgba(164,124,255,.28)); }
-.arena .pixels { z-index: 2; }
-.arena .t-orbit { z-index: 2; }
-.arena__player {
-  position: absolute; left: 50%; top: 50%;
-  width: 34px; height: 68px;
-  margin: -34px 0 0 -17px;
-  z-index: 4;
-  filter: drop-shadow(0 0 16px rgba(215,255,58,.6));
-}
-.arena__player i {
-  position: absolute; inset: 0;
-  background: var(--lime);
-  border-radius: 999px 0 0 999px;
-  transform-origin: 100% 100%;
-}
-.arena__shadow {
-  position: absolute; left: 50%; top: 50%;
-  width: 46px; height: 10px; margin: 30px 0 0 -26px;
-  border-radius: 50%; background: rgba(0,0,0,.55);
-  z-index: 3;
-}
-.arena__ring {
-  position: absolute; width: 20px; height: 20px; margin: -10px 0 0 -10px;
-  border-radius: 50%; border: 2px solid var(--violet);
-  pointer-events: none; z-index: 3;
-}
-.arena__tape { left: 42%; top: -8px; transform: rotate(-4deg); z-index: 6; }
+/* Teclas con palabra (SHIFT, CONTROL, ESPACIO) */
+.key--word { width: auto; height: calc(var(--k) * .9); }
+.key--word .key__glyph { font-size: calc(var(--k) * .6); letter-spacing: -.02em; }
+@media (max-width: 1100px) { .kb__group { flex-wrap: wrap; } }
 
 @media (max-width: 860px) {
-  .ctrl__body { grid-template-columns: 1fr; }
+  .kb { grid-template-columns: 1fr; transform: none; }
+  .kb__group { flex-wrap: wrap; }
   .ctrl__semi { right: 6vw; top: auto; bottom: 3vh; }
-  .kb { transform: none; }
-  .arena { min-height: 62vw; transform: none; }
 }
 
 /* =========================================================
@@ -633,9 +584,6 @@
 /* Promesa: la ciudad apagada abajo */
 .promesa__city { left: -6vw; right: -6vw; bottom: -6vh; z-index: 0; opacity: .2; filter: grayscale(1); }
 
-/* Controles: el escenario es la ciudad */
-.arena__city { left: -4%; right: -4%; bottom: 8%; z-index: 0; filter: grayscale(.35); }
-.arena { background: var(--ink) url("../assets/img/dust-light.svg") 0 0 / 520px; }
 
 /* Recorrido (intro): la chica sentada sobre la ciudad */
 .story__art { position: absolute; right: 0; top: 24vh; width: 44vw; height: 64vh; z-index: 2; pointer-events: none; }
