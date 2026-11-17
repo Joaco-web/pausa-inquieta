@@ -1,5 +1,6 @@
 // El llavero: semicírculo de acrílico flúor, con argolla y cadena.
 // Se balancea solo; se puede girar arrastrando y "hacer sonar" con un click.
+// Al lado, el librito (tapa y contratapa reales), chico como el objeto físico.
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
@@ -78,8 +79,37 @@ export function createKeychain(canvas, { onJingle } = {}) {
   acrylic.position.y = -1.04;
   acrylic.rotation.z = 0.35;
   pivot.add(acrylic);
-  pivot.position.y = 1.35;
+  pivot.position.set(-0.85, 1.35, 0);
   scene.add(pivot);
+
+  // ---- El librito: tapa (adelante), contratapa (atrás), lomo a la izquierda y hojas
+  // Proporciones tomadas de la tapa real (615 × 900) y del lomo (60 × 900).
+  const BH = 1.5;
+  const BW = BH * 615 / 900;
+  const BD = BH * 60 / 900;
+  const loader = new THREE.TextureLoader();
+  const tex = (src) => {
+    const t = loader.load(src);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    return t;
+  };
+  const cover = (src) => new THREE.MeshStandardMaterial({ map: tex(src), roughness: 0.8, metalness: 0 });
+  const pages = new THREE.MeshStandardMaterial({ color: 0xf1eee6, roughness: 0.95 });
+  // orden de caras de la caja: +x, -x, +y, -y, +z, -z
+  const book = new THREE.Mesh(new THREE.BoxGeometry(BW, BH, BD), [
+    pages,
+    cover('assets/img/libro-lomo.webp'),
+    pages,
+    pages,
+    cover('assets/img/libro-tapa.webp'),
+    cover('assets/img/libro-contratapa.webp'),
+  ]);
+  const bookPivot = new THREE.Group();
+  bookPivot.add(book);
+  bookPivot.position.set(1.3, -0.35, 0);
+  bookPivot.rotation.z = -0.08;
+  scene.add(bookPivot);
 
   // Interacción
   const st = { rotY: 0, vel: 0.006, drag: false, lx: 0, swing: 0, swingV: 0, tx: 0, ty: 0, x: 0, y: 0 };
@@ -126,6 +156,10 @@ export function createKeychain(canvas, { onJingle } = {}) {
     pivot.rotation.z = Math.sin(t * 1.1) * 0.05 + st.swing;
     pivot.rotation.x = st.y * 0.3;
     links.forEach((l, i) => { l.rotation.z = Math.sin(t * 2 + i) * 0.08; });
+    // el libro gira despacio (se ven tapa y contratapa), flota apenas y sigue al mouse
+    book.rotation.y = -st.rotY * 0.8 + 0.5 + st.x * 0.5;
+    book.rotation.x = st.y * 0.25 + Math.sin(t * 0.7) * 0.04;
+    bookPivot.position.y = -0.35 + Math.sin(t * 1.2 + 1) * 0.05;
     renderer.render(scene, camera);
   };
   new IntersectionObserver(([e]) => {
