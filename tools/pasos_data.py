@@ -279,7 +279,6 @@ PASOS = [
         "ves": "Pausa te guía, con las mismas líneas que viste en el piso del aula al principio de la experiencia, hacia un ascensor.",
         "escuchas": [
             {"label": "Pausa", "texto": "«No soy Inquieta». «Mirá todo lo que rompiste». «Solo tenías que tomarte 25 minutos».", "src": None},
-            {"label": "Calma", "texto": "Pausa te guía hacia el ascensor.", "src": "assets/pasos/23/sonido-calma.mp3"},
         ],
         "pasa": "Una vez dentro del ascensor, mientras tocás todos los botones para cerrar la puerta, Inquieta te ve y empieza a acercarse queriendo abrir el ascensor para sacarte de ahí. Así, el ascensor se descompone y cae brutalmente a una sala: el sótano.",
         "frase": "Dentro de la inquietud siempre hay una pausa.",
