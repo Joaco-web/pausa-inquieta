@@ -73,7 +73,7 @@ PASOS = [
         ],
         "pasa": "Cuando ponés el cubo en un hueco aparece una cinemática: por un instante, el semicírculo se transforma en ruido, en Inquieta.",
         "frase": "Te dije que no hagas nada.",
-        "media": ["cubos", "cubos-paredes", "cinematica"],
+        "media": ["cubos-a", "cubos-paredes", "cubos-b", "cinematica"],
         "cta": "Una de las paredes era falsa",
     },
     {  # 06
@@ -157,7 +157,7 @@ PASOS = [
         "ves": "Al final del pasillo, una pared. Pero en el empapelado se nota la silueta de una puerta.",
         "escuchas": [],
         "pasa": "La salida está escondida en la pared: hay que mirar bien.",
-        "media": ["puerta-empapelada"],
+        "media": ["puerta-empapelada-a", "puerta-empapelada-b"],
         "cta": "Mientras tanto, en el aula…",
     },
     {  # 15
@@ -176,7 +176,7 @@ PASOS = [
         "ves": "Esferas en fila, colgando de un techo que parece no tener fin.",
         "escuchas": [],
         "pasa": "Al acercarte movés la esfera de una punta y arranca el efecto del péndulo de Newton. Después de repetirlo varias veces, un hilo se corta, pero antes devuelve el impulso y recibís el impacto. Se corta la luz, la pantalla queda en negro y, cuando vuelve, hay un hueco en la pared con luz del otro lado.",
-        "media": ["pendulo", "pendulo-video", "hueco"],
+        "media": ["pendulo", "pendulo-video", "hueco-a", "hueco-b"],
         "cta": "Mandate por el hueco",
     },
     {  # 17

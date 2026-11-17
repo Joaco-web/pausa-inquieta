@@ -131,6 +131,12 @@
 .media__sound[aria-pressed="true"] .w { opacity: 1; }
 .media__sound:hover { transform: scale(1.08); }
 
+/* Objetos recortados (fondo transparente): flotan sobre la página */
+.media.media--cut, .paso-page--aula .media.media--cut, .paso-page--unreal .media.media--cut { background: none; box-shadow: none; outline: 0; overflow: visible; }
+.media--cut img { object-fit: contain; background: none !important; filter: drop-shadow(0 18px 22px rgba(0,0,0,.35)); }
+.paso-page--unreal .media--cut img { filter: drop-shadow(0 0 26px rgba(164,124,255,.45)); }
+.paso-page--aula .media--main.media--cut::before { display: none; }
+
 /* ---------- Tarjetas: qué ves / qué escuchás / qué pasa ---------- */
 .cards {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

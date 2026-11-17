@@ -20,9 +20,10 @@
   },
   "lentes": {
    "type": "img",
-   "w": 1401,
+   "w": 1767,
    "h": 1800,
-   "src": "assets/pasos/01/lentes.webp"
+   "src": "assets/pasos/01/lentes.webp",
+   "cutout": true
   }
  },
  "2": {
@@ -38,13 +39,13 @@
   "teclado": {
    "type": "img",
    "w": 1800,
-   "h": 1266,
+   "h": 1216,
    "src": "assets/pasos/02/teclado.webp"
   },
   "caja": {
    "type": "img",
    "w": 1800,
-   "h": 932,
+   "h": 803,
    "src": "assets/pasos/02/caja.webp"
   },
   "caja-abrir": {
@@ -69,14 +70,14 @@
  "3": {
   "salon": {
    "type": "img",
-   "w": 1620,
+   "w": 1592,
    "h": 1800,
    "src": "assets/pasos/03/salon.webp"
   },
   "caida": {
    "type": "img",
    "w": 1800,
-   "h": 980,
+   "h": 865,
    "src": "assets/pasos/03/caida.webp"
   }
  },
@@ -92,12 +93,6 @@
   }
  },
  "5": {
-  "cubos": {
-   "type": "img",
-   "w": 1800,
-   "h": 748,
-   "src": "assets/pasos/05/cubos.webp"
-  },
   "cubos-paredes": {
    "type": "video",
    "w": 1280,
@@ -115,13 +110,25 @@
    "dur": 10.0,
    "src": "assets/pasos/05/cinematica.mp4",
    "poster": "assets/pasos/05/cinematica-poster.webp"
+  },
+  "cubos-a": {
+   "type": "img",
+   "w": 1800,
+   "h": 1128,
+   "src": "assets/pasos/05/cubos-a.webp"
+  },
+  "cubos-b": {
+   "type": "img",
+   "w": 1640,
+   "h": 1800,
+   "src": "assets/pasos/05/cubos-b.webp"
   }
  },
  "6": {
   "planta-baja": {
    "type": "img",
    "w": 1800,
-   "h": 896,
+   "h": 787,
    "src": "assets/pasos/06/planta-baja.webp"
   }
  },
@@ -129,18 +136,18 @@
   "luces-1": {
    "type": "img",
    "w": 1800,
-   "h": 1274,
+   "h": 1200,
    "src": "assets/pasos/07/luces-1.webp"
   },
   "luces-2": {
    "type": "img",
-   "w": 1300,
+   "w": 1195,
    "h": 1800,
    "src": "assets/pasos/07/luces-2.webp"
   },
   "luces-3": {
    "type": "img",
-   "w": 1150,
+   "w": 1013,
    "h": 1800,
    "src": "assets/pasos/07/luces-3.webp"
   }
@@ -160,7 +167,7 @@
   "cuadros": {
    "type": "img",
    "w": 1800,
-   "h": 815,
+   "h": 728,
    "src": "assets/pasos/09/cuadros.webp"
   }
  },
@@ -203,28 +210,29 @@
   },
   "cuaderno": {
    "type": "img",
-   "w": 1800,
-   "h": 1217,
-   "src": "assets/pasos/10/cuaderno.webp"
+   "w": 1512,
+   "h": 1081,
+   "src": "assets/pasos/10/cuaderno.webp",
+   "cutout": true
   }
  },
  "11": {
   "puerta": {
    "type": "img",
    "w": 1800,
-   "h": 1174,
+   "h": 1108,
    "src": "assets/pasos/11/puerta.webp"
   },
   "espejos": {
    "type": "img",
-   "w": 1127,
+   "w": 1010,
    "h": 1800,
    "src": "assets/pasos/11/espejos.webp"
   },
   "lugar": {
    "type": "img",
    "w": 1800,
-   "h": 1445,
+   "h": 1350,
    "src": "assets/pasos/11/lugar.webp"
   }
  },
@@ -238,36 +246,42 @@
   "ojos-prendidos": {
    "type": "img",
    "w": 1800,
-   "h": 1419,
+   "h": 1350,
    "src": "assets/pasos/12/ojos-prendidos.webp"
   }
  },
  "13": {
   "pasillo": {
    "type": "img",
-   "w": 1427,
+   "w": 1356,
    "h": 1800,
    "src": "assets/pasos/13/pasillo.webp"
   },
   "teles": {
    "type": "img",
-   "w": 1704,
+   "w": 1687,
    "h": 1800,
    "src": "assets/pasos/13/teles.webp"
   },
   "teles-sala": {
    "type": "img",
    "w": 1800,
-   "h": 887,
+   "h": 818,
    "src": "assets/pasos/13/teles-sala.webp"
   }
  },
  "14": {
-  "puerta-empapelada": {
+  "puerta-empapelada-a": {
+   "type": "img",
+   "w": 1350,
+   "h": 1800,
+   "src": "assets/pasos/14/puerta-empapelada-a.webp"
+  },
+  "puerta-empapelada-b": {
    "type": "img",
    "w": 1800,
-   "h": 985,
-   "src": "assets/pasos/14/puerta-empapelada.webp"
+   "h": 1084,
+   "src": "assets/pasos/14/puerta-empapelada-b.webp"
   }
  },
  "15": {
@@ -312,7 +326,7 @@
   "pendulo": {
    "type": "img",
    "w": 1800,
-   "h": 1751,
+   "h": 1712,
    "src": "assets/pasos/16/pendulo.webp"
   },
   "pendulo-video": {
@@ -324,11 +338,17 @@
    "src": "assets/pasos/16/pendulo-video.mp4",
    "poster": "assets/pasos/16/pendulo-video-poster.webp"
   },
-  "hueco": {
+  "hueco-a": {
    "type": "img",
-   "w": 1800,
-   "h": 1308,
-   "src": "assets/pasos/16/hueco.webp"
+   "w": 1349,
+   "h": 1800,
+   "src": "assets/pasos/16/hueco-a.webp"
+  },
+  "hueco-b": {
+   "type": "img",
+   "w": 1011,
+   "h": 1800,
+   "src": "assets/pasos/16/hueco-b.webp"
   }
  },
  "17": {
@@ -343,15 +363,16 @@
   },
   "obstaculos": {
    "type": "img",
-   "w": 1662,
-   "h": 1433,
-   "src": "assets/pasos/17/obstaculos.webp"
+   "w": 830,
+   "h": 572,
+   "src": "assets/pasos/17/obstaculos.webp",
+   "cutout": true
   }
  },
  "18": {
   "escalera": {
    "type": "img",
-   "w": 1076,
+   "w": 1013,
    "h": 1800,
    "src": "assets/pasos/18/escalera.webp"
   }
@@ -359,8 +380,8 @@
  "19": {
   "domino": {
    "type": "img",
-   "w": 1102,
-   "h": 905,
+   "w": 590,
+   "h": 393,
    "src": "assets/pasos/19/domino.webp"
   },
   "domino-video": {
@@ -374,9 +395,10 @@
   },
   "tobogan": {
    "type": "img",
-   "w": 805,
-   "h": 1800,
-   "src": "assets/pasos/19/tobogan.webp"
+   "w": 639,
+   "h": 1512,
+   "src": "assets/pasos/19/tobogan.webp",
+   "cutout": true
   }
  },
  "20": {
@@ -393,13 +415,13 @@
  "21": {
   "espacio-1": {
    "type": "img",
-   "w": 1395,
+   "w": 1351,
    "h": 1800,
    "src": "assets/pasos/21/espacio-1.webp"
   },
   "espacio-2": {
    "type": "img",
-   "w": 1307,
+   "w": 1253,
    "h": 1800,
    "src": "assets/pasos/21/espacio-2.webp"
   },
@@ -425,9 +447,10 @@
  "22": {
   "walkie": {
    "type": "img",
-   "w": 1208,
-   "h": 1800,
-   "src": "assets/pasos/22/walkie.webp"
+   "w": 942,
+   "h": 1512,
+   "src": "assets/pasos/22/walkie.webp",
+   "cutout": true
   }
  },
  "23": {
@@ -489,20 +512,21 @@
   },
   "pausa-inquieta": {
    "type": "img",
-   "w": 1800,
-   "h": 1758,
-   "src": "assets/pasos/24/pausa-inquieta.webp"
+   "w": 1512,
+   "h": 1400,
+   "src": "assets/pasos/24/pausa-inquieta.webp",
+   "cutout": true
   },
   "pedestal": {
    "type": "img",
-   "w": 1575,
+   "w": 1523,
    "h": 1800,
    "src": "assets/pasos/24/pedestal.webp"
   },
   "y-ahora": {
    "type": "img",
    "w": 1800,
-   "h": 1674,
+   "h": 1645,
    "src": "assets/pasos/24/y-ahora.webp"
   }
  }

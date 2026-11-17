@@ -5,6 +5,7 @@ Uso (desde la carpeta del proyecto):
     python tools/pasos.py
     python tools/version.py   # siempre después, para versionar CSS/JS
 """
+import hashlib
 import html
 import json
 from pathlib import Path
@@ -69,20 +70,27 @@ def progress(current):
   </header>"""
 
 
+def ver(path):
+    """ruta con huella del contenido (?v=) para que el navegador no use una copia vieja"""
+    return f"{path}?v={hashlib.md5((ROOT / path).read_bytes()).hexdigest()[:8]}"
+
+
 def media_item(n, name, main=False):
     m = MANIFEST[str(n)][name]
     ratio = f"{m['w']} / {m['h']}"
     cls = "media media--main" if main else "media"
+    if m.get("cutout"):
+        cls += " media--cut"
     if m["type"] == "video":
         sound = (f'<button class="media__sound" type="button" aria-pressed="false" aria-label="Activar sonido del video">{SOUND}</button>'
                  if m.get("audio") else "")
         return (f'<figure class="{cls}" style="--ar:{ratio}" data-in>'
                 f'<button class="media__open" type="button" aria-label="Ver en grande"></button>'
-                f'<video src="{m["src"]}" poster="{m["poster"]}" muted loop playsinline preload="metadata" width="{m["w"]}" height="{m["h"]}"></video>'
+                f'<video src="{ver(m["src"])}" poster="{ver(m["poster"])}" muted loop playsinline preload="metadata" width="{m["w"]}" height="{m["h"]}"></video>'
                 f'{sound}</figure>')
     return (f'<figure class="{cls}" style="--ar:{ratio}" data-in>'
             f'<button class="media__open" type="button" aria-label="Ver en grande"></button>'
-            f'<img src="{m["src"]}" alt="" width="{m["w"]}" height="{m["h"]}" loading="{"eager" if main else "lazy"}" decoding="async"></figure>')
+            f'<img src="{ver(m["src"])}" alt="" width="{m["w"]}" height="{m["h"]}" loading="{"eager" if main else "lazy"}" decoding="async"></figure>')
 
 
 def sounds(items):
