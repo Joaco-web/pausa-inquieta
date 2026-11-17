@@ -1,6 +1,7 @@
 // El llavero: semicírculo de acrílico flúor, con argolla y cadena.
 // Se balancea solo; se puede girar arrastrando y "hacer sonar" con un click.
-// Al lado, el librito (tapa y contratapa reales), chico como el objeto físico.
+// Detrás, el librito (tapa y contratapa reales), chico como el objeto físico:
+// los dos juntos, el llavero adelante y el libro atrás.
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
@@ -79,7 +80,7 @@ export function createKeychain(canvas, { onJingle } = {}) {
   acrylic.position.y = -1.04;
   acrylic.rotation.z = 0.35;
   pivot.add(acrylic);
-  pivot.position.set(-0.85, 1.35, 0);
+  pivot.position.set(-0.45, 1.35, 0.6);
   scene.add(pivot);
 
   // ---- El librito: tapa (adelante), contratapa (atrás), lomo a la izquierda y hojas
@@ -107,8 +108,9 @@ export function createKeychain(canvas, { onJingle } = {}) {
   ]);
   const bookPivot = new THREE.Group();
   bookPivot.add(book);
-  bookPivot.position.set(1.3, -0.35, 0);
-  bookPivot.rotation.z = -0.08;
+  // atrás del llavero, un poco a la derecha y más abajo: se pisan apenas
+  bookPivot.position.set(0.3, -0.15, -0.7);
+  bookPivot.rotation.z = -0.12;
   scene.add(bookPivot);
 
   // Interacción
@@ -159,7 +161,7 @@ export function createKeychain(canvas, { onJingle } = {}) {
     // el libro gira despacio (se ven tapa y contratapa), flota apenas y sigue al mouse
     book.rotation.y = -st.rotY * 0.8 + 0.5 + st.x * 0.5;
     book.rotation.x = st.y * 0.25 + Math.sin(t * 0.7) * 0.04;
-    bookPivot.position.y = -0.35 + Math.sin(t * 1.2 + 1) * 0.05;
+    bookPivot.position.y = -0.15 + Math.sin(t * 1.2 + 1) * 0.05;
     renderer.render(scene, camera);
   };
   new IntersectionObserver(([e]) => {
