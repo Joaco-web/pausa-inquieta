@@ -48,11 +48,12 @@ export default function story() {
 }
 
 // ---------- Trama: línea con curvas que se dibuja con el scroll ----------
-// Los puntos están en proporción a la sección (x de 0 a 1 del ancho, y de 0 a 1 del alto);
-// la curva pasa por todos (Catmull-Rom → Bézier). Los círculos aparecen cuando la línea llega.
-const PTS = [[1.04, 0.01], [0.86, 0.04], [0.77, 0.10], [0.78, 0.17], [0.66, 0.23], [0.44, 0.22], [0.26, 0.25], [0.12, 0.33], [0.14, 0.43], [0.30, 0.48], [0.47, 0.45], [0.55, 0.51], [0.46, 0.58], [0.28, 0.58], [0.14, 0.61], [0.05, 0.67], [-0.05, 0.75]];
-const PTS_M = [[1.05, 0.0], [0.78, 0.04], [0.62, 0.11], [0.80, 0.19], [0.70, 0.27], [0.36, 0.30], [0.16, 0.38], [0.30, 0.47], [0.74, 0.50], [0.86, 0.57], [0.60, 0.63], [-0.05, 0.69]];
-const DOTS = [{ cls: '.story__dot--lime', at: 0.22 }, { cls: '.story__dot--red', at: 0.82 }];
+// Pocas curvas amplias (para que se lean limpias). Los puntos están en proporción a la
+// sección (x de 0 a 1 del ancho, y de 0 a 1 del alto); el último punto es el botón Iniciar,
+// que se calcula según dónde esté, así la línea termina justo en su borde.
+const PTS = [[1.03, 0.02], [0.74, 0.20], [0.42, 0.255], [0.12, 0.32], [0.035, 0.46], [0.10, 0.60], [0.26, 0.68]];
+const PTS_M = [[1.05, 0.0], [0.86, 0.12], [0.95, 0.30], [0.84, 0.50], [0.86, 0.66]];
+const DOTS = [{ cls: '.story__dot--lime', at: 0.14 }, { cls: '.story__dot--red', at: 0.78 }];
 
 function curve(pts) {
   let d = `M${pts[0][0]},${pts[0][1]}`;
@@ -61,8 +62,8 @@ function curve(pts) {
     const p1 = pts[i];
     const p2 = pts[i + 1];
     const p3 = pts[i + 2] || p2;
-    const c1 = [p1[0] + (p2[0] - p0[0]) / 4.5, p1[1] + (p2[1] - p0[1]) / 4.5];
-    const c2 = [p2[0] - (p3[0] - p1[0]) / 4.5, p2[1] - (p3[1] - p1[1]) / 4.5];
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
     d += ` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
   }
   return d;
@@ -91,7 +92,18 @@ function line(sec) {
     const w = sec.offsetWidth;
     const h = sec.offsetHeight;
     svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    const pts = (innerWidth < 760 ? PTS_M : PTS).map(([x, y]) => [x * w, y * h]);
+    const mobile = innerWidth < 760;
+    const pts = (mobile ? PTS_M : PTS).map(([x, y]) => [x * w, y * h]);
+    // final: el borde del botón Iniciar (izquierdo en compu, derecho en celular).
+    // Se usan offset* porque no cambian con las animaciones del botón.
+    const cta = sec.querySelector('.story__cta');
+    const btn = sec.querySelector('.start');
+    if (cta && btn) {
+      const cx = cta.offsetLeft + btn.offsetLeft + btn.offsetWidth / 2;
+      const cy = cta.offsetTop + btn.offsetTop + btn.offsetHeight / 2;
+      const r = btn.offsetWidth / 2;
+      pts.push([mobile ? cx + r : cx - r, cy]);
+    }
     path.setAttribute('d', curve(pts));
     len = path.getTotalLength();
     path.style.strokeDasharray = len.toFixed(1);
@@ -106,7 +118,7 @@ function line(sec) {
   dots.forEach((d) => { d.on = false; gsap.set(d.el, { scale: 0 }); });
   build();
   window.ScrollTrigger.create({
-    trigger: sec, start: 'top 75%', end: '70% bottom',
+    trigger: sec, start: 'top 75%', end: '70% 70%',
     onUpdate: (st) => { if (!reduced) { progress = st.progress; paint(); } },
     onRefresh: build,
   });
