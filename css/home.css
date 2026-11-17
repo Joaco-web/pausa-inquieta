@@ -407,17 +407,27 @@
     radial-gradient(ellipse 50% 40% at 0% 40%, rgba(31,60,255,.3), transparent 70%);
 }
 .story__head { position: absolute; top: calc(var(--nav-h) + 6vh); left: var(--gutter); z-index: 3; }
-.story__text { position: relative; z-index: 3; max-width: min(1100px, 62vw); }
+.story__text { position: relative; z-index: 3; }
 .st {
   font-family: var(--f-grot);
-  font-size: clamp(30px, 4.3vw, 76px);
-  line-height: 1.04;
+  font-size: clamp(28px, 3.2vw, 58px);
+  line-height: 1.06;
   letter-spacing: -.025em;
   margin-bottom: .35em;
 }
-.st:nth-child(even) { margin-left: clamp(0px, 7vw, 140px); }
-.st--key { font-family: var(--f-logo); color: var(--lime); font-size: clamp(40px, 6.6vw, 118px); letter-spacing: -.04em; text-shadow: 0 0 40px rgba(215,255,58,.35); }
-.st--end { font-size: clamp(20px, 2.2vw, 36px); margin-top: 1.4em; max-width: 30ch; color: rgba(236,235,229,.82); }
+/* Zigzag: las dos primeras a la izquierda, el giro y la clave a la derecha */
+.st--l { max-width: 44vw; }
+.st--in { margin-left: clamp(0px, 4vw, 80px); }
+.st--r { max-width: 44vw; margin-left: 50vw; }
+.st--l + .st--r { margin-top: 16vh; }
+.st--key { font-family: var(--f-logo); color: var(--lime); font-size: clamp(40px, 5.6vw, 104px); letter-spacing: -.04em; text-shadow: 0 0 40px rgba(215,255,58,.35); margin-top: 10vh; }
+.st--end { font-size: clamp(20px, 2.2vw, 36px); margin-top: 16vh; max-width: 30ch; color: rgba(236,235,229,.82); }
+/* La línea de trama */
+.story__line { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; overflow: visible; }
+.story__path { fill: none; stroke: rgba(236,235,229,.42); stroke-width: 1.5; stroke-linecap: round; }
+.story__dot { transform-box: fill-box; transform-origin: center; }
+.story__dot--lime { fill: var(--lime); }
+.story__dot--red { fill: var(--red); }
 .st .w { opacity: .12; }
 .story__tramas { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .story__c1 { width: clamp(40px, 5vw, 90px); aspect-ratio: 1; background: var(--red); right: 31vw; bottom: 30vh; }
@@ -454,7 +464,10 @@
   .story { padding-top: 34vh; }
   .story__text { max-width: none; }
   .story__c1 { right: 70vw; bottom: 22vh; }
-  .st:nth-child(even) { margin-left: 0; }
+  .st--l, .st--r { max-width: none; }
+  .st--in { margin-left: 0; }
+  .st--r { margin-left: 10vw; }
+  .st--l + .st--r { margin-top: 10vh; }
 }
 
 /* =========================================================
