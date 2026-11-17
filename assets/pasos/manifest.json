@@ -266,6 +266,12 @@
    "w": 1800,
    "h": 1350,
    "src": "assets/pasos/12/ojos-prendidos.webp"
+  },
+  "ojos-sala": {
+   "type": "img",
+   "w": 1800,
+   "h": 921,
+   "src": "assets/pasos/12/ojos-sala.webp"
   }
  },
  "13": {

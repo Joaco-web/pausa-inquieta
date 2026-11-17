@@ -144,8 +144,8 @@ PASOS = [
         "donde": "Mientras seguís avanzando por el salón de espejos.",
         "ves": "Te encontrás con unas esferas de ojos. Están «apagados», rodeados de una luz que titila.",
         "escuchas": [],
-        "pasa": "Al tocarlos se «prenden» y empiezan a levitar sobre la sala. Mientras los mires, no se van a acercar a vos; cuando apartes la vista, se mueven dentro del espacio y no te molestan.",
-        "media": ["ojos-prendidos", "ojos-apagados"],
+        "pasa": "Al tocarlos se «prenden» y empiezan a levitar sobre la sala. Mientras los mires, no se van a acercar a vos, pero cuando apartes la vista se mueven dentro del espacio y te siguen.",
+        "media": ["ojos-prendidos", "ojos-sala", "ojos-apagados"],
         "cta": "Llegá a la salida",
     },
     {  # 13
