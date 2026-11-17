@@ -130,9 +130,6 @@
   overflow: hidden;
   padding: calc(var(--nav-h) + 3vh) var(--gutter) var(--gutter);
 }
-.somos__head { position: relative; z-index: 3; display: flex; align-items: center; gap: 24px; }
-.somos__meter { width: min(220px, 30vw); height: 2px; background: rgba(11,11,11,.12); position: relative; }
-.somos__meter i { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0); }
 
 .somos__lines {
   position: absolute;

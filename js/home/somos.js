@@ -55,7 +55,7 @@ export default function somos(lenis) {
     onToggle: (self) => { active = self.isActive; },
     onUpdate: (self) => {
       progress = self.progress;
-      meter.style.transform = `scaleX(${progress})`;
+      if (meter) meter.style.transform = `scaleX(${progress})`;
       const idx = Math.min(N - 1, Math.floor((progress / CALM) * N));
       if (idx !== cur) show(idx, idx > cur ? 1 : -1);
     },
