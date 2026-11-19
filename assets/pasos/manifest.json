@@ -20,8 +20,8 @@
   },
   "lentes": {
    "type": "img",
-   "w": 1767,
-   "h": 1800,
+   "w": 1310,
+   "h": 473,
    "src": "assets/pasos/01/lentes.webp",
    "cutout": true
   }
