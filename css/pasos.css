@@ -154,6 +154,7 @@
 .carrusel .carrusel__s img, .carrusel .carrusel__s video { object-fit: cover; background: none; }
 @media (prefers-reduced-motion: reduce) { .carrusel .carrusel__s { transition: none; } }
 .card .media { margin-top: 16px; }
+.media.media--vacio, .paso-page--unreal .media.media--vacio { background: none; outline: 0; box-shadow: none; }
 .sigue { margin-top: clamp(56px, 12vh, 130px); }
 
 /* Objetos recortados (fondo transparente): flotan sobre la página */

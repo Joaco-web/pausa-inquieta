@@ -239,20 +239,29 @@ def tarjetas(p, h="h2"):
     </section>"""
 
 
+def visual(c, media):
+    """imagen principal de un lugar: carrusel, una sola, o un espacio reservado si todavía no hay"""
+    if len(media) > 1:
+        return carrusel(c, media)
+    if media:
+        return media_item(c, media[0], main=True)
+    return '<div class="media media--main media--vacio" style="--ar:16 / 10" aria-hidden="true"></div>'
+
+
 def sigue(p):
-    """otro lugar en la misma página: se encuentra al seguir scrolleando"""
-    s = p.get("sigue")
-    if not s:
-        return ""
-    return f"""<div class="sigue">
+    """otros lugares en la misma página: se encuentran al seguir scrolleando"""
+    lugares = p.get("sigue") or []
+    if isinstance(lugares, dict):
+        lugares = [lugares]
+    return "".join(f"""<div class="sigue">
     <section class="paso__head">
       <div class="paso__text">
         {titulo_html(s, "h2")}
       </div>
-      {carrusel(s["carpeta"], s["media"]) if len(s["media"]) > 1 else media_item(s["carpeta"], s["media"][0], main=True)}
+      {visual(s["carpeta"], s["media"])}
     </section>
     {tarjetas(s, "h3")}
-    </div>"""
+    </div>""" for s in lugares)
 
 
 def page(n):

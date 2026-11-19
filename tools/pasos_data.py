@@ -20,7 +20,7 @@ Campos:
   media     nombres de assets/pasos/NN/<nombre>.* en el orden en que se muestran
   carrusel  True: las imágenes de media pasan solas en el recuadro principal
   pasa_media  video que va dentro del cuadro Qué pasa (opcional)
-  sigue     otro lugar dentro de la misma página, al seguir scrolleando (opcional):
+  sigue     otro lugar (o una lista de lugares) dentro de la misma página, al seguir scrolleando (opcional):
             {"carpeta", "donde", "ves", "escuchas", "pasa", "carrusel", "media"}
   adentro   segunda parte de la misma sección, al seguir scrolleando (opcional):
             {"carpeta", "texto", "fila": [2 videos], "ves", "pasa", "media"}
@@ -272,39 +272,36 @@ PASOS = [
     {
         "carpeta": 21,
         "lugar": "unreal", "titulo": "Todo vuelve",
-        "donde": "Salís de entre todas las pelotas.",
-        "ves": "Las inquietudes con dificultades que te fuiste generando a lo largo de la experiencia están ahí. Las palabras que te seguían antes lo vuelven a hacer. Te cuesta ver ciertas partes del lugar por las luces que descompusiste. Los ojos flotantes te persiguen.",
+        "donde": "Salís de entre todas las pelotas. Estás en un lugar con objetos gigantes. Partes de él faltan. Si mirás adentro de estos, solo se verá ruido. Todo está sin color.",
+        "ves": "Las inquietudes con dificultades que te fuiste generando a lo largo de la experiencia están ahí. Las palabras que te seguían antes lo vuelven a hacer. Te cuesta ver ciertas partes del lugar por las luces que descompusiste. Los ojos flotantes te persiguen. Cuadros se caen, objetos se te lanzan, la experiencia se te complica.",
         "escuchas": [
             {"label": "Susurros", "texto": "", "src": "assets/pasos/21/sonido-susurros.mp3"},
             {"label": "Inquieta", "texto": "", "src": "assets/pasos/21/sonido-inquieta.mp3"},
         ],
         "pasa": "Y cuando ya no había nada que empeorara la situación, ves una figura que no termina de ser humana por completo: es Inquieta personificada.",
-        "media": ["espacio-2", "espacio-1", "inquieta"],
-        "cta": "Seguí",
-    },
-    {
-        "carpeta": 22,
-        "lugar": "unreal", "titulo": "El walkie-talkie",
-        "donde": "Lo único que hay enfrente tuyo es un walkie-talkie.",
-        "ves": "Lo agarrás porque empezás a escuchar voces que salen de él. El lugar en el que te encontrás es una combinación de lo vivido anteriormente.",
-        "escuchas": [
-            {"label": "El walkie-talkie", "texto": "", "src": "assets/pasos/22/sonido-walkie.mp3"},
+        "media": ["objetos-gigantes"],
+        "sigue": [
+            {
+                "carpeta": 22,
+                "donde": "Lo único que hay enfrente tuyo es un walkie-talkie.",
+                "ves": "Lo agarrás porque empezás a escuchar voces que salen de él.",
+                "escuchas": [
+                    {"label": "El walkie-talkie", "texto": "", "src": "assets/pasos/22/sonido-walkie.mp3"},
+                ],
+                "pasa": "El walkie-talkie se descompone por completo. Lo dejás y seguís avanzando.",
+                "media": [],
+            },
+            {
+                "carpeta": 23,
+                "donde": "Llegando a la salida.",
+                "ves": "Pausa te guía, con las mismas líneas que viste en el piso del aula al principio de la experiencia, hacia un ascensor.",
+                "escuchas": [
+                    {"label": "Pausa", "texto": "«No soy Inquieta». «Mirá todo lo que rompiste». «Solo tenías que tomarte 25 minutos».", "src": None},
+                ],
+                "pasa": "Una vez dentro del ascensor, mientras tocás todos los botones para cerrar la puerta, Inquieta te ve y empieza a acercarse queriendo abrir el ascensor para sacarte de ahí. Así, el ascensor se descompone y cae abruptamente a una sala. El sótano.",
+                "media": ["salida"],
+            },
         ],
-        "pasa": "El walkie-talkie se descompone por completo. Lo dejás y seguís avanzando.",
-        "media": ["walkie"],
-        "cta": "Llegá al final del entorno",
-    },
-    {
-        "carpeta": 23,
-        "lugar": "unreal", "titulo": "Pausa te guía",
-        "donde": "Llegando al final del entorno.",
-        "ves": "Pausa te guía, con las mismas líneas que viste en el piso del aula al principio de la experiencia, hacia un ascensor.",
-        "escuchas": [
-            {"label": "Pausa", "texto": "«No soy Inquieta». «Mirá todo lo que rompiste». «Solo tenías que tomarte 25 minutos».", "src": None},
-        ],
-        "pasa": "Una vez dentro del ascensor, mientras tocás todos los botones para cerrar la puerta, Inquieta te ve y empieza a acercarse queriendo abrir el ascensor para sacarte de ahí. Así, el ascensor se descompone y cae brutalmente a una sala: el sótano.",
-        "frase": "Dentro de la inquietud siempre hay una pausa.",
-        "media": ["te-guia", "lineas", "te-habla", "ascensor", "caida"],
         "cta": "El sótano",
     },
     {

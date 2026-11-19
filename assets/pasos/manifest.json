@@ -312,82 +312,20 @@
   }
  },
  "21": {
-  "espacio-1": {
+  "objetos-gigantes": {
    "type": "img",
-   "w": 1351,
-   "h": 1800,
-   "src": "assets/pasos/21/espacio-1.webp"
-  },
-  "espacio-2": {
-   "type": "img",
-   "w": 1253,
-   "h": 1800,
-   "src": "assets/pasos/21/espacio-2.webp"
-  },
-  "inquieta": {
-   "type": "video",
-   "w": 1280,
-   "h": 722,
-   "audio": true,
-   "dur": 30.4,
-   "src": "assets/pasos/21/inquieta.mp4",
-   "poster": "assets/pasos/21/inquieta-poster.webp"
+   "w": 1800,
+   "h": 931,
+   "src": "assets/pasos/21/objetos-gigantes.webp"
   }
  },
- "22": {
-  "walkie": {
-   "type": "img",
-   "w": 942,
-   "h": 1512,
-   "src": "assets/pasos/22/walkie.webp",
-   "cutout": true
-  }
- },
+ "22": {},
  "23": {
-  "lineas": {
-   "type": "video",
-   "w": 1280,
-   "h": 720,
-   "audio": false,
-   "dur": 11.9,
-   "src": "assets/pasos/23/lineas.mp4",
-   "poster": "assets/pasos/23/lineas-poster.webp"
-  },
-  "te-guia": {
-   "type": "video",
-   "w": 1280,
-   "h": 532,
-   "audio": true,
-   "dur": 22.8,
-   "src": "assets/pasos/23/te-guia.mp4",
-   "poster": "assets/pasos/23/te-guia-poster.webp"
-  },
-  "te-habla": {
-   "type": "video",
-   "w": 960,
-   "h": 532,
-   "audio": true,
-   "dur": 127.3,
-   "src": "assets/pasos/23/te-habla.mp4",
-   "poster": "assets/pasos/23/te-habla-poster.webp"
-  },
-  "ascensor": {
-   "type": "video",
-   "w": 482,
-   "h": 798,
-   "audio": true,
-   "dur": 18.8,
-   "src": "assets/pasos/23/ascensor.mp4",
-   "poster": "assets/pasos/23/ascensor-poster.webp"
-  },
-  "caida": {
-   "type": "video",
-   "w": 960,
-   "h": 540,
-   "audio": true,
-   "dur": 79.6,
-   "src": "assets/pasos/23/caida.mp4",
-   "poster": "assets/pasos/23/caida-poster.webp"
+  "salida": {
+   "type": "img",
+   "w": 1638,
+   "h": 844,
+   "src": "assets/pasos/23/salida.webp"
   }
  },
  "24": {
