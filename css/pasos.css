@@ -243,6 +243,8 @@
 /* Segunda parte de una sección: sigue al scrollear */
 .gal--uno { columns: auto; max-width: 560px; margin-inline: auto; }
 .gal--uno .media { margin-bottom: 0; }
+.gal--par { columns: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 4vw, 64px); align-items: center; max-width: 980px; margin-inline: auto; }
+.gal--par .media { margin-bottom: 0; }
 .adentro { margin-top: clamp(72px, 15vh, 160px); }
 .adentro__fila {
   display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 4.5fr) minmax(0, 4.5fr);

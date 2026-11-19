@@ -59,11 +59,11 @@
   }
  },
  "3": {
-  "salon": {
+  "salon-pausa": {
    "type": "img",
-   "w": 1849,
-   "h": 960,
-   "src": "assets/pasos/03/salon.webp"
+   "w": 1800,
+   "h": 932,
+   "src": "assets/pasos/03/salon-pausa.webp"
   }
  },
  "4": {
@@ -142,13 +142,6 @@
   }
  },
  "10": {
-  "cuaderno": {
-   "type": "img",
-   "w": 1512,
-   "h": 1081,
-   "src": "assets/pasos/10/cuaderno.webp",
-   "cutout": true
-  },
   "encapuchados": {
    "type": "video",
    "w": 1280,
@@ -156,6 +149,20 @@
    "src": "assets/pasos/10/encapuchados.mp4",
    "poster": "assets/pasos/10/encapuchados-poster.webp",
    "audio": true
+  },
+  "remera-negra-1": {
+   "type": "img",
+   "w": 1303,
+   "h": 1205,
+   "src": "assets/pasos/10/remera-negra-1.webp",
+   "cutout": true
+  },
+  "remera-negra-2": {
+   "type": "img",
+   "w": 1117,
+   "h": 1218,
+   "src": "assets/pasos/10/remera-negra-2.webp",
+   "cutout": true
   }
  },
  "11": {
@@ -222,6 +229,13 @@
    "src": "assets/pasos/15/encapuchados.mp4",
    "poster": "assets/pasos/15/encapuchados-poster.webp",
    "audio": true
+  },
+  "remera-blanca": {
+   "type": "img",
+   "w": 1187,
+   "h": 1240,
+   "src": "assets/pasos/15/remera-blanca.webp",
+   "cutout": true
   }
  },
  "16": {

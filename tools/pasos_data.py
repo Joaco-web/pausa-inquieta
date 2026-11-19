@@ -61,7 +61,7 @@ PASOS = [
             {"label": "La voz", "texto": "«No hagas nada»", "src": "assets/pasos/03/sonido-voz.mp3"},
         ],
         "pasa": "Apenas avanzás, [[el piso se abre y te caés]], porque hiciste lo contrario de lo que te dijo la voz.",
-        "media": ["salon"],
+        "media": ["salon-pausa"],
         "cta": "Mientras tanto, en el aula…",
     },
     {
@@ -148,7 +148,7 @@ PASOS = [
         "ves": "De repente aparecen los alumnos encapuchados, con los rostros tapados, dándote la espalda enfrente del monitor y dejándote leer una frase.",
         "escuchas": [],
         "pasa": "Te dan un cuaderno chiquito e inabrible. Después de unos minutos, se alejan.",
-        "media": ["encapuchados", "cuaderno"],
+        "media": ["encapuchados", "remera-negra-1", "remera-negra-2"],
         "cta": "Volvé a Unreal",
     },
     {
@@ -220,7 +220,7 @@ PASOS = [
         "ves": "De pronto, los alumnos encapuchados y con los rostros tapados vuelven a ponerse enfrente de tu monitor, dándote la espalda. Pero ahora la frase cambió.",
         "escuchas": [],
         "pasa": "Después de unos minutos, se retiran.",
-        "media": ["encapuchados"],
+        "media": ["encapuchados", "remera-blanca"],
         "cta": "Volvé a Unreal",
     },
     {
