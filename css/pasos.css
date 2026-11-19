@@ -71,7 +71,8 @@
 .paso--text .paso__head { grid-template-columns: minmax(0, 1fr); max-width: 980px; }
 /* ¿Dónde estás?: el título de cada sección */
 .paso__q { font-family: var(--f-logo); font-size: clamp(54px, 7vw, 116px); font-weight: 200; line-height: 1; letter-spacing: -.04em; }
-.paso__q-w { display: flex; align-items: center; width: fit-content; white-space: nowrap; }
+.paso__q--largo { font-size: clamp(50px, 5.8vw, 92px); }
+.paso__q-w { display: flex; align-items: center; width: fit-content; white-space: pre; }
 .paso__q-l { display: inline-block; }
 .paso__q-semi {
   flex: none; width: .36em; height: .72em; margin-left: .16em;

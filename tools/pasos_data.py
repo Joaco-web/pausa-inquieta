@@ -10,7 +10,8 @@ Campos:
   lugar     "aula" | "unreal"
   titulo    nombre interno, para ubicarse en este archivo (NO se muestra en la web)
   etiqueta  reemplaza el nombre del lugar en esta sección (opcional)
-  donde     ¿Dónde estás?
+  donde     texto debajo del título ¿Dónde estás? (opcional si hay encabezado)
+  encabezado  líneas de un título propio, en lugar de ¿Dónde estás? (opcional)
   ves       Qué ves
   escuchas  lista de sonidos: {"label", "texto", "src"}  (src = None hasta tener el audio)
   pasa      Qué pasa
@@ -29,7 +30,7 @@ PASOS = [
     {
         "carpeta": 1,
         "lugar": "aula", "etiqueta": "Afuera del aula", "titulo": "La puerta",
-        "donde": "Antes de entrar, en la puerta del aula.",
+        "encabezado": ["Antes de", "entrar", "al aula"],
         "ves": "Una proyección de nuestro logo con la promesa. Habrá lentes UV en la puerta para verlo de nuevo.",
         "escuchas": [],
         "pasa": "El semicírculo representa un papel importante durante toda la experiencia: simboliza el corazón de nuestra pausa.",

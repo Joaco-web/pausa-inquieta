@@ -42,16 +42,20 @@ e = lambda s: html.escape(s, quote=True)
 CAMBIO_JS = "<script>(function(){var l=document.body.dataset.lugar,p;try{p=sessionStorage.getItem('pi-lugar');sessionStorage.setItem('pi-lugar',l)}catch(e){}if((l==='aula'||l==='unreal')&&p!==l){document.documentElement.classList.add('cambiando');document.documentElement.dataset.to=l}})()</script>"
 
 
-def titulo_donde():
-    """¿Dónde estás?: letras con pesos distintos, como INQUIETA en el logo, y el semicírculo que late."""
+def titulo_grande(textos):
+    """Título de la sección: letras con pesos distintos en la última línea, como INQUIETA en el logo, y el semicírculo que late."""
+    pesos = [200, 500, 300, 600, 200, 500]
     i = 0
     lineas = []
-    for palabra, pesos, cls in (("¿Dónde", [200] * 6, ""), ("estás?", [200, 500, 300, 600, 200, 500], " paso__q-w--b")):
+    for n, texto in enumerate(textos, 1):
+        ultima = n == len(textos)
         letras = []
-        for letra, peso in zip(palabra, pesos):
-            letras.append(f'<span class="paso__q-l" style="--i:{i};font-weight:{peso}">{letra}</span>')
+        for k, letra in enumerate(texto):
+            peso = pesos[k % len(pesos)] if ultima else 200
+            letras.append(f'<span class="paso__q-l" style="--i:{i};font-weight:{peso}">{e(letra)}</span>')
             i += 1
-        semi = '<span class="paso__q-semi"></span>' if cls else ""
+        cls = " paso__q-w--b" if ultima else ""
+        semi = '<span class="paso__q-semi"></span>' if ultima else ""
         lineas.append(f'<span class="paso__q-w{cls}" aria-hidden="true">{"".join(letras)}{semi}</span>')
     return "".join(lineas)
 
@@ -195,7 +199,11 @@ def page(n):
     noimg = " paso--text" if not media else ""
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""
     meta = f'<span class="pnav__meta">{e(next_meta)}</span>' if next_meta else ""
-    return f"""{head("Pausa Inquieta", p['donde'])}
+    encabezado = p.get("encabezado") or ["¿Dónde", "estás?"]
+    nombre = " ".join(encabezado)
+    q_cls = "paso__q paso__q--largo" if p.get("encabezado") else "paso__q"
+    donde = f'<p class="paso__donde" data-in>{e(p["donde"])}</p>' if p.get("donde") else ""
+    return f"""{head("Pausa Inquieta", p.get("donde") or nombre)}
 <body class="{surface} paso-page paso-page--{lugar}" data-lugar="{lugar}" data-paso="{n}"{marca}>
   {CAMBIO_JS}
   <div class="grain" aria-hidden="true"></div>
@@ -204,8 +212,8 @@ def page(n):
   <main class="paso{noimg}">
     <section class="paso__head">
       <div class="paso__text">
-        <h1 class="paso__q" data-in aria-label="¿Dónde estás?">{titulo_donde()}</h1>
-        <p class="paso__donde" data-in>{e(p['donde'])}</p>
+        <h1 class="{q_cls}" data-in aria-label="{e(nombre)}">{titulo_grande(encabezado)}</h1>
+        {donde}
         {frase}
       </div>
       {main}
