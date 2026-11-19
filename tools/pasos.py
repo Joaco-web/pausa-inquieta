@@ -223,17 +223,19 @@ def index():
       </div>
       <a class="pill idx__start" href="{L('paso-01.html')}" data-in><span>Empezar</span>{ARROW}</a>
     </section>
-    <!-- La primera vez la lista está bloqueada: se abre después de hacer el paso a paso -->
-    <button class="idx__lock" type="button" aria-label="Bloqueado: primero hacé el paso a paso">
-      <svg viewBox="0 0 80 100" aria-hidden="true">
-        <path class="idx__shackle" d="M20 46 V30 a20 20 0 0 1 40 0 V46" />
-        <rect class="idx__body" x="8" y="44" width="64" height="50" rx="4" />
-        <path class="idx__semi" d="M40 58 a11 11 0 0 0 0 22 Z" />
-      </svg>
-    </button>
-    <ol class="idx__list" aria-label="Los {TOTAL} pasos">
-      {"".join(rows)}
-    </ol>
+    <!-- La primera vez la lista se ve apagada y con candado: se abre después de hacer el paso a paso -->
+    <div class="idx__side">
+      <ol class="idx__list" aria-label="Los {TOTAL} pasos">
+        {"".join(rows)}
+      </ol>
+      <button class="idx__lock" type="button" aria-label="Bloqueado: primero hacé el paso a paso">
+        <svg viewBox="0 0 80 100" aria-hidden="true">
+          <path class="idx__shackle" d="M20 46 V30 a20 20 0 0 1 40 0 V46" />
+          <rect class="idx__body" x="8" y="44" width="64" height="50" rx="4" />
+          <path class="idx__semi" d="M40 58 a11 11 0 0 0 0 22 Z" />
+        </svg>
+      </button>
+    </div>
   </main>
   <div class="cambio" aria-hidden="true"><canvas></canvas><span class="cambio__word"></span></div>
   <script type="module" src="js/pasos.js"></script>

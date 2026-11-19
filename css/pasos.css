@@ -291,12 +291,16 @@ body.is-leaving main { opacity: 0; transform: translateY(-10px); transition: opa
 .idx__row a:hover .idx__t { color: var(--lime); }
 .idx__row a:hover .arr { opacity: 1; transform: none; }
 
-/* Candado: la primera vez tapa la lista; después de hacer el paso a paso, la lista aparece */
+/* Candado: la primera vez la lista se ve apagada detrás; después de hacer el paso a paso, se abre */
+.idx__side { display: grid; min-width: 0; }
+.idx__side > * { grid-area: 1 / 1; min-width: 0; }
 .idx__lock { display: none; }
-html.js:not(.pasos-done) .idx__list { display: none; }
+html.js:not(.pasos-done) .idx__list { opacity: .2; pointer-events: none; }
 html.js:not(.pasos-done) .idx__lock {
-  display: grid; place-items: center; align-self: center; justify-self: center;
+  position: sticky; z-index: 2; top: calc(50svh - clamp(75px, 8.2vw, 119px));
+  display: grid; place-items: center; align-self: start; justify-self: center;
   width: clamp(120px, 13vw, 190px); min-height: 44px; color: var(--paper);
+  filter: drop-shadow(0 0 36px rgba(11,11,11,.95));
   animation: enter .8s var(--ease) .3s both;
 }
 html.js:not(.pasos-done) .paso-page--index .pbar__steps { pointer-events: none; }

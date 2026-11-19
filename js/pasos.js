@@ -177,6 +177,9 @@ function syncLock() {
   const open = isDone();
   root.classList.toggle('pasos-done', open);
   if (body.dataset.lugar === 'index') ticks.forEach((t) => { t.tabIndex = open ? 0 : -1; });
+  // con candado, los capítulos se ven pero no se pueden abrir (ni con el teclado)
+  const list = document.querySelector('.idx__list');
+  if (list) list.inert = !open;
 }
 syncLock();
 const lock = document.querySelector('.idx__lock');
