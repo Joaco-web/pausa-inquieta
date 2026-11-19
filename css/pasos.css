@@ -53,11 +53,6 @@
 .tick.is-now { height: 10px; background: var(--lime); box-shadow: 0 0 14px rgba(215,255,58,.65); }
 .paso-page--aula .tick.is-now { background: var(--ink); box-shadow: none; }
 .pbar__where { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
-.pbar__where b {
-  font-weight: 600; padding: 6px 12px; border-radius: 999px;
-  background: var(--lime); color: var(--ink);
-}
-.paso-page--aula .pbar__where b { background: var(--ink); color: var(--paper); }
 .pbar__num { font-variant-numeric: tabular-nums; font-weight: 500; }
 .pbar__num i { font-style: normal; opacity: .4; margin: 0 2px; }
 
@@ -258,11 +253,10 @@
 .pnav__prev:hover { color: var(--fg); }
 .pnav__prev:hover .arr { transform: translateX(-5px); }
 .pnav__next {
-  justify-self: end; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "cta go" "meta go";
+  justify-self: end; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "cta go";
   align-items: center; column-gap: clamp(16px, 2vw, 28px); text-align: right;
 }
 .pnav__cta { grid-area: cta; font-family: var(--f-logo); font-weight: 300; font-size: clamp(26px, 3.4vw, 54px); line-height: 1.05; letter-spacing: -.03em; }
-.pnav__meta { grid-area: meta; margin-top: 8px; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
 .pnav__go {
   grid-area: go; width: clamp(64px, 6vw, 88px); aspect-ratio: 1; border-radius: 50%;
   display: grid; place-items: center; background: var(--lime); color: var(--ink);

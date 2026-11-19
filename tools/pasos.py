@@ -95,8 +95,8 @@ def progress(current):
         cur = ' aria-current="step"' if i == current else ""
         ticks.append(f'<a class="{" ".join(cls)}" href="{L(f"paso-{i:02d}.html")}"{cur} title="{i:02d}"><span class="sr-only">Sección {i}: {e(etiqueta(p))}</span></a>')
     p = PASOS[current - 1] if current else None
-    where = (f'<span class="pbar__where"><b>{e(etiqueta(p))}</b><span class="pbar__num">{current:02d}<i>/</i>{TOTAL}</span></span>'
-             if p else '<span class="pbar__where"><b>Paso a paso</b></span>')
+    where = (f'<span class="pbar__where"><span class="pbar__num">{current:02d}<i>/</i>{TOTAL}</span></span>'
+             if p else '<span class="pbar__where"></span>')
     return f"""  <header class="pbar">
     <a class="pbar__exit" href="index.html#recorrido">{BACK}<span>Salir</span></a>
     <nav class="pbar__steps" aria-label="Secciones de la experiencia">{"".join(ticks)}</nav>
@@ -180,12 +180,9 @@ def page(n):
     prev_href = L("recorrido.html") if n == 1 else L(f"paso-{n - 1:02d}.html")
     prev_txt = "Índice" if n == 1 else f"{n - 1:02d} · {etiqueta(PASOS[n - 2])}"
     if n < TOTAL:
-        nxt = PASOS[n]
         next_href = L(f"paso-{n + 1:02d}.html")
-        next_meta = f"{n + 1:02d} · {etiqueta(nxt)}"
     else:
         next_href = "index.html#llevas"
-        next_meta = ""
     media = p.get("media", [])
     main = media_item(carpeta, media[0], main=True) if media else ""
     if p.get("nota"):
@@ -201,7 +198,6 @@ def page(n):
     gallery_html = f'<section class="{gal_cls}" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
     noimg = " paso--text" if not media else ""
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""
-    meta = f'<span class="pnav__meta">{e(next_meta)}</span>' if next_meta else ""
     encabezado = p.get("encabezado") or ["¿Dónde", "estás?"]
     nombre = " ".join(encabezado)
     q_cls = "paso__q paso__q--largo" if p.get("encabezado") else "paso__q"
@@ -240,7 +236,6 @@ def page(n):
       <a class="pnav__prev" href="{prev_href}">{BACK}<span><small>Volver</small>{e(prev_txt)}</span></a>
       <a class="pnav__next" href="{next_href}">
         <span class="pnav__cta">{e(p['cta'])}</span>
-        {meta}
         <span class="pnav__go">{ARROW}</span>
       </a>
     </nav>
