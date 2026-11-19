@@ -184,11 +184,11 @@
   }
  },
  "12": {
-  "ojos-sala": {
+  "esferas-sala": {
    "type": "img",
    "w": 1800,
-   "h": 921,
-   "src": "assets/pasos/12/ojos-sala.webp"
+   "h": 929,
+   "src": "assets/pasos/12/esferas-sala.webp"
   }
  },
  "13": {
