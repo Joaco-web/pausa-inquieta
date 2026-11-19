@@ -187,7 +187,7 @@ def page(n):
     main = media_item(carpeta, media[0], main=True) if media else ""
     if p.get("nota"):
         lineas = "".join(f'<span class="nota__l">{e(t)} </span>' for t in p["nota"])
-        main = main.replace("</figure>", f'<p class="nota">{lineas}</p></figure>')
+        main = f'<div class="nota-wrap">{main}<p class="nota">{lineas}</p></div>'
     gallery = "".join(media_item(carpeta, m) for m in media[1:])
     frase = f'<blockquote class="paso__frase" data-in><p>{e(p["frase"])}</p></blockquote>' if p.get("frase") else ""
     escuchas = (f"""<article class="card card--sound" data-in>
@@ -224,7 +224,7 @@ def page(n):
         <p>{e(p['ves'])}</p>
       </article>
       {escuchas}
-      <article class="card card--pasa{' card--dicho' if p.get('nota') else ''}" data-in>
+      <article class="card card--pasa" data-in>
         <h2 class="card__t">Qué pasa</h2>
         <p>{e(p['pasa'])}</p>
       </article>

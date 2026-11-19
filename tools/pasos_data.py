@@ -35,7 +35,7 @@ PASOS = [
         "ves": "Una proyección de nuestro logo con la promesa. Habrá lentes UV en la puerta para verlo de nuevo.",
         "escuchas": [],
         "pasa": "Nada será revelado.",
-        "nota": ["El semicírculo", "representa un papel", "importante durante toda", "la experiencia: simboliza el", "corazón de nuestra pausa."],
+        "nota": ["El semicírculo representa un", "papel importante durante", "toda la experiencia:", "simboliza el corazón", "de nuestra pausa."],
         "media": ["entrada", "lentes"],
         "adentro": {
             "carpeta": 2,
