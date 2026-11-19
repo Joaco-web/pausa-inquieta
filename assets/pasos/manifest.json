@@ -333,42 +333,30 @@
   }
  },
  "24": {
-  "tunel": {
-   "type": "video",
-   "w": 268,
-   "h": 438,
-   "audio": true,
-   "dur": 10.0,
-   "src": "assets/pasos/24/tunel.mp4",
-   "poster": "assets/pasos/24/tunel-poster.webp"
-  },
-  "pausa-inquieta": {
-   "type": "img",
-   "w": 1512,
-   "h": 1400,
-   "src": "assets/pasos/24/pausa-inquieta.webp",
-   "cutout": true
-  },
-  "pedestal": {
-   "type": "img",
-   "w": 1523,
-   "h": 1800,
-   "src": "assets/pasos/24/pedestal.webp"
-  },
-  "y-ahora": {
+  "sotano-1": {
    "type": "img",
    "w": 1800,
-   "h": 1645,
-   "src": "assets/pasos/24/y-ahora.webp"
+   "h": 932,
+   "src": "assets/pasos/24/sotano-1.webp"
   },
-  "masa": {
-   "type": "video",
-   "w": 578,
-   "h": 568,
-   "audio": true,
-   "dur": 9.8,
-   "src": "assets/pasos/24/masa.mp4",
-   "poster": "assets/pasos/24/masa-poster.webp"
+  "sotano-2": {
+   "type": "img",
+   "w": 1800,
+   "h": 931,
+   "src": "assets/pasos/24/sotano-2.webp"
+  },
+  "sotano-3": {
+   "type": "img",
+   "w": 1800,
+   "h": 927,
+   "src": "assets/pasos/24/sotano-3.webp"
+  },
+  "tarjeta-y-ahora": {
+   "type": "img",
+   "w": 1326,
+   "h": 851,
+   "src": "assets/pasos/24/tarjeta-y-ahora.webp",
+   "cutout": true
   }
  }
 }

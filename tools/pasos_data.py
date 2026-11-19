@@ -19,6 +19,7 @@ Campos:
   nota      líneas del texto del semicírculo que queda en la esquina del video (opcional)
   media     nombres de assets/pasos/NN/<nombre>.* en el orden en que se muestran
   carrusel  True: las imágenes de media pasan solas en el recuadro principal
+  abajo     imágenes debajo de los cuadros cuando la principal es un carrusel (opcional)
   pasa_media  video que va dentro del cuadro Qué pasa (opcional)
   sigue     otro lugar (o una lista de lugares) dentro de la misma página, al seguir scrolleando (opcional):
             {"carpeta", "donde", "ves", "escuchas", "pasa", "carrusel", "media"}
@@ -308,14 +309,15 @@ PASOS = [
         "carpeta": 24,
         "lugar": "unreal", "titulo": "El corazón de Inquieta",
         "donde": "El sótano.",
-        "ves": "Enfrente tuyo están Pausa e Inquieta juntos. Se reproduce una cinemática: PI se abre para mostrarte un túnel largo y deconstruido.",
+        "ves": "Enfrente tuyo están Pausa e Inquieta, juntos. Se reproduce una cinemática: PI se abre para mostrarte un túnel largo y deconstruido.",
         "escuchas": [
             {"label": "El corazón de Inquieta", "texto": "", "src": "assets/pasos/24/sonido-corazon.mp3"},
             {"label": "Ruido", "texto": "", "src": "assets/pasos/24/sonido-ruido.mp3"},
         ],
         "pasa": "Al atravesarlo hay una sala con mucho ruido: es el corazón de Inquieta. En el centro hay un pedestal con una caja apoyada, la misma que la del aula. Al abrirla se revela un doble fondo, con una tarjeta oculta. Tu pantalla se congela y produce ruido.",
-        "frase": "¿Y ahora?",
-        "media": ["pausa-inquieta", "tunel", "masa", "pedestal", "y-ahora"],
+        "carrusel": True,
+        "media": ["sotano-1", "sotano-2", "sotano-3"],
+        "abajo": ["tarjeta-y-ahora"],
         "cta": "Mientras tanto, en el aula…",
     },
     {
@@ -328,7 +330,6 @@ PASOS = [
             {"label": "PI", "texto": "«Esta experiencia nace de mostrar que muchas veces, cuando no hacemos nada, sentimos la presión por hacer algo. Fijate: si vos no hacías nada, la experiencia avanzaba igual, pero siempre sentiste la necesidad de hacer algo. A veces no hacer nada implica tomarte un momento para vos». «No todo pide algo».", "src": None},
         ],
         "pasa": "Al salir del aula se les entrega un llavero para que reconozcan su ruido interno en el día a día, y se pueden llevar el cuaderno. Ahora la proyección de la puerta del aula cambió: Pausa e Inquieta conviven.",
-        "frase": "No todo pide algo.",
         "media": [],
         "cta": "Qué te llevás",
     },
