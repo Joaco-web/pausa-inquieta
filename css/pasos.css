@@ -69,8 +69,29 @@
   min-height: calc(100svh - var(--bar-h) - clamp(24px, 5vh, 56px) - 40px);
 }
 .paso--text .paso__head { grid-template-columns: minmax(0, 1fr); max-width: 980px; }
-.paso__donde { max-width: 34ch; font-size: clamp(18px, 1.45vw, 22px); line-height: 1.4; color: var(--soft); }
-.paso__donde b { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--fg); }
+/* ¿Dónde estás?: el título de cada sección */
+.paso__q { font-family: var(--f-logo); font-size: clamp(54px, 7vw, 116px); font-weight: 200; line-height: 1; letter-spacing: -.04em; }
+.paso__q-w { display: flex; align-items: center; width: fit-content; white-space: nowrap; }
+.paso__q-l { display: inline-block; }
+.paso__q-semi {
+  flex: none; width: .36em; height: .72em; margin-left: .16em;
+  border-radius: .72em 0 0 .72em; background: var(--lime);
+  transform-origin: 100% 50%;
+}
+.paso-page--unreal .paso__q-w--b { color: var(--lime); text-shadow: 0 0 34px rgba(215,255,58,.38); }
+.paso-page--unreal .paso__q-semi { box-shadow: 0 0 30px rgba(215,255,58,.42); }
+.js .paso__q-l { opacity: 0; }
+.js .paso__q-semi { opacity: 0; }
+.js .paso__q.is-in .paso__q-l { animation: letra .75s var(--ease) both; animation-delay: calc(var(--i) * 48ms + 120ms); }
+.js .paso__q.is-in .paso__q-semi { animation: semi .7s var(--ease) .75s both, latido 2.6s ease-in-out 1.6s infinite; }
+@keyframes letra { from { opacity: 0; transform: translateY(.34em); } to { opacity: 1; transform: none; } }
+@keyframes semi { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: none; } }
+@keyframes latido { 0%, 42%, 100% { opacity: 1; transform: scale(1); } 12% { opacity: 1; transform: scale(1.14); } 24% { opacity: 1; transform: scale(1); } 32% { opacity: 1; transform: scale(1.08); } }
+@media (prefers-reduced-motion: reduce) {
+  .js .paso__q-l, .js .paso__q-semi { opacity: 1; }
+  .js .paso__q.is-in .paso__q-l, .js .paso__q.is-in .paso__q-semi { animation: none; }
+}
+.paso__donde { margin-top: clamp(16px, 2.8vh, 28px); max-width: 34ch; font-size: clamp(18px, 1.45vw, 22px); line-height: 1.4; color: var(--soft); }
 
 /* La frase del guion, grande */
 .paso__frase { margin: clamp(22px, 4vh, 40px) 0 0; }

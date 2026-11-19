@@ -42,6 +42,20 @@ e = lambda s: html.escape(s, quote=True)
 CAMBIO_JS = "<script>(function(){var l=document.body.dataset.lugar,p;try{p=sessionStorage.getItem('pi-lugar');sessionStorage.setItem('pi-lugar',l)}catch(e){}if((l==='aula'||l==='unreal')&&p!==l){document.documentElement.classList.add('cambiando');document.documentElement.dataset.to=l}})()</script>"
 
 
+def titulo_donde():
+    """¿Dónde estás?: letras con pesos distintos, como INQUIETA en el logo, y el semicírculo que late."""
+    i = 0
+    lineas = []
+    for palabra, pesos, cls in (("¿Dónde", [200] * 6, ""), ("estás?", [200, 500, 300, 600, 200, 500], " paso__q-w--b")):
+        letras = []
+        for letra, peso in zip(palabra, pesos):
+            letras.append(f'<span class="paso__q-l" style="--i:{i};font-weight:{peso}">{letra}</span>')
+            i += 1
+        semi = '<span class="paso__q-semi"></span>' if cls else ""
+        lineas.append(f'<span class="paso__q-w{cls}" aria-hidden="true">{"".join(letras)}{semi}</span>')
+    return "".join(lineas)
+
+
 def head(title, desc):
     return f"""<!doctype html>
 <html lang="es" class="no-cursor">
@@ -161,8 +175,8 @@ def page(n):
   <main class="paso{noimg}">
     <section class="paso__head">
       <div class="paso__text">
-        <h1 class="sr-only">Pausa Inquieta</h1>
-        <p class="paso__donde" data-in><b>¿Dónde estás?</b> {e(p['donde'])}</p>
+        <h1 class="paso__q" data-in aria-label="¿Dónde estás?">{titulo_donde()}</h1>
+        <p class="paso__donde" data-in>{e(p['donde'])}</p>
         {frase}
       </div>
       {main}
