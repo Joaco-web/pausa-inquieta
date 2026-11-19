@@ -215,14 +215,13 @@
   }
  },
  "15": {
-  "encapuchado-1": {
+  "encapuchados": {
    "type": "video",
-   "w": 720,
-   "h": 1280,
-   "audio": true,
-   "dur": 7.4,
-   "src": "assets/pasos/15/encapuchado-1.mp4",
-   "poster": "assets/pasos/15/encapuchado-1-poster.webp"
+   "w": 1280,
+   "h": 720,
+   "src": "assets/pasos/15/encapuchados.mp4",
+   "poster": "assets/pasos/15/encapuchados-poster.webp",
+   "audio": true
   }
  },
  "16": {

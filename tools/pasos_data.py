@@ -220,7 +220,7 @@ PASOS = [
         "ves": "De pronto, los alumnos encapuchados y con los rostros tapados vuelven a ponerse enfrente de tu monitor, dándote la espalda. Pero ahora la frase cambió.",
         "escuchas": [],
         "pasa": "Después de unos minutos, se retiran.",
-        "media": ["encapuchado-1"],
+        "media": ["encapuchados"],
         "cta": "Volvé a Unreal",
     },
     {
