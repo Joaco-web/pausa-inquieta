@@ -255,7 +255,7 @@ PASOS = [
             {"label": "Dominó", "texto": "", "src": "assets/pasos/19/sonido-domino.mp3"},
         ],
         "pasa": "Al mover la primera pieza generás una reacción en cadena y, al caer la última, ves una oración. Inmediatamente el piso se abre [[dejándote caer por un tobogán, y caés en un pelotero]].",
-        "media": ["domino-video"],
+        "media": ["domino-r"],
         "cta": "Mientras tanto, en el aula…",
     },
     {

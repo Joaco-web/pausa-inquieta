@@ -279,14 +279,11 @@
   }
  },
  "19": {
-  "domino-video": {
-   "type": "video",
-   "w": 1280,
-   "h": 556,
-   "audio": true,
-   "dur": 11.7,
-   "src": "assets/pasos/19/domino-video.mp4",
-   "poster": "assets/pasos/19/domino-video-poster.webp"
+  "domino-r": {
+   "type": "img",
+   "w": 1800,
+   "h": 935,
+   "src": "assets/pasos/19/domino-r.webp"
   }
  },
  "20": {
