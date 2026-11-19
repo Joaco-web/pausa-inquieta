@@ -169,7 +169,7 @@ PASOS = [
             "donde": "Mientras avanzás por el entorno, te encontrás con unas esferas de ojos. Están apagados, rodeados de una luz que titila.",
             "pasa": "Al tocarlos se «prenden» y empiezan a levitar sobre la sala. Mientras los mires, no se van a acercar a vos, pero cuando apartes la vista se mueven dentro del espacio y te siguen.",
             "carrusel": True,
-            "media": ["ojos-prendidos", "sala-esferas", "ojos-sala", "ojos-apagados"],
+            "media": ["ojos-sala"],
         },
         "cta": "Llegá a la salida",
     },
