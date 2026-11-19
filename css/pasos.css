@@ -291,6 +291,22 @@ body.is-leaving main { opacity: 0; transform: translateY(-10px); transition: opa
 .idx__row a:hover .idx__t { color: var(--lime); }
 .idx__row a:hover .arr { opacity: 1; transform: none; }
 
+/* Candado: la primera vez tapa la lista; después de hacer el paso a paso, la lista aparece */
+.idx__lock { display: none; }
+html.js:not(.pasos-done) .idx__list { display: none; }
+html.js:not(.pasos-done) .idx__lock {
+  display: grid; place-items: center; align-self: center; justify-self: center;
+  width: clamp(120px, 13vw, 190px); min-height: 44px; color: var(--paper);
+  animation: enter .8s var(--ease) .3s both;
+}
+html.js:not(.pasos-done) .paso-page--index .pbar__steps { pointer-events: none; }
+.idx__lock svg { width: 100%; height: auto; overflow: visible; display: block; }
+.idx__shackle { fill: none; stroke: var(--paper); stroke-width: 8; stroke-linecap: round; transition: transform .5s var(--ease); }
+.idx__body { fill: var(--ink); stroke: var(--paper); stroke-width: 3; }
+.idx__semi { fill: var(--lime); }
+.idx__lock:hover .idx__shackle { transform: translateY(-3px); }
+.idx__lock:focus-visible { outline: 2px solid var(--lime); outline-offset: 10px; border-radius: 8px; }
+
 /* ---------- Pantallas chicas ---------- */
 @media (max-width: 860px) {
   .paso__head { grid-template-columns: 1fr; min-height: 0; gap: 28px; }

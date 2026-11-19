@@ -52,7 +52,7 @@ def head(title, desc):
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/pasos.css">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>document.documentElement.classList.add('js');try{{if(localStorage.getItem('pi-pasos-done')==='1')document.documentElement.classList.add('pasos-done')}}catch(e){{}}</script>
   <script type="importmap">
   {{}}
   </script>
@@ -215,15 +215,22 @@ def index():
 {progress(0)}
   <main class="idx">
     <section class="idx__hero">
-      <span class="label label--lime" data-in>El recorrido</span>
       <h1 class="idx__title" data-in>El paso<br>a paso</h1>
-      <p class="idx__lead" data-in>Te contamos la experiencia en {TOTAL} pasos: qué ves, qué escuchás y qué pasa. Va y viene entre dos lugares al mismo tiempo.</p>
+      <p class="idx__lead" data-in>Te contamos la experiencia: qué ves, qué escuchás y qué pasa.</p>
       <div class="idx__legend" data-in>
-        <p><span class="chip chip--aula">Aula</span> Lo que pasa en el aula, alrededor tuyo.</p>
+        <p><span class="chip chip--aula">Aula</span> Lo que pasa en el aula</p>
         <p><span class="chip chip--unreal">Unreal</span> Lo que pasa adentro de la computadora.</p>
       </div>
       <a class="pill idx__start" href="{L('paso-01.html')}" data-in><span>Empezar</span>{ARROW}</a>
     </section>
+    <!-- La primera vez la lista está bloqueada: se abre después de hacer el paso a paso -->
+    <button class="idx__lock" type="button" aria-label="Bloqueado: primero hacé el paso a paso">
+      <svg viewBox="0 0 80 100" aria-hidden="true">
+        <path class="idx__shackle" d="M20 46 V30 a20 20 0 0 1 40 0 V46" />
+        <rect class="idx__body" x="8" y="44" width="64" height="50" rx="4" />
+        <path class="idx__semi" d="M40 58 a11 11 0 0 0 0 22 Z" />
+      </svg>
+    </button>
     <ol class="idx__list" aria-label="Los {TOTAL} pasos">
       {"".join(rows)}
     </ol>

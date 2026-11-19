@@ -164,8 +164,37 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') go(document.querySelector('.pnav__next, .idx__start')?.getAttribute('href'));
   if (e.key === 'ArrowLeft') go(document.querySelector('.pnav__prev')?.getAttribute('href'));
 });
+// ---------- Candado del índice: la lista se abre cuando llegaste al último paso ----------
+const DONE_KEY = 'pi-pasos-done';
+const ticks = [...document.querySelectorAll('.tick')];
+function isDone() {
+  try { return localStorage.getItem(DONE_KEY) === '1'; } catch (e) { return false; }
+}
+if (body.dataset.paso && +body.dataset.paso === ticks.length) {
+  try { localStorage.setItem(DONE_KEY, '1'); } catch (e) { /* sin almacenamiento */ }
+}
+function syncLock() {
+  const open = isDone();
+  root.classList.toggle('pasos-done', open);
+  if (body.dataset.lugar === 'index') ticks.forEach((t) => { t.tabIndex = open ? 0 : -1; });
+}
+syncLock();
+const lock = document.querySelector('.idx__lock');
+if (lock && !reduced) {
+  lock.addEventListener('click', () => {
+    lock.querySelector('svg').animate(
+      [0, 10, -10, 8, -6, 3, 0].map((x) => ({ transform: `translateX(${x}px)` })),
+      { duration: 420, easing: 'ease-out' },
+    );
+  });
+}
+
 // volver con el botón "atrás" del navegador sin quedar en blanco
-window.addEventListener('pageshow', (e) => { if (e.persisted) body.classList.remove('is-leaving'); });
+window.addEventListener('pageshow', (e) => {
+  if (!e.persisted) return;
+  body.classList.remove('is-leaving');
+  syncLock();
+});
 
 if (root.classList.contains('cambiando')) cambio();
 else reveal();
