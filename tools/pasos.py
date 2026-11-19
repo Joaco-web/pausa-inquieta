@@ -26,6 +26,12 @@ def L(page):
 TOTAL = len(PASOS)
 LUGAR = {"aula": "Aula", "unreal": "Unreal"}
 
+
+def etiqueta(p):
+    """nombre del lugar que se muestra en esta sección"""
+    return p.get("etiqueta") or LUGAR[p["lugar"]]
+
+
 ARROW = '<svg class="arr" viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>'
 BACK = '<svg class="arr arr--back" viewBox="0 0 22 12" aria-hidden="true"><path d="M22 6H2M7 1L2 6l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>'
 PLAY = '<svg class="ico ico--play" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4l10 6-10 6z" fill="currentColor"/></svg>'
@@ -69,13 +75,13 @@ def progress(current):
         if i == current:
             cls.append("is-now")
         cur = ' aria-current="step"' if i == current else ""
-        ticks.append(f'<a class="{" ".join(cls)}" href="{L(f"paso-{i:02d}.html")}"{cur} title="{i:02d} · {e(p["titulo"])}"><span class="sr-only">Paso {i}: {e(p["titulo"])}</span></a>')
+        ticks.append(f'<a class="{" ".join(cls)}" href="{L(f"paso-{i:02d}.html")}"{cur} title="{i:02d}"><span class="sr-only">Sección {i}: {e(etiqueta(p))}</span></a>')
     p = PASOS[current - 1] if current else None
-    where = (f'<span class="pbar__where"><b>{LUGAR[p["lugar"]]}</b><span class="pbar__num">{current:02d}<i>/</i>{TOTAL}</span></span>'
+    where = (f'<span class="pbar__where"><b>{e(etiqueta(p))}</b><span class="pbar__num">{current:02d}<i>/</i>{TOTAL}</span></span>'
              if p else '<span class="pbar__where"><b>Paso a paso</b></span>')
     return f"""  <header class="pbar">
     <a class="pbar__exit" href="index.html#recorrido">{BACK}<span>Salir</span></a>
-    <nav class="pbar__steps" aria-label="Pasos de la experiencia">{"".join(ticks)}</nav>
+    <nav class="pbar__steps" aria-label="Secciones de la experiencia">{"".join(ticks)}</nav>
     {where}
   </header>"""
 
@@ -126,14 +132,14 @@ def page(n):
     lugar = p["lugar"]
     surface = "pos" if lugar == "aula" else "neg"
     prev_href = L("recorrido.html") if n == 1 else L(f"paso-{n - 1:02d}.html")
-    prev_txt = "Índice" if n == 1 else f"{n - 1:02d} · {PASOS[n - 2]['titulo']}"
+    prev_txt = "Índice" if n == 1 else f"{n - 1:02d} · {etiqueta(PASOS[n - 2])}"
     if n < TOTAL:
         nxt = PASOS[n]
         next_href = L(f"paso-{n + 1:02d}.html")
-        next_meta = f"{n + 1:02d} · {LUGAR[nxt['lugar']]} · {nxt['titulo']}"
+        next_meta = f"{n + 1:02d} · {etiqueta(nxt)}"
     else:
         next_href = "index.html#llevas"
-        next_meta = "Fin del paso a paso"
+        next_meta = ""
     media = p.get("media", [])
     main = media_item(n, media[0], main=True) if media else ""
     gallery = "".join(media_item(n, m) for m in media[1:])
@@ -142,18 +148,12 @@ def page(n):
           <h2 class="card__t">Qué escuchás</h2>
           {sounds(p["escuchas"])}
         </article>""" if p.get("escuchas") else "")
-    objeto = ""
-    if p.get("objeto"):
-        o = p["objeto"]
-        objeto = f"""<aside class="objeto" data-in>
-        <span class="objeto__tag">En tus manos</span>
-        <p><b>{e(o['nombre'])}.</b> {e(o['texto'])}</p>
-      </aside>"""
     gallery_html = f'<section class="gal" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
     noimg = " paso--text" if not media else ""
-    title = f"{n:02d} · {p['titulo']} — Pausa Inquieta"
-    return f"""{head(title, f"Paso {n} de {TOTAL} ({LUGAR[lugar]}): {p['donde']}")}
-<body class="{surface} paso-page paso-page--{lugar}" data-lugar="{lugar}" data-paso="{n}">
+    marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""
+    meta = f'<span class="pnav__meta">{e(next_meta)}</span>' if next_meta else ""
+    return f"""{head("Pausa Inquieta", p['donde'])}
+<body class="{surface} paso-page paso-page--{lugar}" data-lugar="{lugar}" data-paso="{n}"{marca}>
   {CAMBIO_JS}
   <div class="grain" aria-hidden="true"></div>
   <div class="glow" aria-hidden="true"></div>
@@ -161,15 +161,14 @@ def page(n):
   <main class="paso{noimg}">
     <section class="paso__head">
       <div class="paso__text">
-        <span class="paso__kicker label" data-in>Paso {n:02d} · {LUGAR[lugar]}</span>
-        <h1 class="paso__title" data-in>{e(p['titulo'])}</h1>
+        <h1 class="sr-only">Pausa Inquieta</h1>
         <p class="paso__donde" data-in><b>¿Dónde estás?</b> {e(p['donde'])}</p>
         {frase}
       </div>
       {main}
     </section>
 
-    <section class="cards" aria-label="Qué pasa en este paso">
+    <section class="cards" aria-label="Qué pasa en esta sección">
       <article class="card" data-in>
         <h2 class="card__t">Qué ves</h2>
         <p>{e(p['ves'])}</p>
@@ -180,14 +179,13 @@ def page(n):
         <p>{e(p['pasa'])}</p>
       </article>
     </section>
-    {objeto}
     {gallery_html}
 
-    <nav class="pnav" aria-label="Navegación entre pasos">
+    <nav class="pnav" aria-label="Navegación entre secciones">
       <a class="pnav__prev" href="{prev_href}">{BACK}<span><small>Volver</small>{e(prev_txt)}</span></a>
       <a class="pnav__next" href="{next_href}">
         <span class="pnav__cta">{e(p['cta'])}</span>
-        <span class="pnav__meta">{e(next_meta)}</span>
+        {meta}
         <span class="pnav__go">{ARROW}</span>
       </a>
     </nav>
@@ -205,8 +203,8 @@ def index():
     rows = []
     for i, p in enumerate(PASOS, 1):
         rows.append(f'<li class="idx__row idx__row--{p["lugar"]}" data-in><a href="{L(f'paso-{i:02d}.html')}">'
-                    f'<span class="idx__n">{i:02d}</span><span class="idx__l">{LUGAR[p["lugar"]]}</span>'
-                    f'<span class="idx__t">{e(p["titulo"])}</span>{ARROW}</a></li>')
+                    f'<span class="idx__n">{i:02d}</span><span class="idx__l">{e(etiqueta(p))}</span>'
+                    f'{ARROW}</a></li>')
     return f"""{head("El paso a paso — Pausa Inquieta", "La experiencia de Pausa Inquieta contada paso a paso: lo que ves, lo que escuchás y lo que pasa, en el aula y en Unreal.")}
 <body class="neg paso-page paso-page--index" data-lugar="index">
   {CAMBIO_JS}
@@ -225,7 +223,7 @@ def index():
     </section>
     <!-- La primera vez la lista se ve apagada y con candado: se abre después de hacer el paso a paso -->
     <div class="idx__side">
-      <ol class="idx__list" aria-label="Los {TOTAL} pasos">
+      <ol class="idx__list" aria-label="Las {TOTAL} secciones">
         {"".join(rows)}
       </ol>
       <button class="idx__lock" type="button" aria-label="Bloqueado: primero hacé el paso a paso">

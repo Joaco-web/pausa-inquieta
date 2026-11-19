@@ -11,7 +11,8 @@ function cambio() {
   const box = document.querySelector('.cambio');
   const word = box.querySelector('.cambio__word');
   const cv = box.querySelector('canvas');
-  word.textContent = root.dataset.to === 'unreal' ? 'Unreal' : 'Aula';
+  word.textContent = body.dataset.etiqueta || (root.dataset.to === 'unreal' ? 'Unreal' : 'Aula');
+  word.classList.toggle('is-long', word.textContent.length > 8);
   const ctx = cv.getContext('2d');
   cv.width = 160; cv.height = 90;
   const img = ctx.createImageData(cv.width, cv.height);

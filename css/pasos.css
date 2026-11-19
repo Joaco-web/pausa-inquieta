@@ -69,15 +69,7 @@
   min-height: calc(100svh - var(--bar-h) - clamp(24px, 5vh, 56px) - 40px);
 }
 .paso--text .paso__head { grid-template-columns: minmax(0, 1fr); max-width: 980px; }
-.paso__kicker { color: var(--soft); }
-.paso-page--unreal .paso__kicker { color: var(--lime); }
-.paso__title {
-  margin-top: 18px;
-  font-family: var(--f-logo); font-weight: 300;
-  font-size: clamp(44px, 6.2vw, 104px); line-height: .95; letter-spacing: -.045em;
-  text-wrap: balance;
-}
-.paso__donde { margin-top: clamp(18px, 3vh, 30px); max-width: 34ch; font-size: clamp(18px, 1.45vw, 22px); line-height: 1.4; color: var(--soft); }
+.paso__donde { max-width: 34ch; font-size: clamp(18px, 1.45vw, 22px); line-height: 1.4; color: var(--soft); }
 .paso__donde b { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--fg); }
 
 /* La frase del guion, grande */
@@ -188,21 +180,6 @@
 @keyframes wave { 0%, 100% { height: 25%; } 50% { height: 100%; } }
 .sound__text { font-size: 16px !important; color: var(--soft); }
 
-/* Objeto físico que aparece */
-.objeto {
-  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-  margin-top: clamp(16px, 2vw, 24px); padding: 16px 22px;
-  border: 1.5px dashed var(--line); border-radius: 999px;
-  width: fit-content; max-width: 100%;
-}
-.objeto__tag {
-  flex: none; display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
-  padding: 6px 12px; border-radius: 999px; background: var(--lime); color: var(--ink);
-}
-.objeto__tag::before { content: ""; width: 9px; height: 9px; border-radius: 0 50% 50% 0 / 0 50% 50% 0; background: currentColor; transform: scaleX(-1); }
-.objeto p { font-size: 17px; }
-
 /* Más imágenes / referencias */
 .gal { columns: 3 260px; column-gap: clamp(12px, 1.4vw, 20px); margin-top: clamp(32px, 7vh, 72px); }
 .gal .media { break-inside: avoid; margin-bottom: clamp(12px, 1.4vw, 20px); }
@@ -252,6 +229,7 @@
   font-size: clamp(64px, 15vw, 260px); letter-spacing: -.05em; color: var(--paper);
   mix-blend-mode: difference;
 }
+.cambio__word.is-long { padding: 0 var(--gutter); font-size: clamp(44px, 9vw, 160px); line-height: 1; text-align: center; }
 html.cambiando .cambio { display: grid; }
 html.cambiando[data-to="unreal"] .cambio__word { color: var(--lime); }
 
@@ -277,7 +255,7 @@ body.is-leaving main { opacity: 0; transform: translateY(-10px); transition: opa
 .idx__start { margin-top: 36px; }
 .idx__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .idx__row a {
-  display: grid; grid-template-columns: 44px 92px 1fr 24px; align-items: center; gap: 14px;
+  display: grid; grid-template-columns: 44px 1fr 24px; align-items: center; gap: 14px;
   min-height: 58px; padding: 10px 6px; border-bottom: 1px solid var(--line);
   transition: background .3s, padding .35s var(--ease), color .3s;
 }
@@ -285,10 +263,8 @@ body.is-leaving main { opacity: 0; transform: translateY(-10px); transition: opa
 .idx__l { justify-self: start; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
 .idx__row--aula .idx__l { background: var(--paper); color: var(--ink); }
 .idx__row--unreal .idx__l { background: rgba(164,124,255,.22); color: var(--violet); }
-.idx__t { font-family: var(--f-logo); font-weight: 300; font-size: clamp(18px, 1.6vw, 24px); letter-spacing: -.01em; }
 .idx__row .arr { width: 22px; opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .35s var(--ease); }
 .idx__row a:hover { background: rgba(215,255,58,.06); padding-left: 14px; }
-.idx__row a:hover .idx__t { color: var(--lime); }
 .idx__row a:hover .arr { opacity: 1; transform: none; }
 
 /* Candado: la primera vez la lista se ve apagada detrás; después de hacer el paso a paso, se abre */
@@ -323,12 +299,11 @@ html.js:not(.pasos-done) .paso-page--index .pbar__steps { pointer-events: none; 
   .pnav__next { justify-self: stretch; }
   .idx { grid-template-columns: 1fr; }
   .idx__hero { position: static; }
-  .idx__row a { grid-template-columns: 34px 80px 1fr 20px; gap: 10px; }
+  .idx__row a { grid-template-columns: 34px 1fr 20px; gap: 10px; }
 }
 @media (max-width: 520px) {
   .pbar__exit span { display: none; }
   .gal { columns: 1; }
-  .objeto { border-radius: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

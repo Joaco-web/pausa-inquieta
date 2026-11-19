@@ -6,13 +6,13 @@ En el aula la persona nunca se levanta: sigue en su compu; el proyector solo le 
 
 Campos:
   lugar     "aula" | "unreal"
-  titulo    nombre corto del paso
+  titulo    nombre interno, para ubicarse en este archivo (NO se muestra en la web)
+  etiqueta  reemplaza el nombre del lugar en esta sección (opcional)
   donde     ¿Dónde estás?
   ves       Qué ves
   escuchas  lista de sonidos: {"label", "texto", "src"}  (src = None hasta tener el audio)
   pasa      Qué pasa
   frase     frase del guion que se muestra grande (opcional)
-  objeto    objeto físico que aparece: {"nombre", "texto"} (opcional)
   media     nombres de assets/pasos/NN/<nombre>.* en el orden en que se muestran
   cta       texto del botón para avanzar
 Para sumar un audio: poné la ruta en "src" (por ejemplo "assets/pasos/03/latido.mp3"),
@@ -23,13 +23,11 @@ PROYECTOR = "En el aula, en tu compu. El proyector general te llama la atención
 
 PASOS = [
     {  # 01
-        "lugar": "aula", "titulo": "La puerta",
+        "lugar": "aula", "etiqueta": "Afuera del aula", "titulo": "La puerta",
         "donde": "Antes de entrar, en la puerta del aula.",
         "ves": "Una proyección de nuestro logo con la promesa. Habrá lentes UV en la puerta para verlo de nuevo.",
         "escuchas": [],
         "pasa": "El semicírculo representa un papel importante durante toda la experiencia: simboliza el corazón de nuestra pausa.",
-        "frase": "Entrá, por una vez, no hay nada que cumplir.",
-        "objeto": {"nombre": "Lentes UV", "texto": "Están en la puerta, para ver la proyección de nuevo."},
         "media": ["proyeccion", "entrada", "lentes"],
         "cta": "Entrá al aula",
     },
@@ -40,7 +38,6 @@ PASOS = [
         "escuchas": [],
         "pasa": "Cuando la abrís, ves una tarjeta. Después de unos minutos, el monitor se prende con Unreal para seguir la experiencia allí.",
         "frase": "¿Y qué vas a hacer?",
-        "objeto": {"nombre": "La caja", "texto": "En la tapa tiene escrito «Te sobran 25 minutos»."},
         "media": ["caja-abrir", "lineas", "teclado", "caja", "monitor"],
         "cta": "Se prende el monitor",
     },
@@ -135,7 +132,6 @@ PASOS = [
         "escuchas": [],
         "pasa": "Te dan un cuaderno chiquito e inabrible. Después de unos minutos, se alejan.",
         "frase": "¿Qué está faltando?",
-        "objeto": {"nombre": "El cuaderno", "texto": "Chiquito e inabrible."},
         "media": ["encapuchada-1", "encapuchada-2", "encapuchada-3", "encapuchada-4", "cuaderno"],
         "cta": "Volvé a Unreal",
     },
@@ -295,7 +291,6 @@ PASOS = [
         ],
         "pasa": "Al atravesarlo hay una sala con mucho ruido: es el corazón de Inquieta. En el centro hay un pedestal con una caja apoyada, la misma que la del aula. Al abrirla se revela un doble fondo, con una tarjeta oculta. Tu pantalla se congela y produce ruido.",
         "frase": "¿Y ahora?",
-        "objeto": {"nombre": "La caja", "texto": "Es la misma que la del aula."},
         "media": ["pausa-inquieta", "tunel", "masa", "pedestal", "y-ahora"],
         "cta": "Mientras tanto, en el aula…",
     },
