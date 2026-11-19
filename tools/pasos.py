@@ -39,6 +39,11 @@ PAUSE = '<svg class="ico ico--pause" viewBox="0 0 20 20" aria-hidden="true"><pat
 SOUND = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="w" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'
 
 e = lambda s: html.escape(s, quote=True)
+
+
+def rico(s):
+    """texto con [[partes subrayadas]]"""
+    return e(s).replace("[[", '<span class="sub">').replace("]]", "</span>")
 CAMBIO_JS = "<script>(function(){var l=document.body.dataset.lugar,p;try{p=sessionStorage.getItem('pi-lugar');sessionStorage.setItem('pi-lugar',l)}catch(e){}if((l==='aula'||l==='unreal')&&p!==l){document.documentElement.classList.add('cambiando');document.documentElement.dataset.to=l}})()</script>"
 
 
@@ -64,8 +69,8 @@ def titular(texto):
     """corta un título largo en líneas y elige el tamaño según cuánto texto tiene"""
     n = len(texto)
     maximo, cls = ((13, "paso__q--largo") if n <= 12 else (13, "paso__q--frase") if n <= 30
-                   else (18, "paso__q--medio") if n <= 60 else (22, "paso__q--largo2") if n <= 100
-                   else (26, "paso__q--largo3"))
+                   else (14, "paso__q--medio") if n <= 60 else (22, "paso__q--largo2") if n <= 100
+                   else (22, "paso__q--largo3"))
     lineas = [""]
     for palabra in texto.split():
         nueva = f"{lineas[-1]} {palabra}".strip()
@@ -216,17 +221,21 @@ def tarjetas(p, h="h2"):
           {sounds(p["escuchas"])}
         </article>""" if p.get("escuchas") else "")
     video = media_item(p["carpeta"], p["pasa_media"]) if p.get("pasa_media") else ""
-    return f"""<section class="cards" aria-label="Qué pasa en esta sección">
-      <article class="card" data-in>
+    ves = (f"""<article class="card card--ves" data-in>
         <{h} class="card__t">Qué ves</{h}>
-        <p>{e(p['ves'])}</p>
-      </article>
-      {escuchas}
-      <article class="card card--pasa" data-in>
+        <p>{rico(p['ves'])}</p>
+      </article>""" if p.get("ves") else "")
+    pasa = (f"""<article class="card card--pasa" data-in>
         <{h} class="card__t">Qué pasa</{h}>
-        <p>{e(p['pasa'])}</p>
+        <p>{rico(p['pasa'])}</p>
         {video}
-      </article>
+      </article>""" if p.get("pasa") else "")
+    if not (ves or escuchas or pasa):
+        return ""
+    return f"""<section class="cards" aria-label="Qué pasa en esta sección">
+      {ves}
+      {escuchas}
+      {pasa}
     </section>"""
 
 
@@ -267,7 +276,7 @@ def page(n):
         main = f'<div class="nota-wrap">{main}<p class="nota">{lineas}</p></div>'
     gallery = "" if p.get("carrusel") else "".join(media_item(carpeta, m) for m in media[1:])
     frase = f'<blockquote class="paso__frase" data-in><p>{e(p["frase"])}</p></blockquote>' if p.get("frase") else ""
-    gal_cls = "gal gal--uno" if p.get("adentro") else "gal"
+    gal_cls = "gal gal--uno" if p.get("adentro") or len(media) == 2 else "gal"
     gallery_html = f'<section class="{gal_cls}" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
     noimg = " paso--text" if not media else ""
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""

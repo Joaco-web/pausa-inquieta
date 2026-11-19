@@ -178,33 +178,6 @@
    "src": "assets/pasos/10/encapuchada-1.mp4",
    "poster": "assets/pasos/10/encapuchada-1-poster.webp"
   },
-  "encapuchada-2": {
-   "type": "video",
-   "w": 720,
-   "h": 1280,
-   "audio": true,
-   "dur": 8.2,
-   "src": "assets/pasos/10/encapuchada-2.mp4",
-   "poster": "assets/pasos/10/encapuchada-2-poster.webp"
-  },
-  "encapuchada-3": {
-   "type": "video",
-   "w": 1280,
-   "h": 2276,
-   "audio": false,
-   "dur": 5.1,
-   "src": "assets/pasos/10/encapuchada-3.mp4",
-   "poster": "assets/pasos/10/encapuchada-3-poster.webp"
-  },
-  "encapuchada-4": {
-   "type": "video",
-   "w": 720,
-   "h": 1280,
-   "audio": true,
-   "dur": 14.7,
-   "src": "assets/pasos/10/encapuchada-4.mp4",
-   "poster": "assets/pasos/10/encapuchada-4-poster.webp"
-  },
   "cuaderno": {
    "type": "img",
    "w": 1512,
@@ -296,33 +269,6 @@
    "dur": 7.4,
    "src": "assets/pasos/15/encapuchado-1.mp4",
    "poster": "assets/pasos/15/encapuchado-1-poster.webp"
-  },
-  "encapuchado-2": {
-   "type": "video",
-   "w": 1280,
-   "h": 2276,
-   "audio": false,
-   "dur": 6.1,
-   "src": "assets/pasos/15/encapuchado-2.mp4",
-   "poster": "assets/pasos/15/encapuchado-2-poster.webp"
-  },
-  "encapuchado-3": {
-   "type": "video",
-   "w": 1280,
-   "h": 2276,
-   "audio": true,
-   "dur": 12.5,
-   "src": "assets/pasos/15/encapuchado-3.mp4",
-   "poster": "assets/pasos/15/encapuchado-3-poster.webp"
-  },
-  "encapuchado-4": {
-   "type": "video",
-   "w": 480,
-   "h": 852,
-   "audio": true,
-   "dur": 12.2,
-   "src": "assets/pasos/15/encapuchado-4.mp4",
-   "poster": "assets/pasos/15/encapuchado-4-poster.webp"
   }
  },
  "16": {
@@ -363,13 +309,6 @@
    "dur": 48.5,
    "src": "assets/pasos/17/persecucion.mp4",
    "poster": "assets/pasos/17/persecucion-poster.webp"
-  },
-  "obstaculos": {
-   "type": "img",
-   "w": 830,
-   "h": 572,
-   "src": "assets/pasos/17/obstaculos.webp",
-   "cutout": true
   }
  },
  "18": {
@@ -381,12 +320,6 @@
   }
  },
  "19": {
-  "domino": {
-   "type": "img",
-   "w": 590,
-   "h": 393,
-   "src": "assets/pasos/19/domino.webp"
-  },
   "domino-video": {
    "type": "video",
    "w": 1280,
@@ -395,13 +328,6 @@
    "dur": 11.7,
    "src": "assets/pasos/19/domino-video.mp4",
    "poster": "assets/pasos/19/domino-video-poster.webp"
-  },
-  "tobogan": {
-   "type": "img",
-   "w": 639,
-   "h": 1512,
-   "src": "assets/pasos/19/tobogan.webp",
-   "cutout": true
   }
  },
  "20": {
