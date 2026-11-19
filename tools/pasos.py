@@ -139,7 +139,7 @@ def sounds(items):
             <div class="sound__body">
               <span class="sound__label">{e(s['label'])}{hint}</span>
               <span class="sound__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-              <p class="sound__text">{e(s['texto'])}</p>
+              {f'<p class="sound__text">{e(s["texto"])}</p>' if s.get("texto") else ""}
             </div>{audio}
           </div>""")
     return "\n          ".join(out)
@@ -200,7 +200,9 @@ def page(n):
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""
     encabezado = p.get("encabezado") or ["¿Dónde", "estás?"]
     nombre = " ".join(encabezado)
-    q_cls = "paso__q paso__q--largo" if p.get("encabezado") else "paso__q"
+    q_cls = "paso__q"
+    if p.get("encabezado"):
+        q_cls += " paso__q--frase" if max(map(len, encabezado)) > 10 else " paso__q--largo"
     donde = f'<p class="paso__donde" data-in>{e(p["donde"])}</p>' if p.get("donde") else ""
     return f"""{head("Pausa Inquieta", p.get("donde") or nombre)}
 <body class="{surface} paso-page paso-page--{lugar}" data-lugar="{lugar}" data-paso="{n}"{marca}>

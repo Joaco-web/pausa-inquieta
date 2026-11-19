@@ -61,15 +61,9 @@
  "3": {
   "salon": {
    "type": "img",
-   "w": 1592,
-   "h": 1800,
+   "w": 1849,
+   "h": 960,
    "src": "assets/pasos/03/salon.webp"
-  },
-  "caida": {
-   "type": "img",
-   "w": 1800,
-   "h": 865,
-   "src": "assets/pasos/03/caida.webp"
   }
  },
  "4": {

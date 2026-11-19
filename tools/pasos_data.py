@@ -13,7 +13,7 @@ Campos:
   donde     texto debajo del título ¿Dónde estás? (opcional si hay encabezado)
   encabezado  líneas de un título propio, en lugar de ¿Dónde estás? (opcional)
   ves       Qué ves
-  escuchas  lista de sonidos: {"label", "texto", "src"}  (src = None hasta tener el audio)
+  escuchas  lista de sonidos: {"label", "texto", "src"}  (src = None hasta tener el audio; texto vacío = sin descripción)
   pasa      Qué pasa
   frase     frase del guion que se muestra grande (opcional)
   nota      líneas del texto del semicírculo que queda en la esquina del video (opcional)
@@ -50,15 +50,14 @@ PASOS = [
     {
         "carpeta": 3,
         "lugar": "unreal", "titulo": "El salón",
-        "donde": "Dentro de Unreal estás en un salón antiguo.",
-        "ves": "Lo primero que ves es el semicírculo con una luz tenue y acentos flúor al final del pasillo. Este es Pausa.",
+        "encabezado": ["Dentro de", "Unreal, estás", "en un salón", "antiguo."],
+        "ves": "Lo primero que ves es el semicírculo con una luz tenue y acentos flúor. Este es Pausa.",
         "escuchas": [
-            {"label": "Latido", "texto": "Pausa produce un sonido de latido de corazón, normal y leve.", "src": "assets/pasos/03/sonido-latido.mp3"},
-            {"label": "La voz", "texto": "Una voz interviene y te dice: «No hagas nada».", "src": "assets/pasos/03/sonido-voz.mp3"},
+            {"label": "Latido", "texto": "", "src": "assets/pasos/03/sonido-latido.mp3"},
+            {"label": "La voz", "texto": "«No hagas nada»", "src": "assets/pasos/03/sonido-voz.mp3"},
         ],
         "pasa": "Apenas avanzás, el piso se abre y te caés, porque hiciste lo contrario de lo que te dijo la voz.",
-        "frase": "No hagas nada.",
-        "media": ["salon", "caida"],
+        "media": ["salon"],
         "cta": "Mientras tanto, en el aula…",
     },
     {
