@@ -287,7 +287,7 @@ def page(n):
     abajo = p.get("abajo", []) if p.get("carrusel") else media[1:]
     gallery = "".join(media_item(carpeta, m) for m in abajo)
     frase = f'<blockquote class="paso__frase" data-in><p>{e(p["frase"])}</p></blockquote>' if p.get("frase") else ""
-    gal_cls = "gal gal--uno" if p.get("adentro") or len(abajo) == 1 else "gal gal--par" if len(abajo) == 2 and all(MANIFEST[str(carpeta)][x].get("cutout") for x in abajo) else "gal"
+    gal_cls = "gal gal--uno" if p.get("adentro") or len(abajo) == 1 else "gal gal--par" if len(abajo) == 2 and all(MANIFEST[str(carpeta)][x].get("cutout") for x in abajo) else "gal gal--fila" if len(abajo) == 3 and all(MANIFEST[str(carpeta)][x].get("cutout") for x in abajo) else "gal"
     gallery_html = f'<section class="{gal_cls}" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
     noimg = " paso--text" if not media else ""
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""

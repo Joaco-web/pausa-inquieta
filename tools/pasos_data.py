@@ -151,7 +151,7 @@ PASOS = [
         "ves": "De repente aparecen los alumnos encapuchados, con los rostros tapados, dándote la espalda enfrente del monitor y dejándote leer una frase.",
         "escuchas": [],
         "pasa": "Te dan un cuaderno chiquito e inabrible. Después de unos minutos, se alejan.",
-        "media": ["encapuchados", "remera-negra-1", "remera-negra-2"],
+        "media": ["encapuchados", "remera-negra-1", "cuaderno", "remera-negra-2"],
         "cta": "Volvé a Unreal",
     },
     {
