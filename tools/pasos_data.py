@@ -158,7 +158,7 @@ PASOS = [
         "carpeta": 11,
         "lugar": "unreal", "titulo": "Salón de espejos",
         "donde": "En la sala de cuadros ves una puerta.",
-        "ves": "Cuando pasás, ves tu reflejo repitiéndose por todos lados.",
+        "ves": "Cuando pasás, ves tu reflejo repitiéndose por todos lados. Estás en una sala de espejos.",
         "escuchas": [
             {"label": "Eco", "texto": "", "src": "assets/pasos/11/sonido-eco.mp3"},
         ],
