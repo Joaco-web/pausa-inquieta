@@ -207,6 +207,24 @@
 .paso-page--aula .gal .media:nth-child(odd) { transform: rotate(.5deg); }
 .paso-page--aula .gal .media:nth-child(even) { transform: rotate(-.5deg); }
 
+/* Segunda parte de una sección: sigue al scrollear */
+.gal--uno { columns: auto; max-width: 560px; margin-inline: auto; }
+.gal--uno .media { margin-bottom: 0; }
+.adentro { margin-top: clamp(72px, 15vh, 160px); }
+.adentro__fila {
+  display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 4.5fr) minmax(0, 4.5fr);
+  gap: clamp(16px, 2vw, 28px); align-items: center;
+}
+.adentro__t { font-family: var(--f-logo); font-weight: 300; font-size: clamp(40px, 4.6vw, 76px); line-height: 1; letter-spacing: -.04em; text-wrap: balance; }
+.gal--fila {
+  columns: auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 44px); align-items: center;
+}
+.gal--fila .media { margin-bottom: 0; }
+@media (max-width: 860px) {
+  .adentro__fila, .gal--fila { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* ---------- Navegación: volver / siguiente ---------- */
 .pnav {
   display: grid; grid-template-columns: auto 1fr; align-items: end; gap: clamp(20px, 4vw, 60px);

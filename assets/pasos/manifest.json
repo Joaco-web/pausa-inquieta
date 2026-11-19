@@ -1,14 +1,5 @@
 {
  "1": {
-  "proyeccion": {
-   "type": "video",
-   "w": 720,
-   "h": 1280,
-   "audio": false,
-   "dur": 15.0,
-   "src": "assets/pasos/01/proyeccion.mp4",
-   "poster": "assets/pasos/01/proyeccion-poster.webp"
-  },
   "entrada": {
    "type": "video",
    "w": 1280,
@@ -36,17 +27,12 @@
    "src": "assets/pasos/02/lineas.mp4",
    "poster": "assets/pasos/02/lineas-poster.webp"
   },
-  "teclado": {
-   "type": "img",
-   "w": 1800,
-   "h": 1216,
-   "src": "assets/pasos/02/teclado.webp"
-  },
   "caja": {
    "type": "img",
-   "w": 1800,
-   "h": 803,
-   "src": "assets/pasos/02/caja.webp"
+   "w": 1218,
+   "h": 671,
+   "src": "assets/pasos/02/caja.webp",
+   "cutout": true
   },
   "caja-abrir": {
    "type": "video",
@@ -57,14 +43,19 @@
    "src": "assets/pasos/02/caja-abrir.mp4",
    "poster": "assets/pasos/02/caja-abrir-poster.webp"
   },
-  "monitor": {
-   "type": "video",
-   "w": 1280,
-   "h": 720,
-   "audio": true,
-   "dur": 9.0,
-   "src": "assets/pasos/02/monitor.mp4",
-   "poster": "assets/pasos/02/monitor-poster.webp"
+  "tela": {
+   "type": "img",
+   "w": 1459,
+   "h": 794,
+   "src": "assets/pasos/02/tela.webp",
+   "cutout": true
+  },
+  "tarjetas": {
+   "type": "img",
+   "w": 1360,
+   "h": 867,
+   "src": "assets/pasos/02/tarjetas.webp",
+   "cutout": true
   }
  },
  "3": {

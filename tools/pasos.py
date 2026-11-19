@@ -1,4 +1,4 @@
-"""Genera el paso a paso: recorrido.html (índice) y paso-01.html … paso-25.html.
+"""Genera el paso a paso: recorrido.html (índice) y una página paso-NN.html por sección.
 
 El contenido está en tools/pasos_data.py y los medios en assets/pasos/NN/.
 Uso (desde la carpeta del proyecto):
@@ -141,8 +141,36 @@ def sounds(items):
     return "\n          ".join(out)
 
 
+def adentro(p):
+    """segunda parte de la sección: aparece al seguir scrolleando"""
+    a = p.get("adentro")
+    if not a:
+        return ""
+    c = a["carpeta"]
+    fila = "".join(media_item(c, m) for m in a["fila"])
+    fotos = "".join(media_item(c, m) for m in a["media"])
+    return f"""<section class="adentro" aria-label="{e(a['texto'])}">
+      <div class="adentro__fila">
+        <h2 class="adentro__t" data-in>{e(a['texto'])}</h2>
+        {fila}
+      </div>
+      <div class="cards">
+        <article class="card" data-in>
+          <h3 class="card__t">Qué ves</h3>
+          <p>{e(a['ves'])}</p>
+        </article>
+        <article class="card card--pasa" data-in>
+          <h3 class="card__t">Qué pasa</h3>
+          <p>{e(a['pasa'])}</p>
+        </article>
+      </div>
+      <div class="gal gal--fila">{fotos}</div>
+    </section>"""
+
+
 def page(n):
     p = PASOS[n - 1]
+    carpeta = p["carpeta"]
     lugar = p["lugar"]
     surface = "pos" if lugar == "aula" else "neg"
     prev_href = L("recorrido.html") if n == 1 else L(f"paso-{n - 1:02d}.html")
@@ -155,14 +183,15 @@ def page(n):
         next_href = "index.html#llevas"
         next_meta = ""
     media = p.get("media", [])
-    main = media_item(n, media[0], main=True) if media else ""
-    gallery = "".join(media_item(n, m) for m in media[1:])
+    main = media_item(carpeta, media[0], main=True) if media else ""
+    gallery = "".join(media_item(carpeta, m) for m in media[1:])
     frase = f'<blockquote class="paso__frase" data-in><p>{e(p["frase"])}</p></blockquote>' if p.get("frase") else ""
     escuchas = (f"""<article class="card card--sound" data-in>
           <h2 class="card__t">Qué escuchás</h2>
           {sounds(p["escuchas"])}
         </article>""" if p.get("escuchas") else "")
-    gallery_html = f'<section class="gal" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
+    gal_cls = "gal gal--uno" if p.get("adentro") else "gal"
+    gallery_html = f'<section class="{gal_cls}" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
     noimg = " paso--text" if not media else ""
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""
     meta = f'<span class="pnav__meta">{e(next_meta)}</span>' if next_meta else ""
@@ -194,6 +223,7 @@ def page(n):
       </article>
     </section>
     {gallery_html}
+    {adentro(p)}
 
     <nav class="pnav" aria-label="Navegación entre secciones">
       <a class="pnav__prev" href="{prev_href}">{BACK}<span><small>Volver</small>{e(prev_txt)}</span></a>
@@ -257,6 +287,10 @@ def index():
 
 
 def main():
+    # si se unieron secciones, las páginas que sobran se borran solas
+    for vieja in ROOT.glob("paso-[0-9][0-9].html"):
+        if int(vieja.stem[-2:]) > TOTAL:
+            vieja.unlink()
     (ROOT / "recorrido.html").write_text(index(), encoding="utf-8", newline="")
     for n in range(1, TOTAL + 1):
         (ROOT / f"paso-{n:02d}.html").write_text(page(n), encoding="utf-8", newline="")
