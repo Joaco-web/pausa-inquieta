@@ -64,10 +64,13 @@
   min-height: calc(100svh - var(--bar-h) - clamp(24px, 5vh, 56px) - 40px);
 }
 .paso--text .paso__head { grid-template-columns: minmax(0, 1fr); max-width: 980px; }
-/* ¿Dónde estás?: el título de cada sección */
+/* El título de cada sección */
 .paso__q { font-family: var(--f-logo); font-size: clamp(54px, 7vw, 116px); font-weight: 200; line-height: 1; letter-spacing: -.04em; }
 .paso__q--largo { font-size: clamp(50px, 5.8vw, 92px); }
 .paso__q--frase { font-size: clamp(42px, 4.6vw, 74px); }
+.paso__q--medio { font-size: clamp(33px, 3.5vw, 51px); line-height: 1.06; }
+.paso__q--largo2 { font-size: clamp(28px, 2.95vw, 43px); line-height: 1.08; }
+.paso__q--largo3 { font-size: clamp(25px, 2.5vw, 40px); line-height: 1.1; }
 .paso__q-w { display: flex; align-items: center; width: fit-content; white-space: pre; }
 .paso__q-l { display: inline-block; }
 .paso__q-semi {
@@ -88,7 +91,6 @@
   .js .paso__q-l, .js .paso__q-semi { opacity: 1; }
   .js .paso__q.is-in .paso__q-l, .js .paso__q.is-in .paso__q-semi { animation: none; }
 }
-.paso__donde { margin-top: clamp(16px, 2.8vh, 28px); max-width: 34ch; font-size: clamp(18px, 1.45vw, 22px); line-height: 1.4; color: var(--soft); }
 
 /* La frase del guion, grande */
 .paso__frase { margin: clamp(22px, 4vh, 40px) 0 0; }
@@ -140,6 +142,19 @@
 .media__sound[aria-pressed="true"] { background: var(--lime); color: var(--ink); }
 .media__sound[aria-pressed="true"] .w { opacity: 1; }
 .media__sound:hover { transform: scale(1.08); }
+
+/* Carrusel: las imágenes pasan solas en el recuadro principal */
+.carrusel { overflow: hidden; background: #0d0d0d; }
+.carrusel .carrusel__s {
+  position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; outline: 0; box-shadow: none;
+  visibility: hidden; transform: translateX(100%); transition: transform 1s var(--ease);
+}
+.carrusel .carrusel__s.is-now { visibility: visible; transform: none; }
+.carrusel .carrusel__s.is-out { visibility: visible; transform: translateX(-100%); }
+.carrusel .carrusel__s img, .carrusel .carrusel__s video { object-fit: cover; background: none; }
+@media (prefers-reduced-motion: reduce) { .carrusel .carrusel__s { transition: none; } }
+.card .media { margin-top: 16px; }
+.sigue { margin-top: clamp(56px, 12vh, 130px); }
 
 /* Objetos recortados (fondo transparente): flotan sobre la página */
 .media.media--cut, .paso-page--aula .media.media--cut, .paso-page--unreal .media.media--cut { background: none; box-shadow: none; outline: 0; overflow: visible; }

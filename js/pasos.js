@@ -60,7 +60,7 @@ function reveal() {
 }
 
 // ---------- Videos: se reproducen solos (sin sonido) cuando están a la vista ----------
-const vids = [...document.querySelectorAll('.media video')];
+const vids = [...document.querySelectorAll('.media video')].filter((v) => !v.closest('.carrusel'));
 const vio = new IntersectionObserver((entries) => {
   entries.forEach((en) => {
     const v = en.target;
@@ -192,6 +192,32 @@ if (lock && !reduced) {
     );
   });
 }
+
+// ---------- Carruseles: las imágenes pasan solas, sin tocar nada ----------
+document.querySelectorAll('.carrusel').forEach((box) => {
+  const slides = [...box.querySelectorAll('.carrusel__s')];
+  let actual = 0;
+  let aLaVista = false;
+  const videos = () => slides.forEach((s, i) => {
+    const v = s.querySelector('video');
+    if (!v) return;
+    if (i === actual && aLaVista) v.play().catch(() => {});
+    else v.pause();
+  });
+  new IntersectionObserver(([en]) => { aLaVista = en.isIntersecting; videos(); }, { threshold: 0.2 }).observe(box);
+  setInterval(() => {
+    if (!aLaVista || document.hidden || (lb && !lb.hidden)) return;
+    const sale = slides[actual];
+    actual = (actual + 1) % slides.length;
+    const entra = slides[actual];
+    const v = entra.querySelector('video');
+    if (v) v.currentTime = 0;
+    sale.classList.replace('is-now', 'is-out');
+    entra.classList.add('is-now');
+    setTimeout(() => sale.classList.remove('is-out'), 1100);
+    videos();
+  }, 4500);
+});
 
 // volver con el botón "atrás" del navegador sin quedar en blanco
 window.addEventListener('pageshow', (e) => {

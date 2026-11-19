@@ -158,12 +158,6 @@
    "dur": 11.6,
    "src": "assets/pasos/08/tres-monitores.mp4",
    "poster": "assets/pasos/08/tres-monitores-poster.webp"
-  },
-  "aula": {
-   "type": "img",
-   "w": 1800,
-   "h": 859,
-   "src": "assets/pasos/08/aula.webp"
   }
  },
  "9": {

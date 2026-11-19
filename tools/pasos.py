@@ -60,6 +60,31 @@ def titulo_grande(textos):
     return "".join(lineas)
 
 
+def titular(texto):
+    """corta un título largo en líneas y elige el tamaño según cuánto texto tiene"""
+    n = len(texto)
+    maximo, cls = ((13, "paso__q--largo") if n <= 12 else (13, "paso__q--frase") if n <= 30
+                   else (18, "paso__q--medio") if n <= 60 else (22, "paso__q--largo2") if n <= 100
+                   else (26, "paso__q--largo3"))
+    lineas = [""]
+    for palabra in texto.split():
+        nueva = f"{lineas[-1]} {palabra}".strip()
+        if len(nueva) > maximo and lineas[-1]:
+            lineas.append(palabra)
+        else:
+            lineas[-1] = nueva
+    return lineas, cls
+
+
+def titulo_html(p, tag="h1"):
+    if p.get("encabezado"):
+        lineas = p["encabezado"]
+        cls = "paso__q--frase" if max(map(len, lineas)) > 10 else "paso__q--largo"
+    else:
+        lineas, cls = titular(p["donde"])
+    return f'<{tag} class="paso__q {cls}" data-in aria-label="{e(" ".join(lineas))}">{titulo_grande(lineas)}</{tag}>'
+
+
 def head(title, desc):
     return f"""<!doctype html>
 <html lang="es" class="no-cursor">
@@ -127,6 +152,19 @@ def media_item(n, name, main=False):
             f'<img src="{ver(m["src"])}" alt="" width="{m["w"]}" height="{m["h"]}" loading="{"eager" if main else "lazy"}" decoding="async"></figure>')
 
 
+def carrusel(c, nombres):
+    """las imágenes pasan solas, una atrás de otra, ocupando todo el recuadro principal"""
+    slides = []
+    for i, name in enumerate(nombres):
+        m = MANIFEST[str(c)][name]
+        if m["type"] == "video":
+            cuerpo = f'<video src="{ver(m["src"])}" poster="{ver(m["poster"])}" muted loop playsinline preload="metadata" width="{m["w"]}" height="{m["h"]}"></video>'
+        else:
+            cuerpo = f'<img src="{ver(m["src"])}" alt="" width="{m["w"]}" height="{m["h"]}" decoding="async">'
+        slides.append(f'<figure class="media carrusel__s{" is-now" if i == 0 else ""}"><button class="media__open" type="button" aria-label="Ver en grande"></button>{cuerpo}</figure>')
+    return f'<div class="media media--main carrusel" style="--ar:16 / 10" data-in>{"".join(slides)}</div>'
+
+
 def sounds(items):
     out = []
     for s in items:
@@ -172,6 +210,42 @@ def adentro(p):
     </section>"""
 
 
+def tarjetas(p, h="h2"):
+    escuchas = (f"""<article class="card card--sound" data-in>
+          <{h} class="card__t">Qué escuchás</{h}>
+          {sounds(p["escuchas"])}
+        </article>""" if p.get("escuchas") else "")
+    video = media_item(p["carpeta"], p["pasa_media"]) if p.get("pasa_media") else ""
+    return f"""<section class="cards" aria-label="Qué pasa en esta sección">
+      <article class="card" data-in>
+        <{h} class="card__t">Qué ves</{h}>
+        <p>{e(p['ves'])}</p>
+      </article>
+      {escuchas}
+      <article class="card card--pasa" data-in>
+        <{h} class="card__t">Qué pasa</{h}>
+        <p>{e(p['pasa'])}</p>
+        {video}
+      </article>
+    </section>"""
+
+
+def sigue(p):
+    """otro lugar en la misma página: se encuentra al seguir scrolleando"""
+    s = p.get("sigue")
+    if not s:
+        return ""
+    return f"""<div class="sigue">
+    <section class="paso__head">
+      <div class="paso__text">
+        {titulo_html(s, "h2")}
+      </div>
+      {carrusel(s["carpeta"], s["media"])}
+    </section>
+    {tarjetas(s, "h3")}
+    </div>"""
+
+
 def page(n):
     p = PASOS[n - 1]
     carpeta = p["carpeta"]
@@ -184,27 +258,20 @@ def page(n):
     else:
         next_href = "index.html#llevas"
     media = p.get("media", [])
-    main = media_item(carpeta, media[0], main=True) if media else ""
+    if p.get("carrusel"):
+        main = carrusel(carpeta, media)
+    else:
+        main = media_item(carpeta, media[0], main=True) if media else ""
     if p.get("nota"):
         lineas = "".join(f'<span class="nota__l">{e(t)} </span>' for t in p["nota"])
         main = f'<div class="nota-wrap">{main}<p class="nota">{lineas}</p></div>'
-    gallery = "".join(media_item(carpeta, m) for m in media[1:])
+    gallery = "" if p.get("carrusel") else "".join(media_item(carpeta, m) for m in media[1:])
     frase = f'<blockquote class="paso__frase" data-in><p>{e(p["frase"])}</p></blockquote>' if p.get("frase") else ""
-    escuchas = (f"""<article class="card card--sound" data-in>
-          <h2 class="card__t">Qué escuchás</h2>
-          {sounds(p["escuchas"])}
-        </article>""" if p.get("escuchas") else "")
     gal_cls = "gal gal--uno" if p.get("adentro") else "gal"
     gallery_html = f'<section class="{gal_cls}" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
     noimg = " paso--text" if not media else ""
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""
-    encabezado = p.get("encabezado") or ["¿Dónde", "estás?"]
-    nombre = " ".join(encabezado)
-    q_cls = "paso__q"
-    if p.get("encabezado"):
-        q_cls += " paso__q--frase" if max(map(len, encabezado)) > 10 else " paso__q--largo"
-    donde = f'<p class="paso__donde" data-in>{e(p["donde"])}</p>' if p.get("donde") else ""
-    return f"""{head("Pausa Inquieta", p.get("donde") or nombre)}
+    return f"""{head("Pausa Inquieta", p.get("donde") or " ".join(p["encabezado"]))}
 <body class="{surface} paso-page paso-page--{lugar}" data-lugar="{lugar}" data-paso="{n}"{marca}>
   {CAMBIO_JS}
   <div class="grain" aria-hidden="true"></div>
@@ -213,26 +280,16 @@ def page(n):
   <main class="paso{noimg}">
     <section class="paso__head">
       <div class="paso__text">
-        <h1 class="{q_cls}" data-in aria-label="{e(nombre)}">{titulo_grande(encabezado)}</h1>
-        {donde}
+        {titulo_html(p)}
         {frase}
       </div>
       {main}
     </section>
 
-    <section class="cards" aria-label="Qué pasa en esta sección">
-      <article class="card" data-in>
-        <h2 class="card__t">Qué ves</h2>
-        <p>{e(p['ves'])}</p>
-      </article>
-      {escuchas}
-      <article class="card card--pasa" data-in>
-        <h2 class="card__t">Qué pasa</h2>
-        <p>{e(p['pasa'])}</p>
-      </article>
-    </section>
+    {tarjetas(p)}
     {gallery_html}
     {adentro(p)}
+    {sigue(p)}
 
     <nav class="pnav" aria-label="Navegación entre secciones">
       <a class="pnav__prev" href="{prev_href}">{BACK}<span><small>Volver</small>{e(prev_txt)}</span></a>
