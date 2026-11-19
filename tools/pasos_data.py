@@ -21,6 +21,7 @@ Campos:
   carrusel  True: las imágenes de media pasan solas en el recuadro principal
   abajo     imágenes debajo de los cuadros cuando la principal es un carrusel (opcional)
   pasa_media  video que va dentro del cuadro Qué pasa (opcional)
+  ves_media   video que va dentro del cuadro Qué ves (opcional)
   sigue     otro lugar (o una lista de lugares) dentro de la misma página, al seguir scrolleando (opcional):
             {"carpeta", "donde", "ves", "escuchas", "pasa", "carrusel", "media"}
   adentro   segunda parte de la misma sección, al seguir scrolleando (opcional):
@@ -75,7 +76,8 @@ PASOS = [
             {"label": "Ruido", "texto": "", "src": "assets/pasos/04/sonido-ruido.mp3"},
         ],
         "pasa": "Después vuelve a Pausa. Y cada vez que aparece el ruido, el proyector vuelve después a la normalidad.",
-        "media": ["proyector"],
+        "ves_media": "proyector",
+        "media": ["aula-proyector"],
         "cta": "Volvé a Unreal",
     },
     {
@@ -267,7 +269,8 @@ PASOS = [
             {"label": "Presión", "texto": "", "src": "assets/pasos/20/sonido-presion.mp3"},
         ],
         "pasa": "Esta vez se termina de transformar en su opuesto, Inquieta, permanentemente.",
-        "media": ["proyector-final"],
+        "pasa_media": "proyector-final",
+        "media": ["aula-proyector"],
         "cta": "Volvé a Unreal",
     },
     {

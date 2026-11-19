@@ -75,6 +75,12 @@
    "dur": 10.0,
    "src": "assets/pasos/04/proyector.mp4",
    "poster": "assets/pasos/04/proyector-poster.webp"
+  },
+  "aula-proyector": {
+   "type": "img",
+   "w": 1120,
+   "h": 831,
+   "src": "assets/pasos/04/aula-proyector.webp"
   }
  },
  "5": {
@@ -313,6 +319,12 @@
    "dur": 11.0,
    "src": "assets/pasos/20/proyector-final.mp4",
    "poster": "assets/pasos/20/proyector-final-poster.webp"
+  },
+  "aula-proyector": {
+   "type": "img",
+   "w": 1120,
+   "h": 831,
+   "src": "assets/pasos/20/aula-proyector.webp"
   }
  },
  "21": {

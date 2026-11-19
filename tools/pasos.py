@@ -224,6 +224,7 @@ def tarjetas(p, h="h2"):
     ves = (f"""<article class="card card--ves" data-in>
         <{h} class="card__t">Qué ves</{h}>
         <p>{rico(p['ves'])}</p>
+        {media_item(p["carpeta"], p["ves_media"]) if p.get("ves_media") else ""}
       </article>""" if p.get("ves") else "")
     pasa = (f"""<article class="card card--pasa" data-in>
         <{h} class="card__t">Qué pasa</{h}>
