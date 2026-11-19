@@ -14,7 +14,7 @@ Campos:
   encabezado  líneas del título, si se quieren cortar a mano (opcional, en lugar de donde)
   ves       Qué ves (opcional)
   escuchas  lista de sonidos: {"label", "texto", "src"}  (src = None hasta tener el audio; texto vacío = sin descripción)
-  pasa      Qué pasa (opcional). [[texto]] = subrayado
+  pasa      Qué pasa (opcional). [[texto]] = resaltado con flúor
   frase     frase del guion que se muestra grande (opcional)
   nota      líneas del texto del semicírculo que queda en la esquina del video (opcional)
   media     nombres de assets/pasos/NN/<nombre>.* en el orden en que se muestran
@@ -67,7 +67,7 @@ PASOS = [
     {
         "carpeta": 4,
         "lugar": "aula", "titulo": "El proyector",
-        "donde": "En el aula, en tu compu. El proyector se enciende y llama la atención.",
+        "donde": "El proyector se enciende y llama la atención.",
         "ves": "En el proyector general se muestra un video de Pausa, pero de repente se transforma en su opuesto, Inquieta.",
         "escuchas": [
             {"label": "Reloj", "texto": "", "src": "assets/pasos/04/sonido-reloj.mp3"},
@@ -89,7 +89,7 @@ PASOS = [
         "pasa": "En el momento en que ponés el cubo en el hueco, se muestra una cinemática del semicírculo transformándose en ruido, «inquieta», por un breve momento.",
         "pasa_media": "cinematica",
         "carrusel": True,
-        "media": ["cubos-a", "cubos-paredes", "cubos-b"],
+        "media": ["caida-1", "caida-2"],
         "sigue": {
             "carpeta": 6,
             "donde": "Una de las paredes se descompone y te muestra que era falsa. Al atravesarla, te encontrarás en la planta baja del salón.",
@@ -99,7 +99,7 @@ PASOS = [
             ],
             "pasa": "Algunos se rompen al interactuar, haciendo que la sala sea cada vez más hostil con vos: te tira objetos y te corre muebles.",
             "carrusel": True,
-            "media": ["planta-baja-3", "planta-baja", "planta-baja-2"],
+            "media": ["planta-baja-r"],
         },
         "cta": "Girá a la izquierda",
     },
@@ -114,7 +114,7 @@ PASOS = [
         ],
         "pasa": "Después de tocarlos tanto, hay un cortocircuito que activa una luz de emergencia.",
         "carrusel": True,
-        "media": ["luces-1", "luces-2", "luces-3"],
+        "media": ["pasillo-1", "pasillo-2"],
         "cta": "Mientras tanto, en el aula…",
     },
     {
@@ -138,7 +138,7 @@ PASOS = [
             {"label": "Música", "texto": "", "src": "assets/pasos/09/sonido-musica.mp3"},
         ],
         "pasa": "Si los acomodás, otros se tuercen o se caen.",
-        "media": ["cuadros"],
+        "media": ["cuadros-r"],
         "cta": "Mientras tanto, en el aula…",
     },
     {
@@ -148,7 +148,7 @@ PASOS = [
         "ves": "De repente aparecen los alumnos encapuchados, con los rostros tapados, dándote la espalda enfrente del monitor y dejándote leer una frase.",
         "escuchas": [],
         "pasa": "Te dan un cuaderno chiquito e inabrible. Después de unos minutos, se alejan.",
-        "media": ["encapuchada-1", "cuaderno"],
+        "media": ["encapuchados", "cuaderno"],
         "cta": "Volvé a Unreal",
     },
     {
@@ -160,13 +160,13 @@ PASOS = [
             {"label": "Eco", "texto": "", "src": "assets/pasos/11/sonido-eco.mp3"},
         ],
         "carrusel": True,
-        "media": ["espejos", "puerta", "lugar"],
+        "media": ["puerta"],
         "sigue": {
             "carpeta": 12,
             "donde": "Mientras avanzás por el entorno, te encontrás con unas esferas de ojos. Están apagados, rodeados de una luz que titila.",
             "pasa": "Al tocarlos se «prenden» y empiezan a levitar sobre la sala. Mientras los mires, no se van a acercar a vos, pero cuando apartes la vista se mueven dentro del espacio y te siguen.",
             "carrusel": True,
-            "media": ["ojos-prendidos", "ojos-sala", "ojos-apagados"],
+            "media": ["ojos-prendidos", "sala-esferas", "ojos-sala", "ojos-apagados"],
         },
         "cta": "Llegá a la salida",
     },
@@ -174,7 +174,7 @@ PASOS = [
         "carpeta": 13,
         "lugar": "unreal", "titulo": "El pasillo y las teles",
         "donde": "Llegás a la salida, cruzás una puerta y lo único que ves es un pasillo con escaleras de subida.",
-        "media": ["pasillo"],
+        "media": ["pasillo-escalera"],
         "sigue": {
             "carpeta": 13,
             "donde": "Ahora estás en una habitación con una estructura hecha de pantallas de tele con letras. Algunas están tiradas y sin funcionar.",
@@ -184,7 +184,7 @@ PASOS = [
             ],
             "pasa": "Si escribís algo, las palabras se vuelven físicas y flotan alrededor tuyo.",
             "carrusel": True,
-            "media": ["teles", "teles-sala"],
+            "media": ["teles-r"],
         },
         "cta": "Andá a la salida",
     },
@@ -198,7 +198,7 @@ PASOS = [
         ],
         "pasa": "En el empapelado notás la silueta de una puerta.",
         "carrusel": True,
-        "media": ["puerta-empapelada-a", "puerta-empapelada-b"],
+        "media": ["puertas"],
         "sigue": {
             "carpeta": 16,
             "donde": "Al atravesar la puerta empapelada, te encontrás en una sala donde solo se ilumina el centro.",
@@ -209,7 +209,7 @@ PASOS = [
             ],
             "pasa": "Al acercarte, movés la esfera de una esquina y causás el efecto del péndulo de Newton. Después de repetir la misma acción varias veces, uno de los hilos se corta, pero no antes de devolver el impulso, haciendo que recibas el impacto. La iluminación se corta y la pantalla queda en negro. Después de unos segundos vuelve a la normalidad y notás que en una de las paredes hay un hueco del que ves una luz que viene del otro lado, y te mandás.",
             "carrusel": True,
-            "media": ["pendulo", "pendulo-video", "hueco-a", "hueco-b"],
+            "media": ["pendulo-1", "pendulo-2"],
         },
         "cta": "Mientras tanto, en el aula…",
     },
@@ -232,20 +232,19 @@ PASOS = [
             {"label": "Persecución", "texto": "", "src": "assets/pasos/17/sonido-persecucion.mp3"},
         ],
         "pasa": "Empezás a correr y vas atravesando obstáculos a través de puertas que parecen no terminar, [[hasta llegar a la última]]. Perdés de vista a Inquieta.",
-        "media": ["persecucion"],
-        "cta": "Seguí",
-    },
-    {
-        "carpeta": 18,
-        "lugar": "unreal", "titulo": "La escalera infinita",
-        "donde": "Ahora estás en un pasillo y, enfrente, otras escaleras con relojes.",
-        "ves": "A medida que vas subiendo, ves que hay una puerta al final, a la que nunca llegás, porque los escalones se hacen infinitos.",
-        "escuchas": [
-            {"label": "Relojes", "texto": "", "src": "assets/pasos/18/sonido-relojes.mp3"},
-            {"label": "Escalones", "texto": "", "src": "assets/pasos/18/sonido-escalera.mp3"},
-        ],
-        "pasa": "De un momento a otro, las escaleras se mueven de lugar. Te quedás quieto y, cuando se detienen, subís el último escalón. Abrís la puerta.",
-        "media": ["escalera"],
+        "carrusel": True,
+        "media": ["persecucion-1", "persecucion-2", "persecucion-3", "persecucion-4", "persecucion-5"],
+        "sigue": {
+            "carpeta": 18,
+            "donde": "Ahora estás en un pasillo y, enfrente, otras escaleras con relojes.",
+            "ves": "A medida que vas subiendo, ves que hay una puerta al final, a la que nunca llegás, porque los escalones se hacen infinitos.",
+            "escuchas": [
+                {"label": "Relojes", "texto": "", "src": "assets/pasos/18/sonido-relojes.mp3"},
+                {"label": "Escalones", "texto": "", "src": "assets/pasos/18/sonido-escalera.mp3"},
+            ],
+            "pasa": "De un momento a otro, las escaleras se mueven de lugar. Te quedás quieto y, cuando se detienen, subís el último escalón. Abrís la puerta.",
+            "media": ["escalera-r"],
+        },
         "cta": "Entrá",
     },
     {

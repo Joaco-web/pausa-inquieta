@@ -42,7 +42,7 @@ e = lambda s: html.escape(s, quote=True)
 
 
 def rico(s):
-    """texto con [[partes subrayadas]]"""
+    """texto con [[partes resaltadas con flúor]]"""
     return e(s).replace("[[", '<span class="sub">').replace("]]", "</span>")
 CAMBIO_JS = "<script>(function(){var l=document.body.dataset.lugar,p;try{p=sessionStorage.getItem('pi-lugar');sessionStorage.setItem('pi-lugar',l)}catch(e){}if((l==='aula'||l==='unreal')&&p!==l){document.documentElement.classList.add('cambiando');document.documentElement.dataset.to=l}})()</script>"
 
@@ -249,7 +249,7 @@ def sigue(p):
       <div class="paso__text">
         {titulo_html(s, "h2")}
       </div>
-      {carrusel(s["carpeta"], s["media"])}
+      {carrusel(s["carpeta"], s["media"]) if len(s["media"]) > 1 else media_item(s["carpeta"], s["media"][0], main=True)}
     </section>
     {tarjetas(s, "h3")}
     </div>"""
@@ -267,7 +267,7 @@ def page(n):
     else:
         next_href = "index.html#llevas"
     media = p.get("media", [])
-    if p.get("carrusel"):
+    if p.get("carrusel") and len(media) > 1:
         main = carrusel(carpeta, media)
     else:
         main = media_item(carpeta, media[0], main=True) if media else ""

@@ -78,15 +78,6 @@
   }
  },
  "5": {
-  "cubos-paredes": {
-   "type": "video",
-   "w": 1280,
-   "h": 720,
-   "audio": true,
-   "dur": 5.5,
-   "src": "assets/pasos/05/cubos-paredes.mp4",
-   "poster": "assets/pasos/05/cubos-paredes-poster.webp"
-  },
   "cinematica": {
    "type": "video",
    "w": 1280,
@@ -96,57 +87,39 @@
    "src": "assets/pasos/05/cinematica.mp4",
    "poster": "assets/pasos/05/cinematica-poster.webp"
   },
-  "cubos-a": {
+  "caida-1": {
    "type": "img",
    "w": 1800,
-   "h": 1128,
-   "src": "assets/pasos/05/cubos-a.webp"
+   "h": 934,
+   "src": "assets/pasos/05/caida-1.webp"
   },
-  "cubos-b": {
+  "caida-2": {
    "type": "img",
-   "w": 1640,
-   "h": 1800,
-   "src": "assets/pasos/05/cubos-b.webp"
+   "w": 1240,
+   "h": 641,
+   "src": "assets/pasos/05/caida-2.webp"
   }
  },
  "6": {
-  "planta-baja": {
+  "planta-baja-r": {
    "type": "img",
-   "w": 1800,
-   "h": 787,
-   "src": "assets/pasos/06/planta-baja.webp"
-  },
-  "planta-baja-2": {
-   "type": "img",
-   "w": 1534,
-   "h": 862,
-   "src": "assets/pasos/06/planta-baja-2.webp"
-  },
-  "planta-baja-3": {
-   "type": "img",
-   "w": 1800,
-   "h": 906,
-   "src": "assets/pasos/06/planta-baja-3.webp"
+   "w": 915,
+   "h": 472,
+   "src": "assets/pasos/06/planta-baja-r.webp"
   }
  },
  "7": {
-  "luces-1": {
+  "pasillo-1": {
    "type": "img",
-   "w": 1800,
-   "h": 1200,
-   "src": "assets/pasos/07/luces-1.webp"
+   "w": 1283,
+   "h": 666,
+   "src": "assets/pasos/07/pasillo-1.webp"
   },
-  "luces-2": {
+  "pasillo-2": {
    "type": "img",
-   "w": 1195,
-   "h": 1800,
-   "src": "assets/pasos/07/luces-2.webp"
-  },
-  "luces-3": {
-   "type": "img",
-   "w": 1013,
-   "h": 1800,
-   "src": "assets/pasos/07/luces-3.webp"
+   "w": 1291,
+   "h": 666,
+   "src": "assets/pasos/07/pasillo-2.webp"
   }
  },
  "8": {
@@ -161,29 +134,28 @@
   }
  },
  "9": {
-  "cuadros": {
+  "cuadros-r": {
    "type": "img",
    "w": 1800,
-   "h": 728,
-   "src": "assets/pasos/09/cuadros.webp"
+   "h": 932,
+   "src": "assets/pasos/09/cuadros-r.webp"
   }
  },
  "10": {
-  "encapuchada-1": {
-   "type": "video",
-   "w": 1280,
-   "h": 2276,
-   "audio": true,
-   "dur": 10.8,
-   "src": "assets/pasos/10/encapuchada-1.mp4",
-   "poster": "assets/pasos/10/encapuchada-1-poster.webp"
-  },
   "cuaderno": {
    "type": "img",
    "w": 1512,
    "h": 1081,
    "src": "assets/pasos/10/cuaderno.webp",
    "cutout": true
+  },
+  "encapuchados": {
+   "type": "video",
+   "w": 1280,
+   "h": 720,
+   "src": "assets/pasos/10/encapuchados.mp4",
+   "poster": "assets/pasos/10/encapuchados-poster.webp",
+   "audio": true
   }
  },
  "11": {
@@ -192,18 +164,6 @@
    "w": 1800,
    "h": 1108,
    "src": "assets/pasos/11/puerta.webp"
-  },
-  "espejos": {
-   "type": "img",
-   "w": 1010,
-   "h": 1800,
-   "src": "assets/pasos/11/espejos.webp"
-  },
-  "lugar": {
-   "type": "img",
-   "w": 1800,
-   "h": 1350,
-   "src": "assets/pasos/11/lugar.webp"
   }
  },
  "12": {
@@ -224,40 +184,34 @@
    "w": 1800,
    "h": 921,
    "src": "assets/pasos/12/ojos-sala.webp"
+  },
+  "sala-esferas": {
+   "type": "img",
+   "w": 1800,
+   "h": 929,
+   "src": "assets/pasos/12/sala-esferas.webp"
   }
  },
  "13": {
-  "pasillo": {
-   "type": "img",
-   "w": 1356,
-   "h": 1800,
-   "src": "assets/pasos/13/pasillo.webp"
-  },
-  "teles": {
-   "type": "img",
-   "w": 1687,
-   "h": 1800,
-   "src": "assets/pasos/13/teles.webp"
-  },
-  "teles-sala": {
+  "pasillo-escalera": {
    "type": "img",
    "w": 1800,
-   "h": 818,
-   "src": "assets/pasos/13/teles-sala.webp"
+   "h": 932,
+   "src": "assets/pasos/13/pasillo-escalera.webp"
+  },
+  "teles-r": {
+   "type": "img",
+   "w": 1800,
+   "h": 934,
+   "src": "assets/pasos/13/teles-r.webp"
   }
  },
  "14": {
-  "puerta-empapelada-a": {
-   "type": "img",
-   "w": 1350,
-   "h": 1800,
-   "src": "assets/pasos/14/puerta-empapelada-a.webp"
-  },
-  "puerta-empapelada-b": {
+  "puertas": {
    "type": "img",
    "w": 1800,
-   "h": 1084,
-   "src": "assets/pasos/14/puerta-empapelada-b.webp"
+   "h": 931,
+   "src": "assets/pasos/14/puertas.webp"
   }
  },
  "15": {
@@ -272,51 +226,57 @@
   }
  },
  "16": {
-  "pendulo": {
+  "pendulo-1": {
    "type": "img",
    "w": 1800,
-   "h": 1712,
-   "src": "assets/pasos/16/pendulo.webp"
+   "h": 927,
+   "src": "assets/pasos/16/pendulo-1.webp"
   },
-  "pendulo-video": {
-   "type": "video",
-   "w": 312,
-   "h": 398,
-   "audio": true,
-   "dur": 53.9,
-   "src": "assets/pasos/16/pendulo-video.mp4",
-   "poster": "assets/pasos/16/pendulo-video-poster.webp"
-  },
-  "hueco-a": {
+  "pendulo-2": {
    "type": "img",
-   "w": 1349,
-   "h": 1800,
-   "src": "assets/pasos/16/hueco-a.webp"
-  },
-  "hueco-b": {
-   "type": "img",
-   "w": 1011,
-   "h": 1800,
-   "src": "assets/pasos/16/hueco-b.webp"
+   "w": 1800,
+   "h": 927,
+   "src": "assets/pasos/16/pendulo-2.webp"
   }
  },
  "17": {
-  "persecucion": {
-   "type": "video",
-   "w": 960,
-   "h": 542,
-   "audio": true,
-   "dur": 48.5,
-   "src": "assets/pasos/17/persecucion.mp4",
-   "poster": "assets/pasos/17/persecucion-poster.webp"
+  "persecucion-1": {
+   "type": "img",
+   "w": 1800,
+   "h": 927,
+   "src": "assets/pasos/17/persecucion-1.webp"
+  },
+  "persecucion-2": {
+   "type": "img",
+   "w": 1800,
+   "h": 929,
+   "src": "assets/pasos/17/persecucion-2.webp"
+  },
+  "persecucion-3": {
+   "type": "img",
+   "w": 1800,
+   "h": 932,
+   "src": "assets/pasos/17/persecucion-3.webp"
+  },
+  "persecucion-4": {
+   "type": "img",
+   "w": 1800,
+   "h": 927,
+   "src": "assets/pasos/17/persecucion-4.webp"
+  },
+  "persecucion-5": {
+   "type": "img",
+   "w": 1800,
+   "h": 932,
+   "src": "assets/pasos/17/persecucion-5.webp"
   }
  },
  "18": {
-  "escalera": {
+  "escalera-r": {
    "type": "img",
-   "w": 1013,
-   "h": 1800,
-   "src": "assets/pasos/18/escalera.webp"
+   "w": 1800,
+   "h": 929,
+   "src": "assets/pasos/18/escalera-r.webp"
   }
  },
  "19": {
