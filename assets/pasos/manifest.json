@@ -123,14 +123,11 @@
   }
  },
  "8": {
-  "tres-monitores": {
-   "type": "video",
-   "w": 1280,
-   "h": 720,
-   "audio": true,
-   "dur": 11.6,
-   "src": "assets/pasos/08/tres-monitores.mp4",
-   "poster": "assets/pasos/08/tres-monitores-poster.webp"
+  "tres-monitores-img": {
+   "type": "img",
+   "w": 1800,
+   "h": 886,
+   "src": "assets/pasos/08/tres-monitores-img.webp"
   }
  },
  "9": {
@@ -235,6 +232,13 @@
    "w": 1187,
    "h": 1240,
    "src": "assets/pasos/15/remera-blanca.webp",
+   "cutout": true
+  },
+  "remera-blanca-2": {
+   "type": "img",
+   "w": 1172,
+   "h": 1212,
+   "src": "assets/pasos/15/remera-blanca-2.webp",
    "cutout": true
   }
  },

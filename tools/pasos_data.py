@@ -126,7 +126,7 @@ PASOS = [
             {"label": "Pantallas", "texto": "", "src": "assets/pasos/08/sonido-pantallas.mp3"},
         ],
         "pasa": "La pantalla se apaga y volvés a la computadora del inicio.",
-        "media": ["tres-monitores"],
+        "media": ["tres-monitores-img"],
         "cta": "Volvé a Unreal",
     },
     {
@@ -220,7 +220,7 @@ PASOS = [
         "ves": "De pronto, los alumnos encapuchados y con los rostros tapados vuelven a ponerse enfrente de tu monitor, dándote la espalda. Pero ahora la frase cambió.",
         "escuchas": [],
         "pasa": "Después de unos minutos, se retiran.",
-        "media": ["encapuchados", "remera-blanca"],
+        "media": ["encapuchados", "remera-blanca", "remera-blanca-2"],
         "cta": "Volvé a Unreal",
     },
     {
