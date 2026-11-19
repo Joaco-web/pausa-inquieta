@@ -219,6 +219,13 @@ document.querySelectorAll('.carrusel').forEach((box) => {
   }, 4500);
 });
 
+// ---------- Aviso de Pausa: aparece al llegar al final de la sección ----------
+const aviso = document.querySelector('.aviso');
+const fin = document.querySelector('.pnav');
+if (aviso && fin) {
+  new IntersectionObserver(([en]) => aviso.classList.toggle('is-on', en.isIntersecting), { threshold: 0.4 }).observe(fin);
+}
+
 // volver con el botón "atrás" del navegador sin quedar en blanco
 window.addEventListener('pageshow', (e) => {
   if (!e.persisted) return;

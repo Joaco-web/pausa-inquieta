@@ -44,7 +44,7 @@ export default function promesa(lenis) {
       // sigue al scroll con un poco de suavidad
       a += (target - a) * Math.min(1, dt * 8);
       if (Math.abs(target - a) < 0.001) a = target;
-      if (a >= 0.999 && !done) { done = true; sound.settle(0.09); }
+      if (a >= 0.999 && !done) { done = true; }
       if (a < 0.6) done = false;
     }
     const e = 1 - Math.pow(1 - a, 3);

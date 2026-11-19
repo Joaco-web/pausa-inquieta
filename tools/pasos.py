@@ -291,6 +291,10 @@ def page(n):
     gallery_html = f'<section class="{gal_cls}" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
     noimg = " paso--text" if not media else ""
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""
+    aviso = (f'<div class="aviso" role="status" aria-live="polite"><span class="aviso__semi" aria-hidden="true"></span>'
+             f'<p class="aviso__t"><span class="sr-only">Pausa: </span>{e(p["aviso"])}</p></div>') if p.get("aviso") else ""
+    if aviso:
+        marca += " data-aviso"
     return f"""{head("Pausa Inquieta", p.get("donde") or " ".join(p["encabezado"]))}
 <body class="{surface} paso-page paso-page--{lugar}" data-lugar="{lugar}" data-paso="{n}"{marca}>
   {CAMBIO_JS}
@@ -320,6 +324,7 @@ def page(n):
     </nav>
   </main>
 
+  {aviso}
   <div class="lb" hidden><button class="lb__close" type="button" aria-label="Cerrar">×</button><div class="lb__stage"></div></div>
   <div class="cambio" aria-hidden="true"><canvas></canvas><span class="cambio__word"></span></div>
   <script type="module" src="js/pasos.js"></script>

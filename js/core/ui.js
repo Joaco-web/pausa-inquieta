@@ -169,7 +169,6 @@ export function gate({ force = false } = {}) {
     const btn = el.querySelector('[data-enter]');
     btn.addEventListener('click', async () => {
       await sound.enable();
-      sound.settle(0.08);
       try { sessionStorage.setItem('pi-entered', '1'); } catch (e) { /* ignore */ }
       gsap.to(el, {
         clipPath: 'inset(0 0 100% 0)', duration: 0.9, ease: 'expo.inOut',

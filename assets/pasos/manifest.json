@@ -176,11 +176,11 @@
   }
  },
  "11": {
-  "puerta": {
+  "cuadros-puerta": {
    "type": "img",
-   "w": 1800,
-   "h": 1108,
-   "src": "assets/pasos/11/puerta.webp"
+   "w": 1768,
+   "h": 914,
+   "src": "assets/pasos/11/cuadros-puerta.webp"
   }
  },
  "12": {

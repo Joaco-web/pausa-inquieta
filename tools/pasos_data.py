@@ -27,6 +27,7 @@ Campos:
   adentro   segunda parte de la misma sección, al seguir scrolleando (opcional):
             {"carpeta", "texto", "fila": [2 videos], "ves", "pasa", "media"}
   cta       texto del botón para avanzar
+  aviso     mensaje de Pausa que aparece abajo al terminar de scrollear (opcional)
 Para sumar un audio: poné la ruta en "src" (por ejemplo "assets/pasos/03/latido.mp3"),
 y corré  cd tools && python pasos.py  y después  python tools/version.py
 """
@@ -118,6 +119,7 @@ PASOS = [
         "pasa": "Después de tocarlos tanto, hay un cortocircuito que activa una luz de emergencia.",
         "carrusel": True,
         "media": ["pasillo-1", "pasillo-2"],
+        "aviso": "No siempre es necesario estar ocupado. A veces, tomarte un momento para no hacer nada es lo mejor para vos.",
         "cta": "Mientras tanto, en el aula…",
     },
     {
@@ -142,6 +144,7 @@ PASOS = [
         ],
         "pasa": "Si los acomodás, otros se tuercen o se caen.",
         "media": ["cuadros-r"],
+        "aviso": "Seguís haciendo cosas que nadie te exige y te la estás complicando.",
         "cta": "Mientras tanto, en el aula…",
     },
     {
@@ -163,7 +166,7 @@ PASOS = [
             {"label": "Eco", "texto": "", "src": "assets/pasos/11/sonido-eco.mp3"},
         ],
         "carrusel": True,
-        "media": ["puerta"],
+        "media": ["cuadros-puerta"],
         "sigue": {
             "carpeta": 12,
             "donde": "Mientras avanzás por el entorno, te encontrás con unas esferas de ojos. Están apagados, rodeados de una luz que titila.",
@@ -189,6 +192,7 @@ PASOS = [
             "carrusel": True,
             "media": ["teles-r"],
         },
+        "aviso": "No siempre es necesario estar ocupado. A veces, tomarte un momento para no hacer nada es lo mejor para vos.",
         "cta": "Andá a la salida",
     },
     {
@@ -248,6 +252,7 @@ PASOS = [
             "pasa": "De un momento a otro, las escaleras se mueven de lugar. Te quedás quieto y, cuando se detienen, subís el último escalón. Abrís la puerta.",
             "media": ["escalera-r"],
         },
+        "aviso": "Sentiste la presión por hacer algo y ahora eso te persigue.",
         "cta": "Entrá",
     },
     {
@@ -259,6 +264,7 @@ PASOS = [
         ],
         "pasa": "Al mover la primera pieza generás una reacción en cadena y, al caer la última, ves una oración. Inmediatamente el piso se abre [[dejándote caer por un tobogán, y caés en un pelotero]].",
         "media": ["domino-r"],
+        "aviso": "Sentiste la presión por hacer algo y ahora eso te persigue.",
         "cta": "Mientras tanto, en el aula…",
     },
     {
@@ -321,6 +327,7 @@ PASOS = [
         "carrusel": True,
         "media": ["sotano-1", "sotano-2", "sotano-3"],
         "abajo": ["tarjeta-y-ahora"],
+        "aviso": "Te dije que no hicieras nada y fuiste complicando todo.",
         "cta": "Mientras tanto, en el aula…",
     },
     {

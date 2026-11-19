@@ -289,6 +289,30 @@
 .pnav__next:active .pnav__go { transform: scale(.96); }
 .pnav__next:hover .pnav__cta { text-decoration: underline; text-underline-offset: .12em; text-decoration-thickness: 1px; }
 
+/* ---------- Aviso de Pausa: aparece abajo al terminar de scrollear ---------- */
+.aviso {
+  position: fixed; left: 50%; bottom: clamp(14px, 3vh, 28px); z-index: 90;
+  display: flex; align-items: center; gap: clamp(12px, 1.4vw, 18px);
+  width: max-content; max-width: min(760px, calc(100vw - 2 * var(--gutter)));
+  padding: 14px clamp(16px, 2vw, 26px) 14px clamp(12px, 1.4vw, 18px);
+  background: rgba(11,11,11,.9); color: var(--paper);
+  border: 1px solid rgba(215,255,58,.28); border-radius: 14px;
+  box-shadow: 0 18px 50px -12px rgba(0,0,0,.7), 0 0 40px -18px rgba(215,255,58,.5);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  opacity: 0; transform: translate(-50%, 130%); pointer-events: none;
+  transition: transform .7s var(--ease), opacity .5s;
+}
+.aviso.is-on { opacity: 1; transform: translate(-50%, 0); }
+.aviso__semi {
+  flex: none; width: 15px; height: 30px; border-radius: 30px 0 0 30px;
+  background: var(--lime); box-shadow: 0 0 18px rgba(215,255,58,.6);
+  transform-origin: 100% 50%;
+}
+.aviso.is-on .aviso__semi { animation: latido 2.6s ease-in-out .6s infinite; }
+.aviso__t { font-family: var(--f-logo); font-weight: 400; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.35; letter-spacing: -.01em; }
+body[data-aviso] .pnav { padding-bottom: clamp(120px, 18vh, 160px); }
+@media (prefers-reduced-motion: reduce) { .aviso { transition: opacity .3s; } .aviso.is-on .aviso__semi { animation: none; } }
+
 /* ---------- Visor en grande ---------- */
 .lb { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; background: rgba(8,8,8,.94); padding: 64px var(--gutter) var(--gutter); }
 .lb[hidden] { display: none; }
