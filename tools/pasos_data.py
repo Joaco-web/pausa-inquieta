@@ -16,7 +16,7 @@ Campos:
   escuchas  lista de sonidos: {"label", "texto", "src"}  (src = None hasta tener el audio)
   pasa      Qué pasa
   frase     frase del guion que se muestra grande (opcional)
-  nota      líneas del texto que escribe el semicírculo y lleva a la esquina del video (opcional)
+  nota      líneas del texto del semicírculo que queda en la esquina del video (opcional)
   media     nombres de assets/pasos/NN/<nombre>.* en el orden en que se muestran
   adentro   segunda parte de la misma sección, al seguir scrolleando (opcional):
             {"carpeta", "texto", "fila": [2 videos], "ves", "pasa", "media"}
@@ -35,7 +35,7 @@ PASOS = [
         "ves": "Una proyección de nuestro logo con la promesa. Habrá lentes UV en la puerta para verlo de nuevo.",
         "escuchas": [],
         "pasa": "Nada será revelado.",
-        "nota": ["El semicírculo representará un papel", "importante durante toda la", "experiencia, simboliza el", "corazón de nuestra", "pausa"],
+        "nota": ["El semicírculo", "representa un papel", "importante durante toda", "la experiencia: simboliza el", "corazón de nuestra pausa."],
         "media": ["entrada", "lentes"],
         "adentro": {
             "carpeta": 2,
