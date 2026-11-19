@@ -323,7 +323,14 @@
    "src": "assets/pasos/21/objetos-gigantes.webp"
   }
  },
- "22": {},
+ "22": {
+  "walkie-pelotero": {
+   "type": "img",
+   "w": 1626,
+   "h": 838,
+   "src": "assets/pasos/22/walkie-pelotero.webp"
+  }
+ },
  "23": {
   "salida": {
    "type": "img",

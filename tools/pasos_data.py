@@ -290,7 +290,7 @@ PASOS = [
                     {"label": "El walkie-talkie", "texto": "", "src": "assets/pasos/22/sonido-walkie.mp3"},
                 ],
                 "pasa": "El walkie-talkie se descompone por completo. Lo dejás y seguís avanzando.",
-                "media": [],
+                "media": ["walkie-pelotero"],
             },
             {
                 "carpeta": 23,
