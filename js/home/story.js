@@ -51,6 +51,9 @@ export default function story() {
 const PALABRA = 'PAUSAINQUIETA';
 const COLORES = ['#d7ff3a', '#a47cff', '#1f3cff', '#ff4b2b', '#ecebe5', '#4a4a4a', '#23345f'];
 const OSCUROS = ['#4a4a4a', '#23345f'];
+// letras sueltas: en cada fila van solo vocales o solo consonantes, así nunca se arma una sílaba
+const VOCALES = 'AUIE';
+const CONSONANTES = 'PSNQT';
 
 function azar(seed) {
   let s = seed >>> 0;
@@ -75,18 +78,37 @@ function letras(sec) {
     return { left: r.left - s.left, right: r.right - s.left, top: r.top - s.top, bottom: r.bottom - s.top };
   };
 
+  // lugar real (sin las animaciones de entrada): suma de offsets hasta la sección
+  const fija = (el) => {
+    let x = 0; let y = 0; let n = el;
+    while (n && n !== sec) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+    return { left: x, top: y, right: x + el.offsetWidth, bottom: y + el.offsetHeight };
+  };
+
   const zonas = () => {
     const W = sec.offsetWidth;
     const izq = [...sec.querySelectorAll('.st--l')].map(caja);
     const der = caja(sec.querySelector('.st--r'));
+    // alrededor del botón Iniciar: letras sueltas, mezcladas, sin formar palabras
+    const key = caja(sec.querySelector('.st--key'));
+    const btn = fija(sec.querySelector('.start'));
+    const lock = sec.querySelector('.lock');
+    const piso = lock ? fija(lock).bottom + 30 : btn.bottom + 180;
+    const alto = { y0: Math.max(key.bottom + 60, btn.top - 60), y1: piso };
     if (innerWidth < 760) {
       const head = caja(sec.querySelector('.story__head'));
-      return [{ x0: W * 0.04, x1: W * 0.96, y0: head.bottom + 24, y1: izq[0].top - 28, celda: 58 }];
+      return [
+        { x0: W * 0.04, x1: W * 0.96, y0: head.bottom + 24, y1: izq[0].top - 28, celda: 58 },
+        { ...alto, x0: W * 0.04, x1: btn.left - 24, celda: 56, sueltas: true },
+        { ...alto, x0: btn.right + 24, x1: W * 0.96, celda: 56, sueltas: true },
+      ];
     }
     const borde = Math.max(...izq.map((c) => c.right));
     return [
       { x0: borde + W * 0.06, x1: W * 0.97, y0: izq[0].top - 70, y1: izq[izq.length - 1].bottom + 50, celda: 104 },
-      { x0: W * 0.03, x1: der.left - W * 0.06, y0: der.top - 40, y1: der.bottom + 50, celda: 100 },
+      { x0: W * 0.03, x1: der.left - W * 0.06, y0: der.top - 40, y1: der.bottom - 10, celda: 100 },
+      { ...alto, x0: W * 0.04, x1: btn.left - W * 0.12, celda: 120, sueltas: true },
+      { ...alto, x0: btn.right + W * 0.12, x1: W * 0.96, celda: 120, sueltas: true },
     ];
   };
 
@@ -95,6 +117,7 @@ function letras(sec) {
     const rnd = azar(7);
     const items = [];
     let k = 0;
+    const obstaculos = [...sec.querySelectorAll('.story__c1, .start, .lock')].map(fija);
     zonas().forEach((z) => {
       const w = z.x1 - z.x0;
       const h = z.y1 - z.y0;
@@ -104,15 +127,19 @@ function letras(sec) {
       const cw = w / cols;
       const ch = h / rows;
       for (let r = 0; r < rows; r++) {
+        const fila = rnd() < 0.5 ? VOCALES : CONSONANTES;
         for (let c = 0; c < cols; c++) {
-          if (rnd() < 0.12) continue; // huecos: que respire
+          if (rnd() < (z.sueltas ? 0.34 : 0.12)) continue; // huecos: que respire
+          const cx = z.x0 + cw * (c + 0.5);
+          const cy = z.y0 + ch * (r + 0.5);
+          if (z.sueltas && obstaculos.some((o) => cx > o.left - cw * 0.6 && cx < o.right + cw * 0.6 && cy > o.top - ch * 0.6 && cy < o.bottom + ch * 0.6)) continue;
           const el = document.createElement('span');
           el.className = 'letra';
-          el.textContent = PALABRA[k++ % PALABRA.length];
+          el.textContent = z.sueltas ? fila[Math.floor(rnd() * fila.length)] : PALABRA[k++ % PALABRA.length];
           const color = COLORES[Math.floor(rnd() * COLORES.length)];
           const size = Math.min(cw, ch) * (1.05 + rnd() * 0.55);
-          el.style.left = `${z.x0 + cw * (c + 0.5) + (rnd() - 0.5) * cw * 0.35}px`;
-          el.style.top = `${z.y0 + ch * (r + 0.5) + (rnd() - 0.5) * ch * 0.35}px`;
+          el.style.left = `${cx + (rnd() - 0.5) * cw * 0.35}px`;
+          el.style.top = `${cy + (rnd() - 0.5) * ch * 0.35}px`;
           el.style.fontSize = `${size.toFixed(0)}px`;
           el.style.color = color;
           el.style.setProperty('--giro', `${((rnd() - 0.5) * 80).toFixed(1)}deg`);
