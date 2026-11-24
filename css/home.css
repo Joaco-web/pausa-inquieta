@@ -440,16 +440,19 @@
 /* =========================================================
    QUÉ TE LLEVÁS — doble fondo
    ========================================================= */
-.llevas { position: relative; height: 460vh; background: var(--ink) url("../assets/img/dust-light.svg") 0 0 / 520px; color: var(--paper); }
+.llevas { position: relative; height: 460vh; background: var(--ink); color: var(--paper); }
 .llevas__stick {
   position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
   padding: calc(var(--nav-h) + 3vh) var(--gutter) var(--gutter);
 }
 .llevas__tramas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.llevas__semi { width: clamp(70px, 8vw, 140px); background: var(--violet); left: 30vw; bottom: -4vh; transform: rotate(90deg); }
-.llevas__c1 { width: clamp(30px, 3.5vw, 60px); aspect-ratio: 1; background: var(--red); right: 36vw; bottom: 16vh; }
-.llevas__b1 { width: 14px; height: 20vh; background: var(--blue); left: 2vw; bottom: 30vh; }
-.llevas__b2 { width: clamp(80px, 10vw, 160px); height: 12px; background: var(--lime); right: 10vw; bottom: 9vh; }
+/* una luz detrás de la caja, para que el negro se despegue del fondo */
+.llevas__luz { position: absolute; inset: 0; background: radial-gradient(ellipse 62% 70% at 50% 54%, rgba(215,255,58,.2) 0%, rgba(164,124,255,.16) 38%, transparent 72%); }
+.llevas__p1 { width: clamp(160px, 17vw, 290px); left: -1.5vw; top: 26vh; transform: rotate(-8deg); }
+.llevas__cinta { width: clamp(36px, 3.4vw, 56px); left: 6vw; top: calc(26vh - 26px); transform: rotate(-78deg); z-index: 1; }
+.llevas__p2 { width: clamp(150px, 16vw, 270px); right: -1vw; top: 11vh; transform: rotate(9deg); }
+.llevas__p3 { width: clamp(180px, 19vw, 320px); left: -2.5vw; bottom: -5vh; }
+.llevas__p4 { width: clamp(180px, 20vw, 330px); right: -2vw; bottom: 5vh; transform: rotate(-5deg); opacity: .9; }
 .llevas__canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
 .llevas__head { position: relative; z-index: 2; }
 .llevas__caps { z-index: 2; }
@@ -463,8 +466,10 @@
   overflow: hidden;
 }
 .msg__tramas { position: absolute; inset: 0; pointer-events: none; }
-.msg__c1 { width: clamp(60px, 7vw, 120px); aspect-ratio: 1; background: var(--red); right: 10vw; top: 12vh; }
-.msg__semi { width: clamp(70px, 8vw, 140px); background: var(--blue); left: -2vw; bottom: 10vh; }
+.msg__p1 { width: clamp(170px, 18vw, 300px); right: 3vw; top: 11vh; transform: rotate(6deg); }
+.msg__cinta { width: clamp(36px, 3.4vw, 56px); right: calc(3vw + clamp(70px, 7vw, 120px)); top: calc(11vh - 28px); transform: rotate(-96deg); }
+.msg__p2 { width: clamp(150px, 16vw, 270px); left: -3vw; bottom: 9vh; transform: rotate(-12deg); }
+.msg__p3 { width: clamp(100px, 10vw, 170px); left: 13vw; bottom: -2vh; transform: rotate(10deg); }
 .msg__a, .msg__b {
   position: relative;
   font-family: var(--f-logo);
@@ -483,6 +488,15 @@
 .msg .w.strong + .w.strong { margin-left: -.3em; padding-left: .3em; }
 @media (max-width: 760px) {
   .msg__a { margin-left: 0; margin-top: 16vh; }
+  .msg__p1 { width: 34vw; top: 4vh; right: -4vw; }
+  .msg__cinta { width: 11vw; right: 18vw; top: calc(4vh - 14px); }
+  .msg__p2 { width: 34vw; bottom: 2vh; left: -8vw; }
+  .msg__p3 { width: 22vw; left: 24vw; bottom: -1vh; }
+  .llevas__p1 { width: 34vw; top: 20vh; }
+  .llevas__cinta { width: 10vw; left: 10vw; top: calc(20vh - 14px); }
+  .llevas__p2 { width: 32vw; top: 9vh; }
+  .llevas__p3 { width: 40vw; }
+  .llevas__p4 { width: 40vw; bottom: 3vh; }
 }
 
 .llavero {
@@ -497,7 +511,7 @@
 .llavero__canvas { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 30px 26px rgba(11,11,11,.35)); }
 .llavero__back { position: absolute; inset: 0; pointer-events: none; }
 .llavero__circle { width: 64%; aspect-ratio: 1; left: 18%; top: 14%; background: var(--violet); }
-.llavero__semi { width: 22%; background: var(--blue); right: 6%; bottom: 10%; transform: rotate(180deg); }
+.llavero__p1 { width: 26%; right: 4%; bottom: 8%; transform: rotate(-6deg); }
 .llavero__copy { display: grid; gap: 22px; }
 .llavero__txt { font-family: var(--f-grot); font-size: clamp(24px, 2.8vw, 46px); line-height: 1.08; letter-spacing: -.02em; max-width: 18ch; }
 
@@ -598,7 +612,6 @@
 }
 
 /* Qué te llevás: ciudad apagada */
-.llevas__city { left: -2vw; right: -2vw; bottom: -8vh; opacity: .22; filter: grayscale(1); }
 
 /* =========================================================
    CANDADO — no se pasa hasta hacer el recorrido

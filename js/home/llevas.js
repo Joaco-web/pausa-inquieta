@@ -42,8 +42,7 @@ export default function llevas() {
   // Tramas del fondo: rasgadas y con un poco de parallax
   sec.querySelectorAll('.ph').forEach((ph) => torn(ph, { amp: 2 }));
   gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 1 } })
-    .to('.llevas__city', { yPercent: -10, ease: 'none' }, 0)
-    .to('.llevas__semi', { rotate: 270, ease: 'none' }, 0)
+    .to(sec.querySelectorAll('.llevas__tramas .papel'), { yPercent: (i) => -8 - (i % 3) * 6, ease: 'none' }, 0)
     .to('.llevas__tramas', { opacity: 0.25, ease: 'none' }, 0.75);
   // Negativo → positivo
   gsap.timeline({ scrollTrigger: { trigger: sec, start: 'bottom 150%', end: 'bottom bottom', scrub: true } })
@@ -78,7 +77,7 @@ export default function llevas() {
     });
   });
   gsap.from(msg.querySelectorAll('.msg__tramas > *'), { scale: 0, duration: 1, ease: 'back.out(2)', stagger: 0.15, scrollTrigger: { trigger: msg, start: 'top 70%' } });
-  gsap.to('.msg__semi', { rotate: 180, ease: 'none', scrollTrigger: { trigger: msg, start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.to(msg.querySelectorAll('.msg__tramas .papel'), { yPercent: (i) => -10 - i * 5, ease: 'none', scrollTrigger: { trigger: msg, start: 'top bottom', end: 'bottom top', scrub: true } });
 
   // ---------- Llavero (3D)
   const ll = document.querySelector('.llavero');
@@ -92,6 +91,6 @@ export default function llevas() {
   });
   gsap.from(ll.querySelector('.llavero__canvas'), { yPercent: -40, opacity: 0, duration: 1.4, ease: 'bounce.out', scrollTrigger: { trigger: ll, start: 'top 70%' } });
   gsap.from(ll.querySelectorAll('.llavero__back > *'), { scale: 0, duration: 1, ease: 'back.out(1.6)', stagger: 0.15, scrollTrigger: { trigger: ll, start: 'top 70%' } });
-  gsap.to('.llavero__semi', { rotate: 360, ease: 'none', scrollTrigger: { trigger: ll, start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.to('.llavero__p1', { rotate: 18, ease: 'none', scrollTrigger: { trigger: ll, start: 'top bottom', end: 'bottom top', scrub: true } });
   gsap.from(ll.querySelectorAll('.llavero__copy > *'), { opacity: 0, y: 30, duration: 0.9, ease: 'power3.out', stagger: 0.15, scrollTrigger: { trigger: ll, start: 'top 60%' } });
 }
