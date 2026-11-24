@@ -1,6 +1,6 @@
 // RECORRIDO (intro) — el storytelling se calma a medida que lo leés:
 // cada palabra entra con otro peso y se asienta. Al final, el botón para iniciar.
-import { split, torn, pixels, finePointer, reduced } from '../core/fx.js';
+import { split, torn, finePointer, reduced } from '../core/fx.js';
 import { sound } from '../core/sound.js';
 
 const gsap = window.gsap;
@@ -22,9 +22,7 @@ export default function story() {
     });
   });
 
-  const px = pixels(sec.querySelector('.story__tramas'), { n: 26, size: [12, 64], colors: ['#1f3cff', '#a47cff', '#d7ff3a', '#ecebe5', '#ff4b2b'], area: innerWidth < 760 ? [55, 4, 96, 40] : [66, 8, 98, 92] });
-  gsap.from(px, { scale: 0, duration: 0.25, ease: 'steps(2)', stagger: { each: 0.03, from: 'random' }, scrollTrigger: { trigger: sec, start: 'top 60%' } });
-  gsap.to(px, { opacity: () => Math.random(), duration: 0.12, repeat: -1, repeatRefresh: true, repeatDelay: 1.4, ease: 'steps(1)', stagger: { each: 0.4, from: 'random' } });
+  letras(sec);
   gsap.from(sec.querySelector('.story__head'), { opacity: 0, x: -30, duration: 0.8, scrollTrigger: { trigger: sec, start: 'top 60%' } });
 
   line(sec);
@@ -45,6 +43,106 @@ export default function story() {
       if (d < r.width) { qx(dx * 0.3); qy(dy * 0.3); } else { qx(0); qy(0); }
     });
   }
+}
+
+// ---------- Trama de letras: las de PAUSA INQUIETA, desparramadas del lado contrario al texto ----------
+// Se ordenan en una grilla suelta (con huecos y giros) para que se lea como trama y no tape la lectura:
+// arriba a la derecha, frente a las dos primeras frases; a la izquierda, frente a la tercera.
+const PALABRA = 'PAUSAINQUIETA';
+const COLORES = ['#d7ff3a', '#a47cff', '#1f3cff', '#ff4b2b', '#ecebe5', '#4a4a4a', '#23345f'];
+const OSCUROS = ['#4a4a4a', '#23345f'];
+
+function azar(seed) {
+  let s = seed >>> 0;
+  return () => {
+    s = (s + 0x6d2b79f5) >>> 0;
+    let t = s;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function letras(sec) {
+  const wrap = document.createElement('div');
+  wrap.className = 'story__letras';
+  sec.querySelector('.story__tramas').appendChild(wrap);
+  let primera = true;
+
+  const caja = (el) => {
+    const s = sec.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    return { left: r.left - s.left, right: r.right - s.left, top: r.top - s.top, bottom: r.bottom - s.top };
+  };
+
+  const zonas = () => {
+    const W = sec.offsetWidth;
+    const izq = [...sec.querySelectorAll('.st--l')].map(caja);
+    const der = caja(sec.querySelector('.st--r'));
+    if (innerWidth < 760) {
+      const head = caja(sec.querySelector('.story__head'));
+      return [{ x0: W * 0.04, x1: W * 0.96, y0: head.bottom + 24, y1: izq[0].top - 28, celda: 58 }];
+    }
+    const borde = Math.max(...izq.map((c) => c.right));
+    return [
+      { x0: borde + W * 0.06, x1: W * 0.97, y0: izq[0].top - 70, y1: izq[izq.length - 1].bottom + 50, celda: 104 },
+      { x0: W * 0.03, x1: der.left - W * 0.06, y0: der.top - 40, y1: der.bottom + 50, celda: 100 },
+    ];
+  };
+
+  const armar = () => {
+    wrap.textContent = '';
+    const rnd = azar(7);
+    const items = [];
+    let k = 0;
+    zonas().forEach((z) => {
+      const w = z.x1 - z.x0;
+      const h = z.y1 - z.y0;
+      if (w < 80 || h < 60) return;
+      const cols = Math.max(2, Math.round(w / z.celda));
+      const rows = Math.max(1, Math.round(h / z.celda));
+      const cw = w / cols;
+      const ch = h / rows;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          if (rnd() < 0.12) continue; // huecos: que respire
+          const el = document.createElement('span');
+          el.className = 'letra';
+          el.textContent = PALABRA[k++ % PALABRA.length];
+          const color = COLORES[Math.floor(rnd() * COLORES.length)];
+          const size = Math.min(cw, ch) * (1.05 + rnd() * 0.55);
+          el.style.left = `${z.x0 + cw * (c + 0.5) + (rnd() - 0.5) * cw * 0.35}px`;
+          el.style.top = `${z.y0 + ch * (r + 0.5) + (rnd() - 0.5) * ch * 0.35}px`;
+          el.style.fontSize = `${size.toFixed(0)}px`;
+          el.style.color = color;
+          el.style.setProperty('--giro', `${((rnd() - 0.5) * 80).toFixed(1)}deg`);
+          el.style.zIndex = OSCUROS.includes(color) ? 0 : 1;
+          el.style.webkitMaskPosition = el.style.maskPosition = `${Math.floor(rnd() * 300)}px ${Math.floor(rnd() * 300)}px`;
+          wrap.appendChild(el);
+          items.push(el);
+        }
+      }
+    });
+    if (primera && !reduced) {
+      primera = false;
+      gsap.from(items, {
+        scale: 0, duration: 0.3, ease: 'steps(3)', stagger: { each: 0.035, from: 'random' },
+        scrollTrigger: { trigger: sec, start: 'top 60%' },
+      });
+    }
+    // unas pocas titilan, como la trama impresa que falla
+    if (!reduced) {
+      gsap.to(items.filter(() => rnd() < 0.3), {
+        opacity: () => 0.35 + Math.random() * 0.65, duration: 0.12, repeat: -1, repeatRefresh: true,
+        repeatDelay: 1.8, ease: 'steps(1)', stagger: { each: 0.5, from: 'random' },
+      });
+    }
+  };
+
+  let t = 0;
+  const listo = document.fonts ? document.fonts.ready : Promise.resolve();
+  listo.then(armar);
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(armar, 250); });
 }
 
 // ---------- Trama: línea con curvas que se dibuja con el scroll ----------

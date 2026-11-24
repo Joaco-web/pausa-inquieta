@@ -369,6 +369,16 @@
 .story__dot--red { fill: var(--red); }
 .st .w { opacity: .12; }
 .story__tramas { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+/* Letras de la trama: pesadas, gastadas por la máscara de tinta y giradas */
+.story__letras { position: absolute; inset: 0; }
+.letra {
+  position: absolute; display: block;
+  font-family: var(--f-grot); font-weight: 900; line-height: .8; letter-spacing: 0;
+  transform: translate(-50%, -50%) rotate(var(--giro, 0deg));
+  -webkit-mask-image: url("../assets/img/grunge-mask.svg"); mask-image: url("../assets/img/grunge-mask.svg");
+  -webkit-mask-size: 520px; mask-size: 520px;
+  user-select: none;
+}
 .story__c1 { width: clamp(40px, 5vw, 90px); aspect-ratio: 1; background: var(--red); right: 31vw; bottom: 30vh; }
 .story__b1 { width: 16px; height: clamp(80px, 14vh, 160px); background: var(--blue); right: 3vw; top: 18vh; }
 
