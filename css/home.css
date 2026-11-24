@@ -550,8 +550,14 @@
   .somos__lines { right: var(--gutter); }
 }
 
-/* Promesa: la ciudad apagada abajo */
-.promesa__city { left: -6vw; right: -6vw; bottom: -6vh; z-index: 0; opacity: .2; filter: grayscale(1); }
+/* Promesa: fondo liso (sin puntitos) y el collage apagado detrás de la frase */
+.promesa { background: var(--ink); }
+.promesa__bg { position: absolute; inset: -8% 0; z-index: 0; pointer-events: none; }
+.promesa__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; opacity: .3; filter: saturate(.8); }
+.promesa__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 62% 58% at 50% 50%, rgba(11,11,11,.7) 0%, rgba(11,11,11,.25) 70%, transparent 100%);
+}
 
 
 /* Recorrido (intro): la chica sentada sobre la ciudad */
