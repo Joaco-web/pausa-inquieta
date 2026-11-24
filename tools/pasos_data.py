@@ -266,6 +266,7 @@ PASOS = [
         ],
         "pasa": "Al mover la primera pieza generás una reacción en cadena y, al caer la última, ves una oración. Inmediatamente el piso se abre [[dejándote caer por un tobogán, y caés en un pelotero]].",
         "media": ["domino-r"],
+        "hueco": True,
         "aviso": "No siempre es necesario estar ocupado. A veces, tomarte un momento para no hacer nada es lo mejor para vos.",
         "cta": "Mientras tanto, en el aula…",
     },
