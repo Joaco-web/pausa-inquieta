@@ -11,7 +11,6 @@ export default function somos(lenis) {
   const sec = document.querySelector('.somos');
   const lines = [...sec.querySelectorAll('.s-line')];
   const meter = sec.querySelector('.somos__meter i');
-  const dot = sec.querySelector('.somos__dot');
   sec.querySelectorAll('.ph').forEach((p) => torn(p, { amp: 1.6, step: 2.6 }));
 
   const data = lines.map((l) => {
@@ -61,16 +60,14 @@ export default function somos(lenis) {
     },
   });
 
-  // Collage: se mueve con el progreso
+  // Collage: se acerca apenas con el progreso
+  const foto = sec.querySelector('.somos__foto img');
   gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 1 } })
-    .to('.somos__city', { yPercent: 8, ease: 'none' }, 0)
-    .to('.somos__girl', { y: -24, ease: 'none' }, 0)
-    .to('.somos__c1', { xPercent: -20, yPercent: 30, ease: 'none' }, 0)
-    .to('.somos__semi', { rotate: 180, xPercent: -60, ease: 'none' }, 0);
+    .fromTo(foto, { scale: 1 }, { scale: 1.08, ease: 'none' }, 0);
 
   // Entrada del collage
-  gsap.from(sec.querySelectorAll('.somos__collage > *'), {
-    scale: 0.6, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.08,
+  gsap.from(sec.querySelector('.somos__foto'), {
+    opacity: 0, x: 40, duration: 1.2, ease: 'expo.out',
     scrollTrigger: { trigger: sec, start: 'top 70%' },
   });
 
@@ -95,6 +92,5 @@ export default function somos(lenis) {
     for (let i = 0; i < chars.length; i++) {
       if (+chars[i].style.fontWeight !== base && Math.random() < (calm ? 0.6 : 0.18)) chars[i].style.fontWeight = base;
     }
-    dot.style.transform = I > 0.3 ? `translate(${(Math.random() - .5) * I * 8}px, ${(Math.random() - .5) * I * 8}px)` : '';
   });
 }

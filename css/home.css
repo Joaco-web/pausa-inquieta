@@ -142,19 +142,25 @@
 .s-line .ch { transition: font-weight .45s ease; }
 
 .somos__collage { position: absolute; inset: 0; pointer-events: none; }
-.somos__c1 { width: clamp(220px, 30vw, 520px); aspect-ratio: 1; background: var(--blue); right: -6vw; top: -10vh; }
-.somos__semi { width: clamp(90px, 10vw, 180px); background: var(--violet); right: 34vw; bottom: 6vh; z-index: 2; }
-.somos__dot { width: clamp(28px, 3vw, 48px); aspect-ratio: 1; background: var(--red); right: 37vw; top: 48vh; z-index: 3; }
-.somos__bar { width: clamp(80px, 9vw, 150px); height: 16px; background: var(--lime); right: 4vw; bottom: 10vh; z-index: 3; }
+.somos__foto {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 57vw;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%), linear-gradient(0deg, transparent 0%, #000 14%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 30%), linear-gradient(0deg, transparent 0%, #000 14%);
+  mask-composite: intersect;
+}
+.somos__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 30%; mix-blend-mode: multiply; }
 
 @media (max-width: 860px) {
   .somos__lines { right: var(--gutter); top: auto; bottom: 12vh; transform: none; min-height: 46vh; }
   .s-line { top: auto; bottom: 0; transform: none; font-size: clamp(25px, 7vw, 42px); }
   .s-line--big, .s-line--close { font-size: 15vw; }
-  .somos__semi { right: 66vw; bottom: auto; top: 34vh; width: 18vw; }
-  .somos__dot { right: 54vw; top: 40vh; }
-  .somos__bar { display: none; }
-  .somos__c1 { width: 70vw; right: -30vw; top: -14vh; }
+  .somos__foto {
+    width: 100%; bottom: auto; height: 62vh;
+    -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
+  }
+  .somos__foto img { object-position: 40% 28%; }
 }
 
 /* =========================================================
@@ -537,25 +543,12 @@
   mask-composite: intersect;
 }
 
-/* Quiénes somos: la chica recortada; el pie sale hacia la promesa y se mueve apenas */
-.somos__stick { overflow-x: clip; overflow-y: visible; clip-path: inset(0 0 -40vh 0); z-index: 7; }
+/* Quiénes somos: el texto a la izquierda, el collage a la derecha */
+.somos__stick { z-index: 7; }
 .somos__lines { right: 47vw; }
-.somos__city { right: -6vw; bottom: 0; width: 60vw; z-index: 0; opacity: .92; }
-.somos__girl { position: absolute; right: 8vw; bottom: -14vh; height: 86vh; aspect-ratio: 520 / 760; z-index: 2; pointer-events: none; }
-.somos__girl img { position: absolute; inset: 0; width: 100%; height: 100%; filter: grayscale(1) contrast(1.12) drop-shadow(0 20px 24px rgba(0,0,0,.3)); }
-.somos__girl-body { clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%, 60% 70.6%, 0 71.6%); }
-.somos__girl-foot {
-  clip-path: polygon(0 71.4%, 60% 70.4%, 60% 100%, 0 100%);
-  transform-origin: 44% 72%;
-  animation: footSwing 2.8s ease-in-out infinite;
-}
-@keyframes footSwing { 0%, 100% { rotate: -2deg; } 50% { rotate: 3.2deg; } }
 @media (max-width: 860px) {
   .somos__lines { right: var(--gutter); }
-  .somos__city { width: 130vw; right: -40vw; bottom: 36vh; }
-  .somos__girl { right: -6vw; bottom: auto; top: 10vh; height: 52vh; }
 }
-@media (prefers-reduced-motion: reduce) { .somos__girl-foot { animation: none; } }
 
 /* Promesa: la ciudad apagada abajo */
 .promesa__city { left: -6vw; right: -6vw; bottom: -6vh; z-index: 0; opacity: .2; filter: grayscale(1); }
