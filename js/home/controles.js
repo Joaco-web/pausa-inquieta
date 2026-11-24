@@ -14,8 +14,6 @@ export default function controles() {
   const title = sec.querySelector('.ctrl__title');
   const kb = sec.querySelector('.kb');
 
-  // Papel rasgado
-  torn(kb, { amp: 1.6, step: 2.6 });
 
   // Cada letra con su giro y su desgaste propio (como la trama de letras)
   keys.forEach((k) => {

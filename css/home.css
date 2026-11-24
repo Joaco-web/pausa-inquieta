@@ -270,11 +270,21 @@
   position: relative;
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(28px, 4vw, 72px); align-items: center;
-  padding: clamp(32px, 5vw, 80px);
+  padding: clamp(56px, 6.5vw, 104px) clamp(44px, 6vw, 96px);
   background: var(--ink) url("../assets/img/dust-light.svg") 0 0 / 520px;
   color: var(--paper);
   transform: rotate(-1deg);
+  z-index: 1;
+  /* la forma es un papel rasgado de verdad (de la trama), sin puntas */
+  -webkit-mask: url("../assets/img/papel/panel-mask.png") 0 0 / 100% 100% no-repeat;
+  mask: url("../assets/img/papel/panel-mask.png") 0 0 / 100% 100% no-repeat;
 }
+.papel { position: absolute; display: block; height: auto; pointer-events: none; filter: drop-shadow(0 10px 16px rgba(11,11,11,.22)); }
+.papel--azul { width: clamp(140px, 15vw, 250px); left: -2.4vw; bottom: -9%; transform: rotate(-14deg); z-index: 0; }
+.papel--fluor { width: clamp(110px, 12vw, 200px); right: -1.6vw; top: -16%; transform: rotate(9deg); z-index: 0; }
+.papel--naranja { width: clamp(70px, 7vw, 120px); right: 9%; bottom: -26%; transform: rotate(-78deg); z-index: 0; }
+.papel--cinta { width: clamp(40px, 4vw, 64px); left: 38%; top: -9%; transform: rotate(-84deg); z-index: 3; filter: drop-shadow(0 4px 6px rgba(11,11,11,.25)); opacity: .95; }
+.ctrl__b1 { display: none; }
 .kb__col { display: grid; gap: clamp(22px, 4vh, 44px); align-content: center; }
 .kb__group { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 28px); }
 .kb__wasd {
@@ -325,7 +335,14 @@
 @media (max-width: 1100px) { .kb__group { flex-wrap: wrap; } }
 
 @media (max-width: 860px) {
-  .kb { grid-template-columns: 1fr; transform: none; }
+  .kb {
+    grid-template-columns: 1fr; transform: none; padding: 64px 28px;
+    -webkit-mask-image: url("../assets/img/papel/panel-mask-alto.png"); mask-image: url("../assets/img/papel/panel-mask-alto.png");
+  }
+  .papel--azul { width: 34vw; left: -6vw; bottom: -4%; }
+  .papel--fluor { width: 30vw; right: -5vw; top: -6%; }
+  .papel--naranja { display: none; }
+  .papel--cinta { width: 12vw; left: 42%; top: -4%; }
   .kb__group { flex-wrap: wrap; }
   .ctrl__semi { right: 6vw; top: auto; bottom: 3vh; }
 }
