@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css?v=a1f0cf2d">
-  <link rel="stylesheet" href="css/home.css?v=9e467dca">
+  <link rel="stylesheet" href="css/home.css?v=4579f403">
   <script type="importmap">
 {
   "imports": {
@@ -23,7 +23,7 @@
     "./js/core/ui.js": "./js/core/ui.js?v=455b54cd",
     "./js/home/caja.js": "./js/home/caja.js?v=d8e89ef8",
     "./js/home/controles.js": "./js/home/controles.js?v=d824da58",
-    "./js/home/hero.js": "./js/home/hero.js?v=3e0daad9",
+    "./js/home/hero.js": "./js/home/hero.js?v=2e1415c5",
     "./js/home/llevas.js": "./js/home/llevas.js?v=d7155a12",
     "./js/home/main.js": "./js/home/main.js?v=ce81d987",
     "./js/home/promesa.js": "./js/home/promesa.js?v=048dff17",
@@ -57,21 +57,11 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero neg" id="hero">
-      <div class="hero__tramas" aria-hidden="true">
-        <div class="t-circle hero__c1"></div>
-        <div class="t-circle hero__c2"></div>
-        <div class="t-circle hero__c3"></div>
-        <div class="t-bar hero__b1"></div>
-        <div class="t-bar hero__b2"></div>
-        <div class="t-bar hero__b3"></div>
-        <svg class="ast hero__ast" viewBox="-50 -50 100 100"><g><line x1="0" y1="-46" x2="0" y2="46"/><line x1="-40" y1="-23" x2="40" y2="23"/><line x1="-40" y1="23" x2="40" y2="-23"/></g></svg>
+      <!-- El collage del banner ocupa todo el fondo; el velo oscurece el lado del texto para que se lea -->
+      <div class="hero__bg" aria-hidden="true">
+        <img src="assets/img/hero-collage.webp" srcset="assets/img/hero-collage-1100.webp 1100w, assets/img/hero-collage.webp 2000w" sizes="100vw" alt="" width="2000" height="1656" fetchpriority="high">
       </div>
-
-      <!-- La ciudad del brandboard (sin cielo) y una persona recortada encima -->
-      <div class="city hero__city" aria-hidden="true"><img src="assets/cut/city.png" alt="" width="640" height="330"></div>
-      <img class="cut hero__boy" src="assets/cut/boy-banner.png" alt="" width="320" height="314" aria-hidden="true">
-
-      <div class="hero__sun" aria-hidden="true"><span class="hero__sun-core"></span></div>
+      <div class="hero__veil" aria-hidden="true"></div>
 
       <div class="hero__brand">
         <h1 class="logo" aria-label="Pausa Inquieta">

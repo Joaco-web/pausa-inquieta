@@ -47,31 +47,15 @@
   padding: calc(var(--nav-h) + 6vh) var(--gutter) var(--gutter);
   display: flex; flex-direction: column; justify-content: center;
 }
-.hero__tramas { position: absolute; inset: 0; pointer-events: none; }
-.hero__c1 { width: clamp(70px, 9vw, 150px); aspect-ratio: 1; background: var(--red); right: 31vw; bottom: 12vh; }
-.hero__c2 { width: clamp(14px, 1.3vw, 22px); aspect-ratio: 1; background: var(--blue); left: 47vw; top: 16vh; }
-.hero__c3 { width: clamp(150px, 19vw, 320px); aspect-ratio: 1; background: var(--violet); left: -7vw; bottom: -13vh; }
-.hero__b1 { width: clamp(60px, 7vw, 120px); height: 14px; background: var(--lime); left: 38vw; bottom: 14vh; }
-.hero__b2 { width: 18px; height: clamp(60px, 12vh, 140px); background: var(--violet); right: 6vw; top: 16vh; }
-.hero__b3 { width: 12px; height: clamp(50px, 9vh, 110px); background: var(--blue); right: 44vw; top: 11vh; }
-.hero__ast { width: clamp(40px, 4.5vw, 72px); color: var(--blue); left: 52vw; bottom: 6vh; }
-
-
-.hero__sun {
-  position: absolute;
-  right: 23vw; top: 13vh;
-  width: clamp(110px, 14vw, 260px);
-  aspect-ratio: 1 / 2;
-  z-index: 1;
-  filter: drop-shadow(0 0 40px rgba(215,255,58,.45));
-}
-.hero__sun-core {
-  position: absolute; inset: 0;
+/* Collage de fondo: la persona queda a la derecha y el velo oscuro cubre el lado del logo */
+.hero__bg { position: absolute; inset: -4% -2%; z-index: 0; pointer-events: none; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 38%; filter: brightness(.9) contrast(1.05); }
+.hero__veil {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    radial-gradient(circle at 70% 40%, rgba(255,255,255,.35), transparent 55%),
-    var(--lime);
-  border-radius: 999px 0 0 999px;
-  transform-origin: 100% 50%;
+    linear-gradient(90deg, rgba(11,11,11,.95) 0%, rgba(11,11,11,.9) 28%, rgba(11,11,11,.74) 42%, rgba(11,11,11,.36) 56%, rgba(11,11,11,.08) 68%, rgba(11,11,11,0) 78%),
+    linear-gradient(0deg, rgba(11,11,11,.85) 0%, rgba(11,11,11,0) 26%),
+    linear-gradient(180deg, rgba(11,11,11,.55) 0%, rgba(11,11,11,0) 18%);
 }
 
 /* El logo va solo, arriba de todo: nada lo pisa ni le cambia el color */
@@ -112,13 +96,12 @@
 @media (max-width: 760px) {
   .hero { justify-content: flex-start; padding-top: calc(var(--nav-h) + 8vh); }
   .logo { font-size: 16vw; }
-  .hero__sun { right: 8vw; top: auto; bottom: 30vh; width: 26vw; }
-  .hero__c1 { right: 46vw; bottom: 30vh; width: 18vw; }
-  .hero__c3 { left: -16vw; bottom: -8vh; width: 40vw; }
-  .hero__b3, .hero__c2 { display: none; }
-  .hero__b2 { top: 46vh; }
-  .hero__b1 { left: 8vw; bottom: 34vh; }
-  .hero__ast { left: auto; right: 58vw; bottom: 44vh; }
+  .hero__bg img { object-position: 78% 40%; }
+  .hero__veil {
+    background:
+      linear-gradient(180deg, rgba(11,11,11,.94) 0%, rgba(11,11,11,.82) 30%, rgba(11,11,11,.35) 52%, rgba(11,11,11,0) 70%),
+      linear-gradient(0deg, rgba(11,11,11,.8) 0%, rgba(11,11,11,0) 22%);
+  }
 }
 
 /* =========================================================
@@ -552,15 +535,6 @@
   -webkit-mask-composite: source-in;
   mask-image: linear-gradient(90deg, transparent, #000 14%, #000 90%, transparent), linear-gradient(#000 60%, transparent);
   mask-composite: intersect;
-}
-
-/* Hero: la ciudad abajo a la derecha, el sol se asoma detrás, el chico sentado arriba */
-.hero__city { right: -3vw; bottom: -3vh; width: min(66vw, 1000px); z-index: 1; }
-.hero__boy { right: 5vw; bottom: 0; height: 50vh; z-index: 2; }
-.hero__sun { z-index: 0; }
-@media (max-width: 760px) {
-  .hero__city { width: 130vw; right: -34vw; bottom: 0; }
-  .hero__boy { height: 30vh; right: 0; }
 }
 
 /* Quiénes somos: la chica recortada; el pie sale hacia la promesa y se mueve apenas */
