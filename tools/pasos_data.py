@@ -27,6 +27,7 @@ Campos:
   adentro   segunda parte de la misma sección, al seguir scrolleando (opcional):
             {"carpeta", "texto", "fila": [2 videos], "ves", "pasa", "media"}
   cta       texto del botón para avanzar
+  hueco     True: deja un recuadro vacío debajo de los cuadros, para una foto que todavía no está (opcional)
   aviso     mensaje de Pausa que aparece abajo al terminar de scrollear (opcional)
 Para sumar un audio: poné la ruta en "src" (por ejemplo "assets/pasos/03/latido.mp3"),
 y corré  cd tools && python pasos.py  y después  python tools/version.py
@@ -65,6 +66,7 @@ PASOS = [
         ],
         "pasa": "Apenas avanzás, [[el piso se abre y te caés]], porque hiciste lo contrario de lo que te dijo la voz.",
         "media": ["salon-pausa"],
+        "hueco": True,
         "cta": "Mientras tanto, en el aula…",
     },
     {

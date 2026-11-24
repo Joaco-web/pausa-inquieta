@@ -289,6 +289,8 @@ def page(n):
     frase = f'<blockquote class="paso__frase" data-in><p>{e(p["frase"])}</p></blockquote>' if p.get("frase") else ""
     gal_cls = "gal gal--uno" if p.get("adentro") or len(abajo) == 1 else "gal gal--par" if len(abajo) == 2 and all(MANIFEST[str(carpeta)][x].get("cutout") for x in abajo) else "gal gal--fila" if len(abajo) == 3 and all(MANIFEST[str(carpeta)][x].get("cutout") for x in abajo) else "gal"
     gallery_html = f'<section class="{gal_cls}" aria-label="Más imágenes y referencias">{gallery}</section>' if gallery else ""
+    if p.get("hueco"):
+        gallery_html += '<section class="gal gal--hueco" aria-hidden="true"><div class="media media--hueco" style="--ar:16 / 9" data-in></div></section>'
     noimg = " paso--text" if not media else ""
     marca = f' data-etiqueta="{e(p["etiqueta"])}"' if p.get("etiqueta") else ""
     aviso = (f'<div class="aviso" role="status" aria-live="polite"><span class="aviso__semi" aria-hidden="true"></span>'
