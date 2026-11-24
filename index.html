@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css?v=a1f0cf2d">
-  <link rel="stylesheet" href="css/home.css?v=119071a9">
+  <link rel="stylesheet" href="css/home.css?v=4e1bf9fe">
   <script type="importmap">
 {
   "imports": {
@@ -24,7 +24,7 @@
     "./js/home/caja.js": "./js/home/caja.js?v=d8e89ef8",
     "./js/home/controles.js": "./js/home/controles.js?v=7e70dde5",
     "./js/home/hero.js": "./js/home/hero.js?v=2e1415c5",
-    "./js/home/llevas.js": "./js/home/llevas.js?v=2ba5f7e8",
+    "./js/home/llevas.js": "./js/home/llevas.js?v=d9162929",
     "./js/home/main.js": "./js/home/main.js?v=ce81d987",
     "./js/home/promesa.js": "./js/home/promesa.js?v=fa6cb86a",
     "./js/home/redes.js": "./js/home/redes.js?v=621405e9",
@@ -197,14 +197,12 @@
       <!-- QUÉ TE LLEVÁS: el doble fondo -->
       <section class="llevas" id="llevas">
         <div class="llevas__stick">
-          <!-- Lo que te llevás: la caja sobre un tablero oscuro, con los restos del ruido pegados en las esquinas -->
           <div class="llevas__tramas" aria-hidden="true">
-            <div class="llevas__luz"></div>
-            <img class="papel llevas__p1" src="assets/img/papel/gris-negro.webp" alt="" width="268" height="175" loading="lazy" decoding="async">
-            <img class="papel llevas__cinta" src="assets/img/papel/cinta-violeta.webp" alt="" width="142" height="268" loading="lazy" decoding="async">
-            <img class="papel llevas__p2" src="assets/img/papel/azul-negro.webp" alt="" width="244" height="214" loading="lazy" decoding="async">
-            <img class="papel llevas__p3" src="assets/img/papel/cuarto-naranja.webp" alt="" width="280" height="307" loading="lazy" decoding="async">
-            <img class="papel llevas__p4" src="assets/img/papel/negro-rasgado.webp" alt="" width="307" height="202" loading="lazy" decoding="async">
+            <div class="city llevas__city"><img src="assets/cut/city.png" alt="" width="640" height="330"></div>
+            <div class="t-semi llevas__semi"></div>
+            <div class="t-circle llevas__c1"></div>
+            <div class="t-bar llevas__b1"></div>
+            <div class="t-bar llevas__b2"></div>
           </div>
           <canvas class="llevas__canvas" aria-label="La caja y su doble fondo, en 3D"></canvas>
           <header class="llevas__head"><span class="label">Qué te llevás</span></header>
