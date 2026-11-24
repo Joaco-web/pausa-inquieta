@@ -129,7 +129,7 @@ function letras(sec) {
       for (let r = 0; r < rows; r++) {
         const fila = rnd() < 0.5 ? VOCALES : CONSONANTES;
         for (let c = 0; c < cols; c++) {
-          if (rnd() < (z.sueltas ? 0.34 : 0.12)) continue; // huecos: que respire
+          if (rnd() < (z.sueltas ? 0.55 : 0.45)) continue; // huecos: que respire
           const cx = z.x0 + cw * (c + 0.5);
           const cy = z.y0 + ch * (r + 0.5);
           if (z.sueltas && obstaculos.some((o) => cx > o.left - cw * 0.6 && cx < o.right + cw * 0.6 && cy > o.top - ch * 0.6 && cy < o.bottom + ch * 0.6)) continue;
@@ -137,7 +137,7 @@ function letras(sec) {
           el.className = 'letra';
           el.textContent = z.sueltas ? fila[Math.floor(rnd() * fila.length)] : PALABRA[k++ % PALABRA.length];
           const color = COLORES[Math.floor(rnd() * COLORES.length)];
-          const size = Math.min(cw, ch) * (1.05 + rnd() * 0.55);
+          const size = Math.min(cw, ch) * (0.95 + rnd() * 0.45);
           el.style.left = `${cx + (rnd() - 0.5) * cw * 0.35}px`;
           el.style.top = `${cy + (rnd() - 0.5) * ch * 0.35}px`;
           el.style.fontSize = `${size.toFixed(0)}px`;
