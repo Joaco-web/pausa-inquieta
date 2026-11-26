@@ -352,6 +352,8 @@ body.is-leaving main { opacity: 0; transform: translateY(-10px); transition: opa
 .chip { flex: none; display: inline-block; min-width: 78px; text-align: center; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 .chip--aula { background: var(--paper); color: var(--ink); }
 .chip--unreal { background: var(--violet); color: var(--ink); }
+.chip--pausa { background: var(--lime); color: var(--ink); }
+.chip--inquieta { background: var(--ink); color: var(--paper); box-shadow: inset 0 0 0 1.5px var(--paper); }
 .idx__start { margin-top: 36px; }
 .idx__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .idx__row a {

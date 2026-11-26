@@ -354,6 +354,8 @@ def index():
       <div class="idx__legend" data-in>
         <p><span class="chip chip--aula">Aula</span> Lo que pasa en el aula</p>
         <p><span class="chip chip--unreal">Unreal</span> Lo que pasa adentro de la computadora.</p>
+        <p><span class="chip chip--pausa">P</span> Pausa</p>
+        <p><span class="chip chip--inquieta">I</span> Inquieta</p>
       </div>
       <a class="pill idx__start" href="{L('paso-01.html')}" data-in><span>Empezar</span>{ARROW}</a>
     </section>
