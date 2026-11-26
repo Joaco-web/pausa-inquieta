@@ -41,24 +41,17 @@ function bentPlane(w, h, bend) {
   return geo;
 }
 
-// ---------- Remera: frente con su foto, espalda con la suya, y espesor de tela
+// ---------- Remera: frente con su foto, espalda con la suya y un espesor mínimo de tela
 function shirt(front, back, { height, depth, bend, edge }) {
   const g = new THREE.Group();
-  const wF = height * (front.width / front.height);
-  const wB = height * (back.width / back.height);
-  const fGeo = bentPlane(wF, height, bend);
-  const bGeo = bentPlane(wB, height, bend);
-  const LAYERS = 9;
-  const edgeTex = silhouette(front, edge);
-  for (let k = 0; k < LAYERS; k++) {
-    const z = -depth * (k / (LAYERS - 1));
-    let m;
-    if (k === 0) m = new THREE.Mesh(fGeo, new THREE.MeshStandardMaterial({ map: tex(front), alphaTest: 0.5, roughness: 0.78 }));
-    else if (k === LAYERS - 1) m = new THREE.Mesh(bGeo, new THREE.MeshStandardMaterial({ map: mirrored(back), alphaTest: 0.5, roughness: 0.78, side: THREE.BackSide }));
-    else m = new THREE.Mesh(fGeo, new THREE.MeshStandardMaterial({ map: edgeTex, alphaTest: 0.5, roughness: 0.9, side: THREE.DoubleSide }));
-    m.position.z = z;
-    g.add(m);
-  }
+  const fGeo = bentPlane(height * (front.width / front.height), height, bend);
+  const bGeo = bentPlane(height * (back.width / back.height), height, bend);
+  const add = (geo, mat, z) => { const m = new THREE.Mesh(geo, mat); m.position.z = z; g.add(m); };
+  add(fGeo, new THREE.MeshStandardMaterial({ map: tex(front), alphaTest: 0.5, roughness: 0.78 }), 0);
+  // el canto: apenas dos capas finitas entre el frente y la espalda
+  add(fGeo, new THREE.MeshStandardMaterial({ map: silhouette(front, edge), alphaTest: 0.5, roughness: 0.9, side: THREE.DoubleSide }), -depth * 0.33);
+  add(bGeo, new THREE.MeshStandardMaterial({ map: silhouette(back, edge), alphaTest: 0.5, roughness: 0.9, side: THREE.DoubleSide }), -depth * 0.66);
+  add(bGeo, new THREE.MeshStandardMaterial({ map: mirrored(back), alphaTest: 0.5, roughness: 0.78, side: THREE.BackSide }), -depth);
   return g;
 }
 
@@ -178,15 +171,15 @@ export async function createMerch(canvas, { onSpin, area } = {}) {
   camera.position.set(0, 0, 14);
 
   const [negra, negraB, blanca, blancaB] = await Promise.all([
-    loadImage('assets/img/merch/remera-negra.webp'),
-    loadImage('assets/img/merch/remera-negra-espalda.webp'),
-    loadImage('assets/img/merch/remera-blanca.webp'),
-    loadImage('assets/img/merch/remera-blanca-espalda.webp'),
+    loadImage('assets/img/merch/remera-negra.webp?v=2'),
+    loadImage('assets/img/merch/remera-negra-espalda.webp?v=2'),
+    loadImage('assets/img/merch/remera-blanca.webp?v=2'),
+    loadImage('assets/img/merch/remera-blanca-espalda.webp?v=2'),
   ]);
   const all = new THREE.Group(); scene.add(all);
   const items = [
-    { g: shirt(negra, negraB, { height: 3.0, depth: 0.12, bend: 0.22, edge: '#1a1a1a' }), pos: [1.15, 0.85, -0.7], rot: 0.08, yaw: 0, ph: 0 },
-    { g: shirt(blanca, blancaB, { height: 2.4, depth: 0.12, bend: 0.2, edge: '#d9d8d4' }), pos: [-0.45, -0.25, 0.15], rot: -0.05, yaw: 0, ph: 2.1 },
+    { g: shirt(negra, negraB, { height: 2.75, depth: 0.035, bend: 0.2, edge: '#1a1a1a' }), pos: [1.15, 0.85, -0.7], rot: 0.08, yaw: 0, ph: 0 },
+    { g: shirt(blanca, blancaB, { height: 2.4, depth: 0.035, bend: 0.18, edge: '#d9d8d4' }), pos: [-0.45, -0.25, 0.15], rot: -0.05, yaw: 0, ph: 2.1 },
     { g: glasses(), pos: [-1.2, -1.55, 1.0], rot: -0.08, yaw: 0.55, ph: 4.2, scale: 0.95 },
   ];
   items.forEach((it) => {
