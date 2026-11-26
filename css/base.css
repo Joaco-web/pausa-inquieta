@@ -348,7 +348,7 @@ body.pi-talking .pi__ring, body.pi-talking .pi__tip, body.pi-talking .pi:hover .
 /* ---------- Gate (invitación a conocer tu ruido) ---------- */
 .gate {
   position: fixed; inset: 0; z-index: 150;
-  background: var(--ink) url("../assets/img/dust-light.svg") 0 0 / 520px;
+  background: var(--ink) url("../assets/img/dust-clean.svg") 0 0 / 520px;
   color: var(--paper);
   display: grid; place-items: center;
   text-align: center;

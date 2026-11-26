@@ -271,7 +271,7 @@
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(28px, 4vw, 72px); align-items: center;
   padding: clamp(56px, 6.5vw, 104px) clamp(44px, 6vw, 96px);
-  background: var(--ink) url("../assets/img/dust-light.svg") 0 0 / 520px;
+  background: var(--ink) url("../assets/img/dust-clean.svg") 0 0 / 520px;
   color: var(--paper);
   transform: rotate(-1deg);
   z-index: 1;
@@ -350,6 +350,8 @@
 /* =========================================================
    RECORRIDO (intro) — violeta / azul del Unreal
    ========================================================= */
+/* El recorrido: negro sin los puntitos blancos (más limpio) */
+.story.neg { background-image: url("../assets/img/dust-clean.svg"); }
 .story {
   position: relative;
   padding: 26vh var(--gutter) 18vh;
@@ -440,7 +442,7 @@
 /* =========================================================
    QUÉ TE LLEVÁS — doble fondo
    ========================================================= */
-.llevas { position: relative; height: 460vh; background: var(--ink) url("../assets/img/dust-light.svg") 0 0 / 520px; color: var(--paper); }
+.llevas { position: relative; height: 460vh; background: var(--ink) url("../assets/img/dust-clean.svg") 0 0 / 520px; color: var(--paper); }
 .llevas__stick {
   position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
   padding: calc(var(--nav-h) + 3vh) var(--gutter) var(--gutter);
