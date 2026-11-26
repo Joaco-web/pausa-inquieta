@@ -108,12 +108,12 @@ export const tv = (() => {
         .to(el, { scaleY: 1, duration: 0.08, ease: 'power2.out' })
         .to(el, { opacity: 0, duration: 0.12, ease: 'steps(3)' }, dur);
     },
-    // Salir de la página con ruido
-    out(href) {
+    // Salir de la página con ruido (quiet: la misma pantalla, sin el sonido de estática)
+    out(href, { quiet = false } = {}) {
       mount();
       el.classList.add('is-on');
       running = true; loop();
-      sound.static(0.7, 0.2);
+      if (!quiet) sound.static(0.7, 0.2);
       gsap.timeline({ onComplete: () => { location.href = href; } })
         .set(el, { opacity: 1, scaleY: 0.01 })
         .to(el, { scaleY: 1, duration: 0.25, ease: 'power3.in' })
@@ -142,7 +142,7 @@ export function bindPageLinks() {
     const a = e.target.closest('a[data-page]');
     if (!a) return;
     e.preventDefault();
-    tv.out(a.getAttribute('href'));
+    tv.out(a.getAttribute('href'), { quiet: a.hasAttribute('data-quiet') });
   });
 }
 
