@@ -41,17 +41,17 @@ function bentPlane(w, h, bend) {
   return geo;
 }
 
-// ---------- Remera: frente con su foto, espalda con la suya y un espesor mínimo de tela
+// ---------- Remera: frente con su foto, espalda con la suya y un espesor mínimo de tela.
+// La espalda ya viene ajustada a la silueta del frente (tools/merch_espalda.py), así las dos caras encajan.
 function shirt(front, back, { height, depth, bend, edge }) {
   const g = new THREE.Group();
   const fGeo = bentPlane(height * (front.width / front.height), height, bend);
-  const bGeo = bentPlane(height * (back.width / back.height), height, bend);
   const add = (geo, mat, z) => { const m = new THREE.Mesh(geo, mat); m.position.z = z; g.add(m); };
   add(fGeo, new THREE.MeshStandardMaterial({ map: tex(front), alphaTest: 0.5, roughness: 0.78 }), 0);
   // el canto: apenas dos capas finitas entre el frente y la espalda
   add(fGeo, new THREE.MeshStandardMaterial({ map: silhouette(front, edge), alphaTest: 0.5, roughness: 0.9, side: THREE.DoubleSide }), -depth * 0.33);
-  add(bGeo, new THREE.MeshStandardMaterial({ map: silhouette(back, edge), alphaTest: 0.5, roughness: 0.9, side: THREE.DoubleSide }), -depth * 0.66);
-  add(bGeo, new THREE.MeshStandardMaterial({ map: mirrored(back), alphaTest: 0.5, roughness: 0.78, side: THREE.BackSide }), -depth);
+  add(fGeo, new THREE.MeshStandardMaterial({ map: silhouette(front, edge), alphaTest: 0.5, roughness: 0.9, side: THREE.DoubleSide }), -depth * 0.66);
+  add(fGeo, new THREE.MeshStandardMaterial({ map: mirrored(back), alphaTest: 0.5, roughness: 0.78, side: THREE.BackSide }), -depth);
   return g;
 }
 
@@ -171,10 +171,10 @@ export async function createMerch(canvas, { onSpin, area } = {}) {
   camera.position.set(0, 0, 14);
 
   const [negra, negraB, blanca, blancaB] = await Promise.all([
-    loadImage('assets/img/merch/remera-negra.webp?v=2'),
-    loadImage('assets/img/merch/remera-negra-espalda.webp?v=2'),
-    loadImage('assets/img/merch/remera-blanca.webp?v=2'),
-    loadImage('assets/img/merch/remera-blanca-espalda.webp?v=2'),
+    loadImage('assets/img/merch/remera-negra.webp?v=3'),
+    loadImage('assets/img/merch/remera-negra-espalda.webp?v=3'),
+    loadImage('assets/img/merch/remera-blanca.webp?v=3'),
+    loadImage('assets/img/merch/remera-blanca-espalda.webp?v=3'),
   ]);
   const all = new THREE.Group(); scene.add(all);
   const items = [
