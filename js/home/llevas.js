@@ -101,11 +101,33 @@ export default function llevas() {
     const mcanvas = mc.querySelector('.merch__canvas');
     lazy(mc, () => {
       import('../three/merch.js')
-        .then((m) => m.createMerch(mcanvas, { onSpin: () => sound.whoosh(0.4, 0.05, true) }))
+        .then((m) => m.createMerch(mcanvas, { area: mc.querySelector('.merch__canvas-wrap'), onSpin: () => sound.whoosh(0.4, 0.05, true) }))
         .catch((err) => console.warn('3D no disponible', err));
     });
     gsap.from(mcanvas, { y: 80, opacity: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: mc, start: 'top 70%' } });
     gsap.from(mc.querySelectorAll('.merch__back > *'), { scale: 0, duration: 1, ease: 'back.out(1.6)', stagger: 0.15, scrollTrigger: { trigger: mc, start: 'top 70%' } });
-    gsap.from(mc.querySelector('.merch__title'), { opacity: 0, x: -40, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: mc, start: 'top 65%' } });
+    // El título, como “Controles”: entra buscando su peso y el mouse arma un degradé de pesos
+    const mt = mc.querySelector('.merch__title');
+    const { chars: mChars } = split(mt);
+    const MB = 200;
+    mChars.forEach((c) => { c.style.fontWeight = MB; });
+    gsap.set(mChars, { yPercent: 100, opacity: 0 });
+    ScrollTrigger.create({
+      trigger: mc, start: 'top 65%', once: true,
+      onEnter: () => {
+        gsap.to(mChars, { yPercent: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.05 });
+        mChars.forEach((c, i) => [900, 700, 500, 300, 100, MB].forEach((w, j) => setTimeout(() => { c.style.fontWeight = w; }, 300 + i * 50 + j * 90)));
+      },
+    });
+    mt.addEventListener('pointermove', (e) => {
+      const rects = mChars.map((c) => c.getBoundingClientRect());
+      const R = Math.max(80, rects[0].width * 2.6);
+      mChars.forEach((c, i) => {
+        const k = Math.max(0, 1 - Math.abs(e.clientX - (rects[i].left + rects[i].width / 2)) / R);
+        c.style.fontWeight = k > 0 ? Math.max(100, Math.round((100 + 800 * Math.pow(k, 1.4)) / 100) * 100) : MB;
+      });
+    });
+    mt.addEventListener('pointerleave', () => mChars.forEach((c, i) => setTimeout(() => { c.style.fontWeight = MB; }, i * 30)));
+    mt.addEventListener('click', () => mChars.forEach((c) => { c.style.fontWeight = pick(WEIGHTS); }));
   }
 }
