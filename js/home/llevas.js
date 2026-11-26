@@ -94,4 +94,18 @@ export default function llevas() {
   gsap.from(ll.querySelectorAll('.llavero__back > *'), { scale: 0, duration: 1, ease: 'back.out(1.6)', stagger: 0.15, scrollTrigger: { trigger: ll, start: 'top 70%' } });
   gsap.to('.llavero__p1', { rotate: 18, ease: 'none', scrollTrigger: { trigger: ll, start: 'top bottom', end: 'bottom top', scrub: true } });
   gsap.from(ll.querySelectorAll('.llavero__copy > *'), { opacity: 0, y: 30, duration: 0.9, ease: 'power3.out', stagger: 0.15, scrollTrigger: { trigger: ll, start: 'top 60%' } });
+
+  // ---------- Merch (3D)
+  const mc = document.querySelector('.merch');
+  if (mc) {
+    const mcanvas = mc.querySelector('.merch__canvas');
+    lazy(mc, () => {
+      import('../three/merch.js')
+        .then((m) => m.createMerch(mcanvas, { onSpin: () => sound.whoosh(0.4, 0.05, true) }))
+        .catch((err) => console.warn('3D no disponible', err));
+    });
+    gsap.from(mcanvas, { y: 80, opacity: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: mc, start: 'top 70%' } });
+    gsap.from(mc.querySelectorAll('.merch__back > *'), { scale: 0, duration: 1, ease: 'back.out(1.6)', stagger: 0.15, scrollTrigger: { trigger: mc, start: 'top 70%' } });
+    gsap.from(mc.querySelector('.merch__title'), { opacity: 0, x: -40, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: mc, start: 'top 65%' } });
+  }
 }
